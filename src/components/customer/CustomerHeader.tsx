@@ -30,7 +30,6 @@ export const CustomerHeader: React.FC = () => {
 
   const navLinks: Array<{ id: CustomerTab; label: string }> = [
     { id: 'home', label: 'Trang chủ' },
-    { id: 'about', label: 'Giới thiệu' },
     { id: 'vehicles', label: 'Xe cho thuê' },
     { id: 'guide', label: 'Hướng dẫn thuê xe' },
     { id: 'lookup', label: 'Tra cứu đặt xe' },
@@ -50,8 +49,8 @@ export const CustomerHeader: React.FC = () => {
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1 text-slate-200 font-semibold">
-              <MapPin className="w-3 h-3 text-blue-400" />
-              <span>182 Võ Nguyên Giáp, Sơn Trà, TP. Đà Nẵng</span>
+              <MapPin className="w-3 h-3 text-sky-400" />
+              <span>25 Lê Lợi, TP. Nha Trang</span>
             </span>
             <span className="hidden sm:flex items-center gap-1 text-slate-400">
               <Clock className="w-3 h-3 text-slate-400" />
@@ -62,7 +61,7 @@ export const CustomerHeader: React.FC = () => {
           <div className="flex items-center gap-4">
             <a
               href={`tel:${settings.hotline.replace(/\s+/g, '')}`}
-              className="flex items-center gap-1 text-blue-400 hover:text-blue-300 font-bold"
+              className="flex items-center gap-1 text-sky-400 hover:text-sky-300 font-bold"
             >
               <Phone className="w-3 h-3" />
               <span>Hotline 24/7: {settings.hotline}</span>
@@ -71,10 +70,10 @@ export const CustomerHeader: React.FC = () => {
             {/* Quick Admin Portal Button */}
             <button
               onClick={() => setIsAdminLoginModalOpen(true)}
-              className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-semibold transition-colors border border-slate-700 cursor-pointer"
+              className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-semibold transition-colors border border-slate-700 cursor-pointer"
               title="Dành cho chủ cửa hàng và nhân viên nội bộ"
             >
-              <Lock className="w-2.5 h-2.5 text-blue-400" />
+              <Lock className="w-2.5 h-2.5 text-sky-400" />
               <span>Trang quản trị</span>
             </button>
           </div>
@@ -88,16 +87,16 @@ export const CustomerHeader: React.FC = () => {
           onClick={() => handleSelectTab('home')}
           className="flex items-center gap-2.5 cursor-pointer group select-none"
         >
-          <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-xs group-hover:bg-blue-700 transition-colors">
+          <div className="w-9 h-9 rounded-xl bg-orange-500 flex items-center justify-center text-white shadow-sm shadow-orange-500/20 group-hover:bg-orange-600 transition-colors">
             <Car className="w-5 h-5 text-white" />
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <span className="font-extrabold text-xl tracking-tight text-slate-900 group-hover:text-blue-600 transition-colors">
+              <span className="font-extrabold text-xl tracking-tight text-slate-900 group-hover:text-sky-600 transition-colors">
                 DriveRent
               </span>
-              <span className="text-[10px] font-bold text-blue-700 bg-blue-50 px-1.5 py-0.2 rounded border border-blue-200">
-                Đà Nẵng
+              <span className="text-[10px] font-bold text-sky-700 bg-sky-50 px-1.5 py-0.2 rounded border border-sky-200">
+                Nha Trang
               </span>
             </div>
             <p className="text-[10px] text-slate-500 font-medium">Cho thuê xe máy & ô tô tự lái</p>
@@ -114,13 +113,13 @@ export const CustomerHeader: React.FC = () => {
                 onClick={() => handleSelectTab(link.id)}
                 className={`py-1 transition-colors relative cursor-pointer ${
                   isActive
-                    ? 'text-blue-600 font-bold'
+                    ? 'text-sky-600 font-bold'
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 {link.label}
                 {isActive && (
-                  <span className="absolute bottom-0 inset-x-0 h-0.5 bg-blue-600 rounded-full" />
+                  <span className="absolute bottom-0 inset-x-0 h-0.5 bg-sky-600 rounded-full" />
                 )}
               </button>
             );
@@ -131,15 +130,15 @@ export const CustomerHeader: React.FC = () => {
         <div className="hidden sm:flex items-center gap-3">
           <button
             onClick={() => handleSelectTab('lookup')}
-            className="px-3 py-1.5 text-xs font-bold text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors flex items-center gap-1.5 border border-slate-200"
+            className="px-3 py-1.5 text-xs font-bold text-slate-700 hover:text-sky-600 hover:bg-sky-50 rounded-xl transition-colors flex items-center gap-1.5 border border-slate-200 cursor-pointer"
           >
-            <Search className="w-3.5 h-3.5" />
+            <Search className="w-3.5 h-3.5 text-slate-500" />
             <span>Tra cứu đơn</span>
           </button>
 
           <button
             onClick={() => handleSelectTab('vehicles')}
-            className="px-4 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-xs transition-colors flex items-center gap-1.5"
+            className="px-4 py-2 text-xs font-bold text-white bg-orange-500 hover:bg-orange-600 active:bg-orange-700 rounded-xl shadow-sm shadow-orange-500/20 transition-all flex items-center gap-1.5 cursor-pointer"
           >
             <Car className="w-3.5 h-3.5" />
             <span>Xem xe & Đặt cọc</span>
@@ -165,7 +164,7 @@ export const CustomerHeader: React.FC = () => {
               onClick={() => handleSelectTab(link.id)}
               className={`w-full text-left px-3 py-2.5 rounded-lg text-sm font-semibold transition-colors ${
                 customerTab === link.id
-                  ? 'bg-blue-50 text-blue-700 font-bold'
+                  ? 'bg-sky-50 text-sky-700 font-bold'
                   : 'text-slate-700 hover:bg-slate-50'
               }`}
             >
@@ -176,7 +175,7 @@ export const CustomerHeader: React.FC = () => {
           <div className="pt-3 border-t border-slate-100 flex flex-col gap-2">
             <button
               onClick={() => handleSelectTab('vehicles')}
-              className="w-full py-2.5 bg-blue-600 text-white rounded-lg font-bold text-xs text-center shadow-xs"
+              className="w-full py-2.5 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white rounded-xl font-bold text-xs text-center shadow-sm shadow-orange-500/20"
             >
               Xem danh sách xe & Đặt ngay
             </button>
@@ -185,9 +184,9 @@ export const CustomerHeader: React.FC = () => {
                 setIsMobileMenuOpen(false);
                 setIsAdminLoginModalOpen(true);
               }}
-              className="w-full py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-bold text-xs text-center flex items-center justify-center gap-1.5"
+              className="w-full py-2 bg-slate-900 text-slate-200 hover:text-white rounded-xl font-bold text-xs text-center flex items-center justify-center gap-1.5"
             >
-              <Lock className="w-3.5 h-3.5 text-blue-600" />
+              <Lock className="w-3.5 h-3.5 text-sky-400" />
               <span>Chuyển sang Trang quản trị nội bộ</span>
             </button>
           </div>

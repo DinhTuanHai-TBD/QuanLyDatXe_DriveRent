@@ -28,12 +28,12 @@ export const initialUsers: User[] = [
 ];
 
 export const initialStoreSettings: StoreSettings = {
-  storeName: 'DriveRent Đà Nẵng - Cho thuê Xe Tự Lái',
+  storeName: 'DriveRent Nha Trang - Cho thuê Xe Tự Lái',
   brandTitle: 'DriveRent',
-  address: 'Số 182 Đường Võ Nguyên Giáp, Phường Phước Mỹ, Quận Sơn Trà, TP. Đà Nẵng',
+  address: 'Số 25 Đường Lê Lợi, Phường Xương Huân, TP. Nha Trang, Tỉnh Khánh Hòa',
   hotline: '0905 888 999',
   email: 'hotro@driverent.vn',
-  city: 'Đà Nẵng',
+  city: 'Nha Trang',
   bankName: 'Ngân hàng TMCP Quân Đội (MB Bank)',
   bankAccount: '0905888999888',
   bankAccountName: 'NGUYEN VAN MINH - DRIVERENT',
@@ -49,7 +49,7 @@ export const initialVehicles: Vehicle[] = [
   {
     id: 'V-01',
     name: 'Toyota Vios 1.5G',
-    plateNumber: '43A-582.19',
+    plateNumber: '79A-282.19',
     type: 'car',
     category: 'Sedan 5 chỗ',
     status: 'available',
@@ -74,7 +74,7 @@ export const initialVehicles: Vehicle[] = [
   {
     id: 'V-02',
     name: 'Mitsubishi Xpander',
-    plateNumber: '43A-629.41',
+    plateNumber: '79A-329.41',
     type: 'car',
     category: 'MPV 7 chỗ',
     status: 'rented',
@@ -99,7 +99,7 @@ export const initialVehicles: Vehicle[] = [
   {
     id: 'V-03',
     name: 'Honda Vision',
-    plateNumber: '43K1-689.24',
+    plateNumber: '79N1-689.24',
     type: 'motorbike',
     category: 'Xe tay ga 110cc',
     status: 'available',
@@ -124,7 +124,7 @@ export const initialVehicles: Vehicle[] = [
   {
     id: 'V-04',
     name: 'Honda Air Blade',
-    plateNumber: '43E1-714.88',
+    plateNumber: '79N2-714.88',
     type: 'motorbike',
     category: 'Xe tay ga 125cc',
     status: 'rented',
@@ -143,13 +143,13 @@ export const initialVehicles: Vehicle[] = [
     lastMaintenanceKm: 20000,
     nextMaintenanceDate: '2026-11-01',
     nextMaintenanceKm: 23000,
-    notes: 'Khách thanh niên đi đèo Hải Vân rất thích'
+    notes: 'Khách thanh niên đi đèo Lương Sơn, vịnh Vĩnh Hy rất thích'
   },
   // 5. Hyundai Accent (Car, Available)
   {
     id: 'V-05',
     name: 'Hyundai Accent 1.4 AT',
-    plateNumber: '43A-491.52',
+    plateNumber: '79A-491.52',
     type: 'car',
     category: 'Sedan 5 chỗ',
     status: 'available',
@@ -174,7 +174,7 @@ export const initialVehicles: Vehicle[] = [
   {
     id: 'V-06',
     name: 'Yamaha Sirius Fi',
-    plateNumber: '43H1-523.66',
+    plateNumber: '79H1-523.66',
     type: 'motorbike',
     category: 'Xe số 115cc',
     status: 'maintenance',
@@ -186,7 +186,7 @@ export const initialVehicles: Vehicle[] = [
     year: 2022,
     color: 'Đen đỏ',
     transmission: 'Xe số tròn 4 cấp',
-    features: ['Phun xăng điện tử Fi', 'Khỏe máy leo đèo', 'Cực tiết kiệm xăng', 'Phanh đĩa trước'],
+    features: ['Phun xăng điện tử Fi', 'Khỏe máy leo dốc', 'Cực tiết kiệm xăng', 'Phanh đĩa trước'],
     insuranceExpiry: '2027-01-12',
     registrationExpiry: '2027-10-05',
     lastMaintenanceDate: '2026-06-20',
@@ -199,7 +199,7 @@ export const initialVehicles: Vehicle[] = [
   {
     id: 'V-07',
     name: 'Honda Vision',
-    plateNumber: '43K1-825.90',
+    plateNumber: '79N1-825.90',
     type: 'motorbike',
     category: 'Xe tay ga 110cc',
     status: 'rented',
@@ -218,13 +218,13 @@ export const initialVehicles: Vehicle[] = [
     lastMaintenanceKm: 16000,
     nextMaintenanceDate: '2026-10-28',
     nextMaintenanceKm: 19000,
-    notes: 'Khách người Hàn Quốc đang thuê đi Hội An'
+    notes: 'Khách người Hàn Quốc đang thuê đi Bãi Dài Cam Ranh'
   },
   // 8. Toyota Vios (Car, Available)
   {
     id: 'V-08',
     name: 'Toyota Vios 1.5E',
-    plateNumber: '43A-670.33',
+    plateNumber: '79A-270.33',
     type: 'car',
     category: 'Sedan 5 chỗ',
     status: 'available',
@@ -249,7 +249,7 @@ export const initialVehicles: Vehicle[] = [
   {
     id: 'V-09',
     name: 'Mitsubishi Xpander Cross',
-    plateNumber: '43A-781.05',
+    plateNumber: '79A-381.05',
     type: 'car',
     category: 'MPV 7 chỗ gầm cao',
     status: 'available',
@@ -268,13 +268,13 @@ export const initialVehicles: Vehicle[] = [
     lastMaintenanceKm: 20000,
     nextMaintenanceDate: '2026-11-30',
     nextMaintenanceKm: 25000,
-    notes: 'Xe mới 2024, thích hợp đi Bà Nà Hills, Hội An'
+    notes: 'Xe mới 2024, thích hợp đi VinWonders, Dốc Lết, Cam Ranh'
   },
   // 10. Honda Air Blade 160 (Motorbike, Available)
   {
     id: 'V-10',
     name: 'Honda Air Blade 160',
-    plateNumber: '43K1-992.11',
+    plateNumber: '79N2-992.11',
     type: 'motorbike',
     category: 'Xe tay ga 160cc',
     status: 'available',
@@ -299,7 +299,7 @@ export const initialVehicles: Vehicle[] = [
   {
     id: 'V-11',
     name: 'Yamaha Sirius',
-    plateNumber: '43H1-364.72',
+    plateNumber: '79H1-364.72',
     type: 'motorbike',
     category: 'Xe số 110cc',
     status: 'available',
@@ -324,7 +324,7 @@ export const initialVehicles: Vehicle[] = [
   {
     id: 'V-12',
     name: 'Hyundai Accent 1.4 MT',
-    plateNumber: '43A-388.94',
+    plateNumber: '79A-388.94',
     type: 'car',
     category: 'Sedan 5 chỗ',
     status: 'maintenance',
@@ -354,7 +354,7 @@ export const initialCustomers: Customer[] = [
     phone: '0912 345 678',
     identityNumber: '048092004512',
     driverLicense: '480210089211 (Hạng B2)',
-    address: '15 Kim Mã, Ba Đình, Hà Nội (Du lịch Đà Nẵng)',
+    address: '15 Kim Mã, Ba Đình, Hà Nội (Du lịch Nha Trang)',
     city: 'Hà Nội',
     rentalCount: 4,
     rating: 5,
@@ -370,7 +370,7 @@ export const initialCustomers: Customer[] = [
     city: 'TP. Hồ Chí Minh',
     rentalCount: 2,
     rating: 5,
-    notes: 'Khách thuê xe máy dạo phố và Hội An'
+    notes: 'Khách thuê xe máy dạo phố biển Nha Trang và Bãi Dài'
   },
   {
     id: 'CUST-03',
@@ -382,7 +382,7 @@ export const initialCustomers: Customer[] = [
     city: 'Huế',
     rentalCount: 1,
     rating: 4,
-    notes: 'Thuê xe đi công tác tại Đà Nẵng'
+    notes: 'Thuê xe đi công tác tại Nha Trang'
   },
   {
     id: 'CUST-04',
@@ -402,8 +402,8 @@ export const initialCustomers: Customer[] = [
     phone: '0977 123 987',
     identityNumber: '048085002233',
     driverLicense: '480170065432 (Hạng C)',
-    address: 'Khu công nghiệp Hòa Khánh, Đà Nẵng',
-    city: 'Đà Nẵng',
+    address: 'Khu đô thị Vĩnh Điềm Trung, TP. Nha Trang',
+    city: 'Nha Trang',
     rentalCount: 6,
     rating: 5,
     notes: 'Khách bản địa thuê xe 7 chỗ đón gia đình đi chơi dịp cuối tuần'
@@ -438,7 +438,7 @@ export const initialContracts: RentalContract[] = [
     deposit: 5000000, // Tiền cọc xe ô tô
     discount: 100000,
     surcharges: [
-      { id: 'sur-1', reason: 'Giao xe tại sân bay Đà Nẵng', amount: 150000 }
+      { id: 'sur-1', reason: 'Giao xe tại sân bay Cam Ranh', amount: 150000 }
     ],
     totalServiceFee: 3850000,
     amountPaid: 3850000, // Đã thanh toán trước tiền thuê
@@ -451,7 +451,7 @@ export const initialContracts: RentalContract[] = [
       photos: ['/src/assets/images/car_mitsubishi_xpander_1791537608474.jpg'],
       performedBy: 'Trần Thị Thu Thảo'
     },
-    note: 'Khách gia đình đi Đà Nẵng - Hội An - Bà Nà Hills',
+    note: 'Khách gia đình đi Nha Trang - Dốc Lết - Bãi Dài Cam Ranh',
     createdAt: '2026-10-07T14:30',
     createdBy: 'Trần Thị Thu Thảo'
   },
@@ -481,7 +481,7 @@ export const initialContracts: RentalContract[] = [
       photos: ['/src/assets/images/scooter_honda_airblade_1791537634617.jpg'],
       performedBy: 'Trần Thị Thu Thảo'
     },
-    note: 'Khách lưu trú tại Khách sạn Mường Thanh Sơn Trà',
+    note: 'Khách lưu trú tại Khách sạn Sheraton Trần Phú, Nha Trang',
     createdAt: '2026-10-08T09:40',
     createdBy: 'Trần Thị Thu Thảo'
   },
@@ -507,7 +507,7 @@ export const initialContracts: RentalContract[] = [
       odometer: 18450,
       fuelLevel: 7,
       accessories: ['2 mũ bảo hiểm', '1 áo mưa', '1 giá kẹp điện thoại'],
-      notes: 'Giao tại văn phòng 182 Võ Nguyên Giáp',
+      notes: 'Giao tại văn phòng 25 Lê Lợi, TP. Nha Trang',
       photos: ['/src/assets/images/scooter_honda_vision_1791537620987.jpg'],
       performedBy: 'Trần Thị Thu Thảo'
     },
@@ -530,11 +530,11 @@ export const initialContracts: RentalContract[] = [
     deposit: 5000000,
     discount: 0,
     surcharges: [
-      { id: 'sur-2', reason: 'Giao xe tận nơi Khách sạn Brilliant', amount: 100000 }
+      { id: 'sur-2', reason: 'Giao xe tận nơi Khách sạn InterContinental Nha Trang', amount: 100000 }
     ],
     totalServiceFee: 2350000,
     amountPaid: 500000, // Đã đặt cọc giữ chỗ 500.000 đ
-    note: 'Giao xe lúc 14:00 tại Khách sạn Brilliant Bạch Đằng',
+    note: 'Giao xe lúc 14:00 tại Khách sạn InterContinental đường Trần Phú',
     createdAt: '2026-10-08T16:00',
     createdBy: 'Nguyễn Văn Minh'
   },
@@ -787,7 +787,7 @@ export const initialActivityLogs: ActivityLog[] = [
     timestamp: '2026-10-08T09:15',
     action: 'Bàn giao xe',
     actor: 'Trần Thị Thu Thảo',
-    details: 'Đã giao xe Mitsubishi Xpander (43A-629.41) cho anh Hoàng Anh Tuấn tại sân bay Đà Nẵng',
+    details: 'Đã giao xe Mitsubishi Xpander (79A-329.41) cho anh Hoàng Anh Tuấn tại sân bay Cam Ranh',
     type: 'contract'
   },
   {
@@ -803,7 +803,7 @@ export const initialActivityLogs: ActivityLog[] = [
     timestamp: '2026-10-07T09:00',
     action: 'Bắt đầu bảo dưỡng',
     actor: 'Lê Hoàng Dũng',
-    details: 'Đưa xe Yamaha Sirius Fi (43H1-523.66) vào xưởng để thay nhông sên dĩa và thay nhớt',
+    details: 'Đưa xe Yamaha Sirius Fi (79H1-523.66) vào xưởng để thay nhông sên dĩa và thay nhớt',
     type: 'maintenance'
   }
 ];
@@ -815,7 +815,7 @@ export const initialOnlineBookings: OnlineBooking[] = [
     customerName: 'Trần Minh Quân',
     customerPhone: '0905 112 233',
     customerEmail: 'minhquan.tran@gmail.com',
-    pickupLocation: 'Sân bay Quốc tế Đà Nẵng',
+    pickupLocation: 'Sân bay Quốc tế Cam Ranh',
     startDate: '2026-10-15T09:00',
     endDate: '2026-10-18T17:00',
     pricingType: 'daily',
@@ -830,7 +830,7 @@ export const initialOnlineBookings: OnlineBooking[] = [
     securityDepositOnPickup: 5000000,
     status: 'confirmed',
     paymentMethod: 'Chuyển khoản ngân hàng',
-    notes: 'Chuyến bay đáp lúc 08:45 sáng, cần mang xe ra cột số 4 ga đến',
+    notes: 'Chuyến bay đáp lúc 08:45 sáng tại Cam Ranh, cần mang xe ra cột số 4 ga đến',
     createdAt: '2026-10-08T15:20',
     expiresAt: '2026-10-08T15:30',
     verifiedAt: '2026-10-08T15:25'
@@ -840,8 +840,8 @@ export const initialOnlineBookings: OnlineBooking[] = [
     vehicleId: 'V-10', // Honda Air Blade 160
     customerName: 'Nguyễn Thị Hải Yến',
     customerPhone: '0935 889 900',
-    customerEmail: 'haiyen.danang@outlook.com',
-    pickupLocation: 'Văn phòng DriveRent (182 Võ Nguyên Giáp)',
+    customerEmail: 'haiyen.nhatrang@outlook.com',
+    pickupLocation: 'Văn phòng DriveRent (25 Lê Lợi, Nha Trang)',
     startDate: '2026-10-14T08:00',
     endDate: '2026-10-16T18:00',
     pricingType: 'daily',

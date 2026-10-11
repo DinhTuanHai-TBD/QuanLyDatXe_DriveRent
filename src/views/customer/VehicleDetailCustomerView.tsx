@@ -109,7 +109,7 @@ export const VehicleDetailCustomerView: React.FC = () => {
             setCustomerTab('vehicles');
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-blue-600 transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-sky-600 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Quay lại danh sách xe</span>
@@ -129,7 +129,7 @@ export const VehicleDetailCustomerView: React.FC = () => {
                 className="w-full h-full object-cover"
               />
               <div className="absolute top-4 left-4">
-                <span className="px-3 py-1 rounded-lg text-xs font-extrabold bg-blue-600 text-white shadow-xs">
+                <span className="px-3 py-1 rounded-lg text-xs font-extrabold bg-sky-600 text-white shadow-xs">
                   {vehicle.category}
                 </span>
               </div>
@@ -150,7 +150,7 @@ export const VehicleDetailCustomerView: React.FC = () => {
 
               <div className="text-right">
                 <span className="text-[10px] text-slate-400 uppercase font-bold block">Giá thuê ngày</span>
-                <span className="text-2xl font-black text-blue-700 font-mono">
+                <span className="text-2xl font-black text-sky-700 font-mono">
                   {formatVND(vehicle.dailyPrice)}
                 </span>
                 <span className="text-xs text-slate-500 font-medium">/ngày (24h)</span>
@@ -189,9 +189,9 @@ export const VehicleDetailCustomerView: React.FC = () => {
                   {vehicle.features.map((feat, idx) => (
                     <span
                       key={idx}
-                      className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-blue-50 text-blue-800 border border-blue-100 flex items-center gap-1"
+                      className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-sky-50 text-sky-800 border border-sky-100 flex items-center gap-1"
                     >
-                      <CheckCircle2 className="w-3.5 h-3.5 text-blue-600" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-sky-600" />
                       <span>{feat}</span>
                     </span>
                   ))}
@@ -201,18 +201,18 @@ export const VehicleDetailCustomerView: React.FC = () => {
           </div>
 
           {/* CRITICAL: DEPOSIT POLICIES EXPLAINED (Requirement!) */}
-          <div className="bg-indigo-50/70 rounded-2xl p-6 border border-indigo-200 space-y-4 text-xs">
+          <div className="bg-sky-50/70 rounded-2xl p-6 border border-sky-200 space-y-4 text-xs">
             <div className="flex items-center gap-2">
-              <ShieldCheck className="w-5 h-5 text-indigo-700" />
-              <h3 className="font-extrabold text-sm text-indigo-950 uppercase tracking-wider">
+              <ShieldCheck className="w-5 h-5 text-sky-700" />
+              <h3 className="font-extrabold text-sm text-slate-900 uppercase tracking-wider">
                 Chính sách cọc minh bạch: Phân biệt rõ 2 loại cọc
               </h3>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Type 1: Booking deposit */}
-              <div className="bg-white p-4 rounded-xl border border-indigo-200 space-y-2">
-                <span className="font-extrabold text-blue-700 text-xs block">
+              <div className="bg-white p-4 rounded-xl border border-sky-200/80 shadow-2xs space-y-2">
+                <span className="font-extrabold text-sky-700 text-xs block">
                   1. CỌC GIỮ CHỖ TRỰC TUYẾN (20%)
                 </span>
                 <p className="text-slate-600 leading-relaxed text-[11px]">
@@ -223,8 +223,8 @@ export const VehicleDetailCustomerView: React.FC = () => {
               </div>
 
               {/* Type 2: Security deposit */}
-              <div className="bg-white p-4 rounded-xl border border-indigo-200 space-y-2">
-                <span className="font-extrabold text-indigo-900 text-xs block">
+              <div className="bg-white p-4 rounded-xl border border-sky-200/80 shadow-2xs space-y-2">
+                <span className="font-extrabold text-slate-900 text-xs block">
                   2. CỌC BẢO ĐẢM HỢP ĐỒNG (KHI NHẬN XE)
                 </span>
                 <p className="text-slate-600 leading-relaxed text-[11px]">
@@ -266,10 +266,10 @@ export const VehicleDetailCustomerView: React.FC = () => {
 
         {/* Right Column: Sticky Booking Widget (1 col) */}
         <div className="space-y-6">
-          <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-lg sticky top-20 space-y-4 text-xs">
+          <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-md sticky top-20 space-y-4 text-xs">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <h3 className="font-extrabold text-sm text-slate-900">Tính giá & Đặt xe này</h3>
-              <span className="text-[11px] font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded">
+              <span className="text-[11px] font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded border border-sky-200">
                 Gói 24h
               </span>
             </div>
@@ -295,7 +295,7 @@ export const VehicleDetailCustomerView: React.FC = () => {
                   type="datetime-local"
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs"
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:ring-2 focus:ring-sky-500 focus:outline-hidden"
                 />
               </div>
 
@@ -305,7 +305,7 @@ export const VehicleDetailCustomerView: React.FC = () => {
                   type="datetime-local"
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs"
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:ring-2 focus:ring-sky-500 focus:outline-hidden"
                 />
               </div>
 
@@ -314,12 +314,12 @@ export const VehicleDetailCustomerView: React.FC = () => {
                 <select
                   value={pickupLocation}
                   onChange={(e) => setPickupLocation(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs"
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:ring-2 focus:ring-sky-500 focus:outline-hidden"
                 >
-                  <option value="Văn phòng DriveRent (182 Võ Nguyên Giáp)">Văn phòng 182 Võ Nguyên Giáp (Miễn phí)</option>
-                  <option value="Sân bay Quốc tế Đà Nẵng">Sân bay Đà Nẵng (+150.000 đ ô tô / 50.000 đ xe máy)</option>
-                  <option value="Ga đường sắt Đà Nẵng">Ga đường sắt Đà Nẵng</option>
-                  <option value="Khách sạn nội thành Đà Nẵng">Khách sạn nội thành Đà Nẵng</option>
+                  <option value="Văn phòng DriveRent (25 Lê Lợi, TP. Nha Trang)">Văn phòng 25 Lê Lợi, TP. Nha Trang (Miễn phí)</option>
+                  <option value="Sân bay Quốc tế Cam Ranh">Sân bay Cam Ranh (+150.000 đ ô tô / 50.000 đ xe máy)</option>
+                  <option value="Ga đường sắt Nha Trang">Ga đường sắt Nha Trang</option>
+                  <option value="Khách sạn nội thành Nha Trang">Khách sạn nội thành Nha Trang (Đường Trần Phú / Hùng Vương)</option>
                 </select>
               </div>
             </div>
@@ -346,16 +346,16 @@ export const VehicleDetailCustomerView: React.FC = () => {
 
               <div className="flex justify-between font-extrabold text-sm pt-1 border-t border-slate-200">
                 <span className="text-slate-900">Tổng tiền dự kiến:</span>
-                <span className="font-mono text-blue-700 text-base">{formatVND(totalEstimatedAmount)}</span>
+                <span className="font-mono text-sky-700 text-base">{formatVND(totalEstimatedAmount)}</span>
               </div>
 
               {/* Deposit Required */}
-              <div className="p-3 bg-blue-50 border border-blue-200 rounded-xl space-y-1">
-                <div className="flex justify-between font-extrabold text-blue-900">
+              <div className="p-3 bg-sky-50 border border-sky-200 rounded-xl space-y-1">
+                <div className="flex justify-between font-extrabold text-sky-950">
                   <span>CỌC GIỮ CHỖ CẦN THANH TOÁN (20%):</span>
-                  <span className="font-mono text-blue-700 text-base">{formatVND(bookingDepositRequired)}</span>
+                  <span className="font-mono text-sky-700 text-base">{formatVND(bookingDepositRequired)}</span>
                 </div>
-                <div className="flex justify-between text-[11px] text-blue-700">
+                <div className="flex justify-between text-[11px] text-sky-700">
                   <span>Số tiền còn lại thanh toán khi nhận xe:</span>
                   <span className="font-mono font-semibold">{formatVND(remainingAmountDue)}</span>
                 </div>
@@ -367,13 +367,13 @@ export const VehicleDetailCustomerView: React.FC = () => {
               </div>
             </div>
 
-            {/* Action button */}
+            {/* Action button - Sunset Orange CTA */}
             <button
               onClick={handleStartBooking}
               disabled={!availability.available}
-              className="w-full py-3 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-extrabold rounded-xl shadow-md text-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full py-3.5 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 disabled:opacity-50 text-white font-extrabold rounded-xl shadow-sm shadow-orange-500/20 text-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
-              <CreditCard className="w-4 h-4" />
+              <CreditCard className="w-4 h-4 stroke-[2.5]" />
               <span>Tiến hành đặt xe & Thanh toán cọc</span>
             </button>
           </div>

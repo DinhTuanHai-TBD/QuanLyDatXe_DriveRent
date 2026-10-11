@@ -302,7 +302,7 @@ export const HandoverReturnModal: React.FC = () => {
                     setHandoverPhotos((prev) => [...prev, vehicle?.image || '']);
                     showToast('Đã chụp thêm 1 góc ảnh kiểm tra', 'info');
                   }}
-                  className="text-xs text-blue-600 font-bold hover:underline flex items-center gap-1"
+                  className="text-xs text-sky-600 font-bold hover:underline flex items-center gap-1 cursor-pointer"
                 >
                   <Camera className="w-3.5 h-3.5" />
                   <span>+ Chụp / Tải thêm ảnh</span>
@@ -331,16 +331,16 @@ export const HandoverReturnModal: React.FC = () => {
               <button
                 type="button"
                 onClick={handleClose}
-                className="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg"
+                className="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg cursor-pointer"
               >
                 Hủy bỏ
               </button>
               <button
                 type="submit"
-                className="px-5 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm flex items-center gap-2"
+                className="px-5 py-2.5 text-xs font-bold text-white bg-orange-500 hover:bg-orange-600 active:bg-orange-700 rounded-xl shadow-sm shadow-orange-500/20 flex items-center gap-2 transition-all cursor-pointer"
               >
                 <Check className="w-4 h-4" />
-                <span>Xác nhận giao xe cho khách</span>
+                <span>Xác nhận bàn giao xe</span>
               </button>
             </div>
           </form>
@@ -583,13 +583,13 @@ export const HandoverReturnModal: React.FC = () => {
               <button
                 type="button"
                 onClick={handleClose}
-                className="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg"
+                className="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg cursor-pointer"
               >
                 Hủy bỏ
               </button>
               <button
                 type="submit"
-                className="px-5 py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg shadow-sm flex items-center gap-2"
+                className="px-5 py-2.5 text-xs font-bold text-white bg-orange-500 hover:bg-orange-600 active:bg-orange-700 rounded-xl shadow-sm shadow-orange-500/20 flex items-center gap-2 transition-all cursor-pointer"
               >
                 <Check className="w-4 h-4" />
                 <span>Hoàn tất nhận xe & Tiến hành quyết toán</span>

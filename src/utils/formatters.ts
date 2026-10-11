@@ -112,23 +112,31 @@ export function getVehicleStatusBadge(status: string) {
         bg: 'bg-emerald-50',
         textCol: 'text-emerald-700',
         border: 'border-emerald-200',
-        dot: 'bg-emerald-600'
+        dot: 'bg-emerald-500'
       };
     case 'rented':
       return {
         text: 'Đang cho thuê',
-        bg: 'bg-blue-50',
-        textCol: 'text-blue-700',
-        border: 'border-blue-200',
-        dot: 'bg-blue-600'
+        bg: 'bg-sky-50',
+        textCol: 'text-sky-700',
+        border: 'border-sky-200',
+        dot: 'bg-sky-600'
       };
     case 'maintenance':
       return {
         text: 'Đang bảo dưỡng',
         bg: 'bg-amber-50',
-        textCol: 'text-amber-800',
+        textCol: 'text-amber-700',
         border: 'border-amber-200',
-        dot: 'bg-amber-600'
+        dot: 'bg-amber-500'
+      };
+    case 'overdue':
+      return {
+        text: 'Cảnh báo trễ hạn',
+        bg: 'bg-rose-50 animate-pulse',
+        textCol: 'text-rose-700',
+        border: 'border-rose-200',
+        dot: 'bg-rose-500'
       };
     default:
       return {
@@ -153,22 +161,22 @@ export function getContractStatusBadge(status: string) {
     case 'confirmed':
       return {
         text: 'Đã xác nhận',
-        bg: 'bg-indigo-50',
-        textCol: 'text-indigo-700',
-        border: 'border-indigo-200'
+        bg: 'bg-sky-50',
+        textCol: 'text-sky-700',
+        border: 'border-sky-200'
       };
     case 'rented':
       return {
         text: 'Đang thuê',
-        bg: 'bg-blue-50',
-        textCol: 'text-blue-700',
-        border: 'border-blue-200'
+        bg: 'bg-sky-50',
+        textCol: 'text-sky-700',
+        border: 'border-sky-200'
       };
     case 'pending_settlement':
       return {
         text: 'Chờ quyết toán',
         bg: 'bg-amber-50',
-        textCol: 'text-amber-800',
+        textCol: 'text-amber-700',
         border: 'border-amber-200'
       };
     case 'completed':

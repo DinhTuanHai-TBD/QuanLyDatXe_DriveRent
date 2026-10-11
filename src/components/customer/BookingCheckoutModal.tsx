@@ -162,7 +162,7 @@ export const BookingCheckoutModal: React.FC = () => {
         {/* Header */}
         <div className="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/70">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-xs">
+            <div className="w-10 h-10 rounded-xl bg-sky-600 flex items-center justify-center text-white shadow-xs">
               <CreditCard className="w-5 h-5" />
             </div>
             <div>
@@ -172,7 +172,7 @@ export const BookingCheckoutModal: React.FC = () => {
                   {step === 'payment' && 'Thanh toán cọc giữ chỗ trực tuyến'}
                   {step === 'success' && 'Đặt xe & Giữ chỗ thành công!'}
                 </h3>
-                <span className="font-mono text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                <span className="font-mono text-xs font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded border border-sky-200">
                   {activeCheckoutBooking.id}
                 </span>
               </div>
@@ -186,7 +186,7 @@ export const BookingCheckoutModal: React.FC = () => {
 
           <button
             onClick={handleClose}
-            className="p-2 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition-colors"
+            className="p-2 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -198,7 +198,7 @@ export const BookingCheckoutModal: React.FC = () => {
           {step === 'info' && (
             <form onSubmit={handleProceedToPayment} className="space-y-6">
               {/* Selected Vehicle Summary Card */}
-              <div className="p-4 rounded-xl bg-blue-50/50 border border-blue-100 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+              <div className="p-4 rounded-xl bg-sky-50/60 border border-sky-100 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="w-16 h-12 bg-white rounded-lg overflow-hidden border border-slate-200 shrink-0">
                     <img
@@ -213,7 +213,7 @@ export const BookingCheckoutModal: React.FC = () => {
                     <p className="text-xs text-slate-500">
                       Biển số demo: {vehicle.plateNumber} · {vehicle.transmission} · {vehicle.category}
                     </p>
-                    <p className="text-xs text-blue-700 font-semibold mt-0.5">
+                    <p className="text-xs text-sky-700 font-semibold mt-0.5">
                       {formatDateTime(activeCheckoutBooking.startDate)} → {formatDateTime(activeCheckoutBooking.endDate)} ({activeCheckoutBooking.units} ngày)
                     </p>
                   </div>
@@ -221,7 +221,7 @@ export const BookingCheckoutModal: React.FC = () => {
 
                 <div className="sm:text-right border-t sm:border-t-0 pt-2 sm:pt-0 w-full sm:w-auto">
                   <span className="text-[11px] text-slate-500 block">Cọc giữ chỗ 20% cần nộp</span>
-                  <span className="text-lg font-black text-blue-700 font-mono">
+                  <span className="text-lg font-black text-sky-700 font-mono">
                     {formatVND(activeCheckoutBooking.bookingDepositRequired)}
                   </span>
                 </div>
@@ -244,7 +244,7 @@ export const BookingCheckoutModal: React.FC = () => {
                       placeholder="Ví dụ: Nguyễn Văn An"
                       value={customerName}
                       onChange={(e) => setCustomerName(e.target.value)}
-                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:border-blue-600 focus:outline-hidden"
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:border-sky-600 focus:ring-1 focus:ring-sky-500 focus:outline-hidden"
                     />
                   </div>
 
@@ -258,7 +258,7 @@ export const BookingCheckoutModal: React.FC = () => {
                       placeholder="Ví dụ: 0905 123 456"
                       value={customerPhone}
                       onChange={(e) => setCustomerPhone(e.target.value)}
-                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:border-blue-600 focus:outline-hidden"
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:border-sky-600 focus:ring-1 focus:ring-sky-500 focus:outline-hidden"
                     />
                   </div>
 
@@ -271,7 +271,7 @@ export const BookingCheckoutModal: React.FC = () => {
                       placeholder="name@example.com"
                       value={customerEmail}
                       onChange={(e) => setCustomerEmail(e.target.value)}
-                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:border-blue-600 focus:outline-hidden"
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:border-sky-600 focus:ring-1 focus:ring-sky-500 focus:outline-hidden"
                     />
                   </div>
 
@@ -284,7 +284,7 @@ export const BookingCheckoutModal: React.FC = () => {
                       placeholder="Nhập để làm hợp đồng trước"
                       value={identityNumber}
                       onChange={(e) => setIdentityNumber(e.target.value)}
-                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:border-blue-600 focus:outline-hidden"
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:border-sky-600 focus:ring-1 focus:ring-sky-500 focus:outline-hidden"
                     />
                   </div>
                 </div>
@@ -295,10 +295,10 @@ export const BookingCheckoutModal: React.FC = () => {
                   </label>
                   <input
                     type="text"
-                    placeholder="Ví dụ: Ga đến Quốc nội - Sân bay Đà Nẵng (Chuyến VN123 đến lúc 09:30)"
+                    placeholder="Ví dụ: Ga đến Quốc nội - Sân bay Cam Ranh (Chuyến VN123 đến lúc 09:30)"
                     value={specificAddress}
                     onChange={(e) => setSpecificAddress(e.target.value)}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:border-blue-600 focus:outline-hidden"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:border-sky-600 focus:ring-1 focus:ring-sky-500 focus:outline-hidden"
                   />
                 </div>
 
@@ -311,7 +311,7 @@ export const BookingCheckoutModal: React.FC = () => {
                     placeholder="Ví dụ: Cần 2 mũ bảo hiểm cỡ lớn, chuẩn bị thêm 2 áo mưa mỏng..."
                     value={notes}
                     onChange={(e) => setNotes(e.target.value)}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:border-blue-600 focus:outline-hidden"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:border-sky-600 focus:ring-1 focus:ring-sky-500 focus:outline-hidden"
                   />
                 </div>
               </div>
@@ -336,14 +336,14 @@ export const BookingCheckoutModal: React.FC = () => {
                   <span className="font-mono">{formatVND(activeCheckoutBooking.totalEstimatedAmount)}</span>
                 </div>
 
-                <div className="p-2.5 bg-blue-100/60 rounded-lg border border-blue-200 flex justify-between items-center text-blue-900 font-extrabold text-sm">
+                <div className="p-2.5 bg-sky-50 rounded-lg border border-sky-200 flex justify-between items-center text-sky-950 font-extrabold text-sm">
                   <div>
                     <span>Cọc giữ chỗ trực tuyến cần thanh toán (20%):</span>
-                    <p className="text-[10px] text-blue-700 font-normal">
+                    <p className="text-[10px] text-sky-700 font-normal">
                       Khóa lịch xe ngay, đối trừ 100% vào tiền thuê khi nhận xe
                     </p>
                   </div>
-                  <span className="font-mono text-base text-blue-700">
+                  <span className="font-mono text-base text-sky-700">
                     {formatVND(activeCheckoutBooking.bookingDepositRequired)}
                   </span>
                 </div>
@@ -364,27 +364,27 @@ export const BookingCheckoutModal: React.FC = () => {
                   type="checkbox"
                   checked={agreedTerms}
                   onChange={(e) => setAgreedTerms(e.target.checked)}
-                  className="mt-0.5 rounded text-blue-600 focus:ring-blue-500"
+                  className="mt-0.5 rounded text-orange-500 focus:ring-orange-500"
                 />
                 <span>
                   Tôi xác nhận thông tin trên là chính xác và đồng ý với{' '}
-                  <span className="text-blue-600 font-bold">Chính sách giữ xe & hoàn cọc</span> của DriveRent (Hủy trước 24h hoàn 100% cọc).
+                  <span className="text-sky-600 font-bold">Chính sách giữ xe & hoàn cọc</span> của DriveRent (Hủy trước 24h hoàn 100% cọc).
                 </span>
               </label>
 
-              {/* Buttons */}
+              {/* Buttons - Sunset Orange CTA */}
               <div className="flex items-center justify-between pt-2">
                 <button
                   type="button"
                   onClick={handleClose}
-                  className="px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-100"
+                  className="px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-100 cursor-pointer"
                 >
                   Quay lại
                 </button>
 
                 <button
                   type="submit"
-                  className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-md flex items-center gap-1.5 transition-all cursor-pointer"
+                  className="px-6 py-2.5 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white rounded-xl text-xs font-bold shadow-sm shadow-orange-500/20 flex items-center gap-1.5 transition-all cursor-pointer"
                 >
                   <span>Chuyển sang Quét mã VietQR cọc</span>
                   <ChevronRight className="w-4 h-4" />
@@ -410,8 +410,8 @@ export const BookingCheckoutModal: React.FC = () => {
               {/* QR and Transfer Info */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
                 {/* Simulated VietQR Box */}
-                <div className="bg-gradient-to-b from-blue-700 to-indigo-900 p-5 rounded-2xl text-white text-center shadow-lg space-y-3">
-                  <div className="flex items-center justify-between text-[11px] font-bold text-blue-200 pb-2 border-b border-blue-500/30">
+                <div className="bg-gradient-to-b from-slate-900 via-slate-800 to-slate-950 p-5 rounded-2xl text-white text-center shadow-lg space-y-3 border border-slate-700">
+                  <div className="flex items-center justify-between text-[11px] font-bold text-sky-400 pb-2 border-b border-slate-700">
                     <span>CỔNG THANH TOÁN VIETQR</span>
                     <span className="bg-emerald-500 text-white px-1.5 py-0.5 rounded text-[10px]">NAPAS 247</span>
                   </div>
@@ -420,14 +420,14 @@ export const BookingCheckoutModal: React.FC = () => {
                   <div className="bg-white p-3 rounded-xl mx-auto w-48 h-48 shadow-inner flex flex-col items-center justify-center relative">
                     <QrCode className="w-36 h-36 text-slate-900" />
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center shadow-md">
+                      <div className="w-8 h-8 rounded-lg bg-orange-500 text-white flex items-center justify-center shadow-md">
                         <Car className="w-4 h-4" />
                       </div>
                     </div>
                   </div>
 
                   <div className="space-y-1">
-                    <p className="text-[11px] text-blue-200">Quét mã bằng ứng dụng Ngân hàng bất kỳ</p>
+                    <p className="text-[11px] text-slate-300">Quét mã bằng ứng dụng Ngân hàng bất kỳ</p>
                     <p className="text-xl font-black font-mono tracking-tight text-white">
                       {formatVND(activeCheckoutBooking.bookingDepositRequired)}
                     </p>
@@ -449,10 +449,10 @@ export const BookingCheckoutModal: React.FC = () => {
                     <div className="flex justify-between items-center">
                       <span className="text-slate-500">Số tài khoản:</span>
                       <div className="flex items-center gap-1.5">
-                        <strong className="text-blue-700 font-mono text-sm">{settings.bankAccount}</strong>
+                        <strong className="text-sky-700 font-mono text-sm">{settings.bankAccount}</strong>
                         <button
                           onClick={() => handleCopy(settings.bankAccount, 'Số tài khoản')}
-                          className="p-1 hover:bg-slate-200 rounded text-slate-500"
+                          className="p-1 hover:bg-slate-200 rounded text-slate-500 cursor-pointer"
                           title="Sao chép"
                         >
                           <Copy className="w-3.5 h-3.5" />
@@ -468,12 +468,12 @@ export const BookingCheckoutModal: React.FC = () => {
                     <div className="flex justify-between items-center">
                       <span className="text-slate-500">Số tiền:</span>
                       <div className="flex items-center gap-1.5">
-                        <strong className="text-blue-700 font-mono text-sm font-black">
+                        <strong className="text-sky-700 font-mono text-sm font-black">
                           {formatVND(activeCheckoutBooking.bookingDepositRequired)}
                         </strong>
                         <button
                           onClick={() => handleCopy(String(activeCheckoutBooking.bookingDepositRequired), 'Số tiền')}
-                          className="p-1 hover:bg-slate-200 rounded text-slate-500"
+                          className="p-1 hover:bg-slate-200 rounded text-slate-500 cursor-pointer"
                           title="Sao chép"
                         >
                           <Copy className="w-3.5 h-3.5" />
@@ -484,12 +484,12 @@ export const BookingCheckoutModal: React.FC = () => {
                     <div className="flex justify-between items-center pt-1 border-t border-slate-200">
                       <span className="text-slate-500">Nội dung CK:</span>
                       <div className="flex items-center gap-1.5">
-                        <strong className="text-slate-900 font-mono bg-blue-100/70 px-1.5 py-0.5 rounded text-xs">
+                        <strong className="text-slate-900 font-mono bg-sky-100/70 text-sky-950 px-1.5 py-0.5 rounded text-xs">
                           {activeCheckoutBooking.id}
                         </strong>
                         <button
                           onClick={() => handleCopy(activeCheckoutBooking.id, 'Nội dung chuyển khoản')}
-                          className="p-1 hover:bg-slate-200 rounded text-slate-500"
+                          className="p-1 hover:bg-slate-200 rounded text-slate-500 cursor-pointer"
                           title="Sao chép"
                         >
                           <Copy className="w-3.5 h-3.5" />
@@ -564,13 +564,13 @@ export const BookingCheckoutModal: React.FC = () => {
                 <div className="flex items-center justify-between pb-3 border-b border-slate-200">
                   <div>
                     <span className="text-[10px] text-slate-400 uppercase font-bold">Mã xác nhận giữ chỗ</span>
-                    <p className="text-lg font-black text-blue-700 font-mono tracking-wider">
+                    <p className="text-lg font-black text-sky-700 font-mono tracking-wider">
                       {activeCheckoutBooking.id}
                     </p>
                   </div>
                   <div className="text-right">
                     <span className="text-[10px] text-slate-400 uppercase font-bold">Trạng thái</span>
-                    <p className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                    <p className="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
                       Đã thu cọc · Chờ nhận xe
                     </p>
                   </div>
@@ -608,7 +608,7 @@ export const BookingCheckoutModal: React.FC = () => {
                   </div>
                   <div className="text-right">
                     <span className="text-slate-500">Tiền thuê còn lại khi nhận xe:</span>
-                    <p className="text-sm font-black text-blue-700 font-mono">
+                    <p className="text-sm font-black text-sky-700 font-mono">
                       {formatVND(activeCheckoutBooking.remainingAmountDue)}
                     </p>
                   </div>
@@ -616,12 +616,12 @@ export const BookingCheckoutModal: React.FC = () => {
               </div>
 
               {/* Instructions Reminder */}
-              <div className="p-3 bg-blue-50 border border-blue-200 rounded-xl text-left text-xs text-blue-900 space-y-1">
+              <div className="p-3 bg-sky-50 border border-sky-200 rounded-xl text-left text-xs text-sky-950 space-y-1">
                 <p className="font-bold flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-blue-600" />
+                  <ShieldCheck className="w-4 h-4 text-sky-600" />
                   <span>Hướng dẫn chuẩn bị khi nhận xe:</span>
                 </p>
-                <ul className="list-disc list-inside space-y-0.5 text-[11px] text-blue-800">
+                <ul className="list-disc list-inside space-y-0.5 text-[11px] text-sky-800">
                   <li>Mang theo CCCD / Hộ chiếu gốc và Giấy phép lái xe hợp lệ.</li>
                   <li>Chuẩn bị tiền cọc bảo đảm tài sản <strong>{formatVND(activeCheckoutBooking.securityDepositOnPickup)}</strong> (hoàn lại 100% khi trả xe).</li>
                   <li>Nhân viên sẽ liên hệ trước 1 giờ để xác nhận vị trí giao xe. Hotline hỗ trợ: {settings.hotline}.</li>
@@ -654,7 +654,7 @@ export const BookingCheckoutModal: React.FC = () => {
               <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
                 <button
                   onClick={handlePrint}
-                  className="px-4 py-2 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 hover:bg-slate-100 flex items-center gap-1.5"
+                  className="px-4 py-2 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 hover:bg-slate-100 flex items-center gap-1.5 cursor-pointer"
                 >
                   <Printer className="w-3.5 h-3.5" />
                   <span>In phiếu xác nhận</span>
@@ -666,7 +666,7 @@ export const BookingCheckoutModal: React.FC = () => {
                     setCustomerTab('lookup');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="px-4 py-2 border border-slate-200 rounded-xl text-xs font-bold text-blue-600 hover:bg-blue-50 flex items-center gap-1.5"
+                  className="px-4 py-2 border border-sky-200 rounded-xl text-xs font-bold text-sky-700 hover:bg-sky-50 flex items-center gap-1.5 cursor-pointer"
                 >
                   <span>Tra cứu đơn đặt xe</span>
                 </button>
@@ -677,7 +677,7 @@ export const BookingCheckoutModal: React.FC = () => {
                     setCustomerTab('home');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-md"
+                  className="px-6 py-2 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white rounded-xl text-xs font-bold shadow-sm shadow-orange-500/20 cursor-pointer"
                 >
                   Hoàn tất & Về trang chủ
                 </button>

@@ -96,7 +96,7 @@ export const FleetView: React.FC = () => {
 
         <button
           onClick={() => setIsAddVehicleOpen(true)}
-          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold rounded-xl shadow-sm transition-all"
+          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold rounded-xl shadow-sm shadow-orange-500/20 transition-all cursor-pointer"
         >
           <Plus className="w-4 h-4 stroke-[2.5]" />
           <span>Thêm xe mới</span>
@@ -104,7 +104,7 @@ export const FleetView: React.FC = () => {
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-2xs space-y-3">
+      <div className="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs space-y-3">
         <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3">
           {/* Search box */}
           <div className="relative flex-1">
@@ -114,12 +114,12 @@ export const FleetView: React.FC = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Tìm kiếm theo biển số hoặc tên xe (ví dụ: Vios, Vision, 43A-...)"
-              className="w-full pl-9 pr-4 py-2 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all"
+              className="w-full pl-9 pr-4 py-2 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-sky-500 focus:bg-white transition-all"
             />
             {searchTerm && (
               <button
                 onClick={() => setSearchTerm('')}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -130,7 +130,7 @@ export const FleetView: React.FC = () => {
           <div className="flex items-center gap-1 p-1 bg-slate-100 rounded-lg shrink-0">
             <button
               onClick={() => setTypeFilter('all')}
-              className={`px-3 py-1.5 text-xs font-bold rounded-md transition-all ${
+              className={`px-3 py-1.5 text-xs font-bold rounded-md transition-all cursor-pointer ${
                 typeFilter === 'all'
                   ? 'bg-white text-slate-900 shadow-2xs'
                   : 'text-slate-600 hover:text-slate-900'
@@ -140,9 +140,9 @@ export const FleetView: React.FC = () => {
             </button>
             <button
               onClick={() => setTypeFilter('car')}
-              className={`px-3 py-1.5 text-xs font-bold rounded-md transition-all ${
+              className={`px-3 py-1.5 text-xs font-bold rounded-md transition-all cursor-pointer ${
                 typeFilter === 'car'
-                  ? 'bg-white text-blue-700 shadow-2xs'
+                  ? 'bg-white text-sky-700 shadow-2xs border border-sky-200/60'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
@@ -150,9 +150,9 @@ export const FleetView: React.FC = () => {
             </button>
             <button
               onClick={() => setTypeFilter('motorbike')}
-              className={`px-3 py-1.5 text-xs font-bold rounded-md transition-all ${
+              className={`px-3 py-1.5 text-xs font-bold rounded-md transition-all cursor-pointer ${
                 typeFilter === 'motorbike'
-                  ? 'bg-white text-blue-700 shadow-2xs'
+                  ? 'bg-white text-sky-700 shadow-2xs border border-sky-200/60'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
@@ -164,7 +164,7 @@ export const FleetView: React.FC = () => {
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value as any)}
-            className="px-3 py-2 text-xs font-semibold bg-slate-50 border border-slate-200 rounded-lg text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-blue-500 shrink-0"
+            className="px-3 py-2 text-xs font-semibold bg-slate-50 border border-slate-200 rounded-lg text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-sky-500 shrink-0 cursor-pointer"
           >
             <option value="all">Tất cả trạng thái</option>
             <option value="available">Sẵn sàng ({vehicles.filter((v) => v.status === 'available').length})</option>
@@ -176,8 +176,8 @@ export const FleetView: React.FC = () => {
           <div className="flex items-center gap-1 p-1 bg-slate-100 rounded-lg shrink-0">
             <button
               onClick={() => setViewMode('grid')}
-              className={`p-1.5 rounded-md transition-colors ${
-                viewMode === 'grid' ? 'bg-white text-blue-700 shadow-2xs' : 'text-slate-500 hover:text-slate-800'
+              className={`p-1.5 rounded-md transition-colors cursor-pointer ${
+                viewMode === 'grid' ? 'bg-white text-sky-700 shadow-2xs' : 'text-slate-500 hover:text-slate-800'
               }`}
               title="Dạng thẻ trực quan"
             >
@@ -185,8 +185,8 @@ export const FleetView: React.FC = () => {
             </button>
             <button
               onClick={() => setViewMode('table')}
-              className={`p-1.5 rounded-md transition-colors ${
-                viewMode === 'table' ? 'bg-white text-blue-700 shadow-2xs' : 'text-slate-500 hover:text-slate-800'
+              className={`p-1.5 rounded-md transition-colors cursor-pointer ${
+                viewMode === 'table' ? 'bg-white text-sky-700 shadow-2xs' : 'text-slate-500 hover:text-slate-800'
               }`}
               title="Dạng bảng dữ liệu"
             >
@@ -198,7 +198,7 @@ export const FleetView: React.FC = () => {
         {/* Date Availability Filter Section */}
         <div className="pt-2 border-t border-slate-100 flex flex-wrap items-center gap-3 text-xs text-slate-600">
           <span className="font-bold text-slate-700 flex items-center gap-1">
-            <Calendar className="w-3.5 h-3.5 text-blue-600" />
+            <Calendar className="w-3.5 h-3.5 text-sky-600" />
             Lọc xe khả dụng theo khoảng thời gian:
           </span>
           <div className="flex items-center gap-2">
@@ -206,14 +206,14 @@ export const FleetView: React.FC = () => {
               type="datetime-local"
               value={filterStartDate}
               onChange={(e) => setFilterStartDate(e.target.value)}
-              className="px-2 py-1 bg-slate-50 border border-slate-200 rounded text-xs text-slate-700 focus:ring-1 focus:ring-blue-500"
+              className="px-2 py-1 bg-slate-50 border border-slate-200 rounded text-xs text-slate-700 focus:ring-1 focus:ring-sky-500"
             />
             <span>đến</span>
             <input
               type="datetime-local"
               value={filterEndDate}
               onChange={(e) => setFilterEndDate(e.target.value)}
-              className="px-2 py-1 bg-slate-50 border border-slate-200 rounded text-xs text-slate-700 focus:ring-1 focus:ring-blue-500"
+              className="px-2 py-1 bg-slate-50 border border-slate-200 rounded text-xs text-slate-700 focus:ring-1 focus:ring-sky-500"
             />
             {(filterStartDate || filterEndDate) && (
               <button
@@ -221,7 +221,7 @@ export const FleetView: React.FC = () => {
                   setFilterStartDate('');
                   setFilterEndDate('');
                 }}
-                className="text-xs text-rose-600 hover:underline font-semibold ml-1"
+                className="text-xs text-rose-600 hover:underline font-semibold ml-1 cursor-pointer"
               >
                 Xóa lọc lịch
               </button>
@@ -246,7 +246,7 @@ export const FleetView: React.FC = () => {
               setFilterStartDate('');
               setFilterEndDate('');
             }}
-            className="px-3 py-1.5 text-xs font-semibold text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100"
+            className="px-3 py-1.5 text-xs font-semibold text-sky-700 bg-sky-50 rounded-lg hover:bg-sky-100 transition-colors cursor-pointer"
           >
             Đặt lại tất cả bộ lọc
           </button>
@@ -261,7 +261,7 @@ export const FleetView: React.FC = () => {
             return (
               <div
                 key={v.id}
-                className="bg-white rounded-xl border border-slate-200/90 shadow-2xs hover:shadow-md transition-all flex flex-col overflow-hidden group"
+                className="bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col overflow-hidden group"
               >
                 {/* Image & Status Tag */}
                 <div className="relative aspect-4/3 bg-slate-100 overflow-hidden">
@@ -298,14 +298,32 @@ export const FleetView: React.FC = () => {
                   </div>
 
                   {/* Specs Strip */}
-                  <div className="grid grid-cols-2 gap-2 text-xs text-slate-600 bg-slate-50 p-2 rounded-lg">
+                  <div className="grid grid-cols-2 gap-2 text-xs text-slate-600 bg-slate-50 p-2 rounded-xl border border-slate-100">
                     <div className="flex items-center gap-1.5">
                       <Gauge className="w-3.5 h-3.5 text-slate-400" />
                       <span className="font-mono font-semibold">{v.currentOdometer.toLocaleString('vi-VN')} km</span>
                     </div>
-                    <div className="flex items-center gap-1.5">
-                      <Fuel className="w-3.5 h-3.5 text-slate-400" />
-                      <span className="font-medium">{v.fuelLevel}/8 vạch</span>
+                    <div className="flex items-center gap-1.5" title={`Nhiên liệu: ${v.fuelLevel}/8 vạch`}>
+                      <Fuel className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                      <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-0.5">
+                          {Array.from({ length: 8 }).map((_, idx) => (
+                            <span
+                              key={idx}
+                              className={`w-1 h-2.5 rounded-2xs transition-colors ${
+                                idx < v.fuelLevel
+                                  ? v.fuelLevel >= 6
+                                    ? 'bg-emerald-500'
+                                    : v.fuelLevel >= 3
+                                    ? 'bg-amber-500'
+                                    : 'bg-rose-500'
+                                  : 'bg-slate-200'
+                              }`}
+                            />
+                          ))}
+                        </div>
+                        <span className="font-bold text-[11px] text-slate-700 ml-0.5">{v.fuelLevel}/8</span>
+                      </div>
                     </div>
                   </div>
 
@@ -313,7 +331,7 @@ export const FleetView: React.FC = () => {
                   <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
                     <div>
                       <span className="text-[10px] uppercase font-bold text-slate-400 block">Giá thuê ngày</span>
-                      <span className="text-sm font-extrabold text-blue-600 font-mono">
+                      <span className="text-sm font-extrabold text-sky-700 font-mono">
                         {formatVND(v.dailyPrice)}
                       </span>
                     </div>
@@ -329,9 +347,9 @@ export const FleetView: React.FC = () => {
                   <div className="pt-1 flex items-center gap-2">
                     <button
                       onClick={() => setSelectedVehicleId(v.id)}
-                      className="flex-1 py-2 px-3 text-xs font-bold rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 transition-colors flex items-center justify-center gap-1.5"
+                      className="flex-1 py-2 px-3 text-xs font-bold rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
                     >
-                      <Eye className="w-3.5 h-3.5" />
+                      <Eye className="w-3.5 h-3.5 text-slate-600" />
                       <span>Xem chi tiết</span>
                     </button>
                     {v.status === 'available' && (
@@ -340,7 +358,7 @@ export const FleetView: React.FC = () => {
                           setSelectedVehicleId(v.id);
                           setIsCreateContractOpen(true);
                         }}
-                        className="py-2 px-3 text-xs font-bold rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-colors"
+                        className="py-2 px-3 text-xs font-bold rounded-xl bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white shadow-sm shadow-orange-500/20 transition-all cursor-pointer"
                         title="Tạo hợp đồng cho xe này"
                       >
                         Cho thuê
@@ -407,7 +425,7 @@ export const FleetView: React.FC = () => {
                       <td className="py-3 px-4 text-right font-mono font-semibold text-slate-700 text-xs">
                         {v.currentOdometer.toLocaleString('vi-VN')} km
                       </td>
-                      <td className="py-3 px-4 text-right font-mono font-bold text-blue-700 text-sm">
+                      <td className="py-3 px-4 text-right font-mono font-bold text-sky-700 text-sm">
                         {formatVND(v.dailyPrice)}
                       </td>
                       <td className="py-3 px-4 text-right font-mono text-slate-600 text-xs">
@@ -416,7 +434,7 @@ export const FleetView: React.FC = () => {
                       <td className="py-3 px-4 text-center">
                         <button
                           onClick={() => setSelectedVehicleId(v.id)}
-                          className="px-2.5 py-1 text-xs font-bold text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded"
+                          className="px-2.5 py-1 text-xs font-bold text-sky-600 hover:text-sky-800 hover:bg-sky-50 rounded transition-colors cursor-pointer"
                         >
                           Chi tiết
                         </button>
@@ -478,7 +496,7 @@ export const FleetView: React.FC = () => {
                   <div className="grid grid-cols-2 gap-3 pb-2 border-b border-slate-100">
                     <div>
                       <span className="text-slate-400 block text-[10px] uppercase font-bold">Giá theo ngày:</span>
-                      <span className="text-base font-bold text-blue-700 font-mono">
+                      <span className="text-base font-bold text-sky-700 font-mono">
                         {formatVND(selectedVehicle.dailyPrice)}
                       </span>
                     </div>
@@ -555,11 +573,11 @@ export const FleetView: React.FC = () => {
                   </div>
                   <div>
                     <span className="text-slate-400 block">Hạn bảo dưỡng tiếp:</span>
-                    <span className="font-bold text-blue-700">{formatDate(selectedVehicle.nextMaintenanceDate)}</span>
+                    <span className="font-bold text-sky-700">{formatDate(selectedVehicle.nextMaintenanceDate)}</span>
                   </div>
                   <div>
                     <span className="text-slate-400 block">Mốc km tiếp theo:</span>
-                    <span className="font-mono font-bold text-blue-700">
+                    <span className="font-mono font-bold text-sky-700">
                       {selectedVehicle.nextMaintenanceKm.toLocaleString('vi-VN')} km
                     </span>
                   </div>
@@ -569,7 +587,7 @@ export const FleetView: React.FC = () => {
               {/* Contract History */}
               <div className="space-y-3">
                 <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
-                  <FileText className="w-3.5 h-3.5 text-blue-600" />
+                  <FileText className="w-3.5 h-3.5 text-sky-600" />
                   Lịch sử hợp đồng cho thuê ({vehicleContracts.length})
                 </h4>
                 {vehicleContracts.length === 0 ? (
@@ -651,7 +669,7 @@ export const FleetView: React.FC = () => {
                   onClick={() => {
                     setIsCreateContractOpen(true);
                   }}
-                  className="px-4 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm"
+                  className="px-5 py-2 text-xs font-bold text-white bg-orange-500 hover:bg-orange-600 active:bg-orange-700 rounded-xl shadow-sm shadow-orange-500/20 transition-all cursor-pointer"
                 >
                   Tạo hợp đồng cho xe này
                 </button>

@@ -79,30 +79,34 @@ export const HomeCustomerView: React.FC = () => {
 
   return (
     <div className="space-y-16 pb-16">
-      {/* HERO SECTION */}
-      <section className="relative bg-gradient-to-b from-blue-900 to-slate-900 text-white pt-14 pb-24 px-4 sm:px-8 overflow-hidden">
+      {/* HERO SECTION - COASTAL BREEZE GRADIENT */}
+      <section className="relative bg-gradient-to-br from-sky-500 via-sky-600 to-blue-700 text-white pt-14 pb-24 px-4 sm:px-8 overflow-hidden">
+        {/* Subtle decorative glow circles */}
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-orange-400/20 rounded-full blur-2xl pointer-events-none" />
+
         <div className="max-w-7xl mx-auto relative z-10 space-y-8">
           <div className="max-w-2xl space-y-4">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-400/30">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Dịch vụ cho thuê xe uy tín tại TP. Đà Nẵng</span>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white border border-white/30 backdrop-blur-xs">
+              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+              <span>Dịch vụ cho thuê xe du lịch uy tín tại TP. Nha Trang</span>
             </span>
 
-            <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+            <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight drop-shadow-xs">
               Thuê xe dễ dàng cho hành trình của bạn
             </h1>
 
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              Trải nghiệm vi vu Đà Nẵng, Hội An, Bà Nà Hills và đèo Hải Vân với đội xe máy và ô tô tự lái đời mới, sạch sẽ, máy êm và thủ tục giữ chỗ trực tuyến nhanh chóng.
+            <p className="text-sm sm:text-base text-sky-100 leading-relaxed max-w-xl">
+              Trải nghiệm vi vu Nha Trang, Bãi Dài Cam Ranh, Dốc Lết, đèo Lương Sơn và vịnh Vĩnh Hy với đội xe máy và ô tô tự lái đời mới, sạch sẽ, máy êm và thủ tục giữ chỗ trực tuyến nhanh chóng.
             </p>
           </div>
 
           {/* QUICK SEARCH WIDGET CARD */}
-          <div className="bg-white rounded-2xl p-5 sm:p-6 text-slate-900 shadow-xl border border-slate-200">
+          <div className="bg-white rounded-2xl p-5 sm:p-6 text-slate-900 shadow-xl border border-slate-200/80">
             <form onSubmit={handleSearchSubmit} className="space-y-4">
               <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-                <span className="text-xs font-extrabold uppercase tracking-wider text-slate-600 flex items-center gap-1.5">
-                  <Search className="w-4 h-4 text-blue-600" />
+                <span className="text-xs font-extrabold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+                  <Search className="w-4 h-4 text-sky-600" />
                   Tìm & Kiểm tra xe còn trống theo thời gian
                 </span>
 
@@ -111,9 +115,9 @@ export const HomeCustomerView: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setVehicleType('all')}
-                    className={`px-3 py-1 rounded-md transition-all ${
+                    className={`px-3 py-1 rounded-md transition-all cursor-pointer ${
                       vehicleType === 'all'
-                        ? 'bg-white text-blue-700 shadow-2xs'
+                        ? 'bg-white text-sky-700 shadow-2xs'
                         : 'text-slate-600 hover:text-slate-900'
                     }`}
                   >
@@ -122,9 +126,9 @@ export const HomeCustomerView: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setVehicleType('car')}
-                    className={`px-3 py-1 rounded-md transition-all ${
+                    className={`px-3 py-1 rounded-md transition-all cursor-pointer ${
                       vehicleType === 'car'
-                        ? 'bg-white text-blue-700 shadow-2xs'
+                        ? 'bg-white text-sky-700 shadow-2xs'
                         : 'text-slate-600 hover:text-slate-900'
                     }`}
                   >
@@ -133,9 +137,9 @@ export const HomeCustomerView: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setVehicleType('motorbike')}
-                    className={`px-3 py-1 rounded-md transition-all ${
+                    className={`px-3 py-1 rounded-md transition-all cursor-pointer ${
                       vehicleType === 'motorbike'
-                        ? 'bg-white text-blue-700 shadow-2xs'
+                        ? 'bg-white text-sky-700 shadow-2xs'
                         : 'text-slate-600 hover:text-slate-900'
                     }`}
                   >
@@ -148,23 +152,23 @@ export const HomeCustomerView: React.FC = () => {
                 {/* Pickup Location */}
                 <div>
                   <label className="block font-bold text-slate-700 mb-1 flex items-center gap-1">
-                    <MapPin className="w-3.5 h-3.5 text-blue-600" />
+                    <MapPin className="w-3.5 h-3.5 text-sky-600" />
                     <span>Địa điểm nhận xe</span>
                   </label>
                   <select
                     value={pickupLocation}
                     onChange={(e) => setPickupLocation(e.target.value)}
-                    className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-blue-500 font-medium text-slate-800 text-xs"
+                    className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-sky-500 font-medium text-slate-800 text-xs cursor-pointer"
                   >
-                    <option value="Văn phòng DriveRent (182 Võ Nguyên Giáp)">
-                      Văn phòng DriveRent (182 Võ Nguyên Giáp, Sơn Trà)
+                    <option value="Văn phòng DriveRent (25 Lê Lợi, TP. Nha Trang)">
+                      Văn phòng DriveRent (25 Lê Lợi, TP. Nha Trang)
                     </option>
-                    <option value="Sân bay Quốc tế Đà Nẵng">
-                      Sân bay Quốc tế Đà Nẵng (Giao tận cổng ga)
+                    <option value="Sân bay Quốc tế Cam Ranh">
+                      Sân bay Quốc tế Cam Ranh (Giao tận cổng ga)
                     </option>
-                    <option value="Ga đường sắt Đà Nẵng">Ga đường sắt Đà Nẵng</option>
-                    <option value="Khách sạn nội thành Đà Nẵng (Quận Hải Châu / Sơn Trà)">
-                      Khách sạn nội thành Đà Nẵng (Quận Hải Châu / Sơn Trà)
+                    <option value="Ga đường sắt Nha Trang">Ga đường sắt Nha Trang</option>
+                    <option value="Khách sạn nội thành Nha Trang (Đường Trần Phú / Hùng Vương)">
+                      Khách sạn nội thành Nha Trang (Đường Trần Phú / Hùng Vương)
                     </option>
                   </select>
                 </div>
@@ -172,7 +176,7 @@ export const HomeCustomerView: React.FC = () => {
                 {/* Pickup Date Time */}
                 <div>
                   <label className="block font-bold text-slate-700 mb-1 flex items-center gap-1">
-                    <Calendar className="w-3.5 h-3.5 text-blue-600" />
+                    <Calendar className="w-3.5 h-3.5 text-sky-600" />
                     <span>Ngày & Giờ nhận xe *</span>
                   </label>
                   <input
@@ -180,14 +184,14 @@ export const HomeCustomerView: React.FC = () => {
                     required
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
-                    className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-blue-500 font-medium text-slate-800 text-xs"
+                    className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-sky-500 font-medium text-slate-800 text-xs"
                   />
                 </div>
 
                 {/* Return Date Time */}
                 <div>
                   <label className="block font-bold text-slate-700 mb-1 flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5 text-blue-600" />
+                    <Clock className="w-3.5 h-3.5 text-sky-600" />
                     <span>Ngày & Giờ trả xe *</span>
                   </label>
                   <input
@@ -195,15 +199,15 @@ export const HomeCustomerView: React.FC = () => {
                     required
                     value={endDate}
                     onChange={(e) => setEndDate(e.target.value)}
-                    className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-blue-500 font-medium text-slate-800 text-xs"
+                    className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-sky-500 font-medium text-slate-800 text-xs"
                   />
                 </div>
 
-                {/* Submit button */}
+                {/* Submit button - Sunset Orange CTA */}
                 <div className="flex items-end">
                   <button
                     type="submit"
-                    className="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-extrabold rounded-xl shadow-md transition-all flex items-center justify-center gap-2 text-xs"
+                    className="w-full py-2.5 px-4 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-extrabold rounded-xl shadow-md shadow-orange-500/25 transition-all flex items-center justify-center gap-2 text-xs cursor-pointer"
                   >
                     <Search className="w-4 h-4 stroke-[2.5]" />
                     <span>Tìm xe còn trống</span>
@@ -215,50 +219,100 @@ export const HomeCustomerView: React.FC = () => {
         </div>
       </section>
 
-      {/* QUICK ABOUT INTRO */}
+      {/* COMPACT ABOUT SECTION (GIỚI THIỆU GỌN GÀNG TRỰC TIẾP TRÊN TRANG CHỦ) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-8">
-        <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-2xs flex flex-col md:flex-row items-center gap-8">
-          <div className="md:w-1/2 space-y-3">
-            <span className="text-xs font-bold text-blue-600 uppercase tracking-wider block">
-              Về dịch vụ DriveRent Đà Nẵng
-            </span>
-            <h2 className="text-2xl font-extrabold text-slate-900 tracking-tight">
-              Tự do khám phá thành phố biển theo cách của bạn
-            </h2>
-            <p className="text-xs text-slate-600 leading-relaxed">
-              DriveRent là đơn vị cho thuê xe máy và ô tô tự lái tại các cung đường du lịch nổi tiếng miền Trung. Chúng tôi tập trung vào trải nghiệm đặt xe nhanh chóng, minh bạch về giá cả, không phí ẩn và phương tiện luôn được bảo dưỡng định kỳ trước khi bàn giao.
-            </p>
-            <div className="pt-2">
-              <button
-                onClick={() => setCustomerTab('about')}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-800"
-              >
-                <span>Xem thêm quy trình kiểm tra xe của chúng tôi</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          </div>
+        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            {/* Story & Intro */}
+            <div className="lg:col-span-7 space-y-3.5">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-sky-50 text-sky-700 border border-sky-200">
+                <Sparkles className="w-3.5 h-3.5 text-sky-600" />
+                <span>Về DriveRent Nha Trang · 25 Lê Lợi</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+                Người bạn đồng hành tin cậy trên mọi cung đường biển
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Tọa lạc tại <strong className="text-slate-900 font-bold">25 Lê Lợi, Phường Xương Huân, TP. Nha Trang</strong> (cách biển Trần Phú và Chợ Đầm chỉ 2 phút di chuyển), DriveRent cung cấp đội xe máy du lịch và ô tô tự lái đời mới được tuyển chọn nghiêm ngặt. Chúng tôi cam kết trải nghiệm di chuyển tự do, minh bạch 100% không chi phí ẩn, cùng quy trình kiểm tra bảo dưỡng và bàn giao đối chiếu chuẩn mực.
+              </p>
 
-          <div className="md:w-1/2 grid grid-cols-2 gap-3 w-full">
-            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center">
-              <Car className="w-6 h-6 text-blue-600 mx-auto mb-1.5" />
-              <p className="font-extrabold text-sm text-slate-900">Ô tô 5-7 chỗ</p>
-              <p className="text-[11px] text-slate-500">Vios, Accent, Xpander MPV</p>
+              {/* Key Highlights */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/70">
+                  <div className="flex items-center gap-2 mb-1">
+                    <ShieldCheck className="w-4 h-4 text-sky-600" />
+                    <span className="font-extrabold text-xs text-slate-900">Bảo dưỡng định kỳ</span>
+                  </div>
+                  <p className="text-[11px] text-slate-500 leading-tight">
+                    Kiểm tra thắng, lốp, động cơ và vệ sinh sạch sẽ sau mỗi lượt khách.
+                  </p>
+                </div>
+
+                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/70">
+                  <div className="flex items-center gap-2 mb-1">
+                    <MapPin className="w-4 h-4 text-orange-500" />
+                    <span className="font-extrabold text-xs text-slate-900">Giao nhận tận nơi</span>
+                  </div>
+                  <p className="text-[11px] text-slate-500 leading-tight">
+                    Tại 25 Lê Lợi, Sân bay Cam Ranh, Ga xe lửa & khách sạn nội thành.
+                  </p>
+                </div>
+
+                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/70">
+                  <div className="flex items-center gap-2 mb-1">
+                    <Clock className="w-4 h-4 text-emerald-600" />
+                    <span className="font-extrabold text-xs text-slate-900">Cứu hộ 24/7</span>
+                  </div>
+                  <p className="text-[11px] text-slate-500 leading-tight">
+                    Hỗ trợ nhanh trong 15-25 phút nội thành khi có sự cố phát sinh.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center">
-              <Bike className="w-6 h-6 text-emerald-600 mx-auto mb-1.5" />
-              <p className="font-extrabold text-sm text-slate-900">Xe máy tay ga & số</p>
-              <p className="text-[11px] text-slate-500">Vision, Air Blade, Sirius Fi</p>
-            </div>
-            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center">
-              <Clock className="w-6 h-6 text-indigo-600 mx-auto mb-1.5" />
-              <p className="font-extrabold text-sm text-slate-900">Đặt cọc online 20%</p>
-              <p className="text-[11px] text-slate-500">Giữ xe chắc chắn 100%</p>
-            </div>
-            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center">
-              <ShieldCheck className="w-6 h-6 text-amber-600 mx-auto mb-1.5" />
-              <p className="font-extrabold text-sm text-slate-900">Kiểm tra 6 hạng mục</p>
-              <p className="text-[11px] text-slate-500">Chụp ảnh đối chiếu minh bạch</p>
+
+            {/* Quick Location & Stats Card */}
+            <div className="lg:col-span-5 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-white rounded-2xl p-5 sm:p-6 space-y-4 border border-slate-700 shadow-lg relative overflow-hidden">
+              <div className="flex items-center justify-between border-b border-slate-700 pb-3">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-lg bg-orange-500 flex items-center justify-center text-white font-extrabold">
+                    <Car className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h4 className="font-extrabold text-sm text-white">Văn phòng DriveRent</h4>
+                    <span className="text-[10px] text-slate-400">Trụ sở chính tại TP. Nha Trang</span>
+                  </div>
+                </div>
+                <span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded-full border border-emerald-500/40">
+                  06:00 - 22:00
+                </span>
+              </div>
+
+              <div className="space-y-2 text-xs">
+                <div className="flex items-start gap-2.5">
+                  <MapPin className="w-4 h-4 text-orange-400 shrink-0 mt-0.5" />
+                  <span className="text-slate-200">25 Lê Lợi, Phường Xương Huân, TP. Nha Trang, Khánh Hòa</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <PhoneCall className="w-4 h-4 text-sky-400 shrink-0" />
+                  <span className="text-slate-200 font-bold">Hotline: 0905 888 999 (Zalo / Gọi 24/7)</span>
+                </div>
+              </div>
+
+              {/* Quick Distance Badges */}
+              <div className="pt-2 border-t border-slate-800 grid grid-cols-2 gap-2 text-[11px] text-slate-300">
+                <div className="bg-slate-800/80 px-2.5 py-1.5 rounded-lg border border-slate-700/60">
+                  🌊 <span className="text-slate-200 font-semibold">Biển Trần Phú:</span> 2 phút
+                </div>
+                <div className="bg-slate-800/80 px-2.5 py-1.5 rounded-lg border border-slate-700/60">
+                  🛍️ <span className="text-slate-200 font-semibold">Chợ Đầm:</span> 3 phút
+                </div>
+                <div className="bg-slate-800/80 px-2.5 py-1.5 rounded-lg border border-slate-700/60">
+                  🚂 <span className="text-slate-200 font-semibold">Ga Nha Trang:</span> 6 phút
+                </div>
+                <div className="bg-slate-800/80 px-2.5 py-1.5 rounded-lg border border-slate-700/60">
+                  ✈️ <span className="text-slate-200 font-semibold">Sân bay Cam Ranh:</span> 35 phút
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -268,7 +322,7 @@ export const HomeCustomerView: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-8 space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
           <div>
-            <span className="text-xs font-bold text-blue-600 uppercase tracking-wider block">
+            <span className="text-xs font-bold text-sky-600 uppercase tracking-wider block">
               Phương tiện tiêu biểu
             </span>
             <h2 className="text-2xl font-extrabold text-slate-900 tracking-tight">
@@ -277,7 +331,7 @@ export const HomeCustomerView: React.FC = () => {
           </div>
           <button
             onClick={() => setCustomerTab('vehicles')}
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-800"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-sky-600 hover:text-sky-800 transition-colors cursor-pointer"
           >
             <span>Xem tất cả {vehicles.length} xe</span>
             <ArrowRight className="w-4 h-4" />
@@ -328,7 +382,7 @@ export const HomeCustomerView: React.FC = () => {
                   <div className="flex items-baseline justify-between pt-2">
                     <div>
                       <span className="text-[10px] text-slate-400 uppercase font-bold block">Giá thuê ngày</span>
-                      <span className="text-sm font-extrabold text-blue-700 font-mono">
+                      <span className="text-sm font-extrabold text-sky-700 font-mono">
                         {formatVND(v.dailyPrice)}/ngày
                       </span>
                     </div>
@@ -340,13 +394,13 @@ export const HomeCustomerView: React.FC = () => {
                   <div className="grid grid-cols-2 gap-2 pt-1">
                     <button
                       onClick={() => handleSelectVehicle(v.id)}
-                      className="w-full py-2 px-2 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg text-center"
+                      className="w-full py-2 px-2 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg text-center cursor-pointer transition-colors"
                     >
                       Chi tiết
                     </button>
                     <button
                       onClick={() => handleSelectVehicle(v.id)}
-                      className="w-full py-2 px-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg text-center shadow-2xs"
+                      className="w-full py-2 px-2 text-xs font-bold text-white bg-orange-500 hover:bg-orange-600 active:bg-orange-700 rounded-lg text-center shadow-xs shadow-orange-500/20 cursor-pointer transition-all"
                     >
                       Đặt xe này
                     </button>
@@ -362,7 +416,7 @@ export const HomeCustomerView: React.FC = () => {
       <section className="bg-slate-100 py-12 px-4 sm:px-8 border-y border-slate-200">
         <div className="max-w-7xl mx-auto space-y-8">
           <div className="text-center max-w-xl mx-auto space-y-2">
-            <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">
+            <span className="text-xs font-bold text-sky-600 uppercase tracking-wider">
               Cam kết dịch vụ
             </span>
             <h2 className="text-2xl font-extrabold text-slate-900 tracking-tight">
@@ -375,7 +429,7 @@ export const HomeCustomerView: React.FC = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-2xs space-y-2">
-              <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold">
+              <div className="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center font-bold">
                 1
               </div>
               <h3 className="font-extrabold text-sm text-slate-900">Báo giá minh bạch, rõ ràng</h3>
@@ -395,7 +449,7 @@ export const HomeCustomerView: React.FC = () => {
             </div>
 
             <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-2xs space-y-2">
-              <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold">
+              <div className="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center font-bold">
                 3
               </div>
               <h3 className="font-extrabold text-sm text-slate-900">Giao nhận có biên bản đối chiếu</h3>
@@ -420,7 +474,7 @@ export const HomeCustomerView: React.FC = () => {
       {/* RENTAL WORKFLOW (5 STEPS) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-8 space-y-8">
         <div className="text-center max-w-xl mx-auto space-y-2">
-          <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">
+          <span className="text-xs font-bold text-sky-600 uppercase tracking-wider">
             Quy trình tiện lợi
           </span>
           <h2 className="text-2xl font-extrabold text-slate-900 tracking-tight">
@@ -440,7 +494,7 @@ export const HomeCustomerView: React.FC = () => {
             { step: '05', title: 'Nhận xe & Ký hợp đồng', desc: 'Mang CCCD/GPLX đến nhận xe, đối chiếu tình trạng và vi vu.' }
           ].map((item, idx) => (
             <div key={idx} className="bg-white p-4 rounded-xl border border-slate-200 shadow-2xs space-y-2">
-              <span className="text-blue-600 font-black text-xl font-mono">{item.step}</span>
+              <span className="text-sky-600 font-black text-xl font-mono">{item.step}</span>
               <h4 className="font-extrabold text-xs text-slate-900">{item.title}</h4>
               <p className="text-[11px] text-slate-500 leading-relaxed">{item.desc}</p>
             </div>
@@ -451,7 +505,7 @@ export const HomeCustomerView: React.FC = () => {
       {/* FAQ SECTION */}
       <section className="max-w-4xl mx-auto px-4 sm:px-8 space-y-6">
         <div className="text-center space-y-2">
-          <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">
+          <span className="text-xs font-bold text-sky-600 uppercase tracking-wider">
             Giải đáp thắc mắc
           </span>
           <h2 className="text-2xl font-extrabold text-slate-900 tracking-tight">
@@ -475,7 +529,7 @@ export const HomeCustomerView: React.FC = () => {
                   <span>{faq.q}</span>
                   <ChevronDown
                     className={`w-4 h-4 text-slate-400 shrink-0 transition-transform ${
-                      isOpen ? 'rotate-180 text-blue-600' : ''
+                      isOpen ? 'rotate-180 text-sky-600' : ''
                     }`}
                   />
                 </button>
@@ -490,15 +544,16 @@ export const HomeCustomerView: React.FC = () => {
         </div>
       </section>
 
-      {/* BOTTOM CTA BANNER */}
+      {/* BOTTOM CTA BANNER - COASTAL BREEZE & SUNSET */}
       <section className="max-w-7xl mx-auto px-4 sm:px-8">
-        <div className="bg-blue-600 rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl shadow-blue-500/20">
-          <div className="space-y-2 text-center md:text-left">
+        <div className="bg-gradient-to-r from-sky-600 via-sky-700 to-slate-900 rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl shadow-sky-900/20 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="space-y-2 text-center md:text-left relative z-10">
             <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-              Sẵn sàng cho chuyến du lịch Đà Nẵng tuyệt vời?
+              Sẵn sàng cho chuyến du lịch Nha Trang tuyệt vời?
             </h3>
-            <p className="text-blue-100 text-xs sm:text-sm max-w-xl">
-              Kiểm tra lịch xe còn trống và đặt cọc giữ chỗ ngay hôm nay để nhận xe đúng giờ tại sân bay!
+            <p className="text-sky-100 text-xs sm:text-sm max-w-xl">
+              Kiểm tra lịch xe còn trống và đặt cọc giữ chỗ ngay hôm nay để nhận xe đúng giờ tại sân bay Cam Ranh hoặc 25 Lê Lợi!
             </p>
           </div>
           <button
@@ -506,7 +561,7 @@ export const HomeCustomerView: React.FC = () => {
               setCustomerTab('vehicles');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="px-6 py-3 bg-white text-blue-700 hover:bg-blue-50 font-extrabold rounded-xl shadow-md text-sm shrink-0 transition-all cursor-pointer"
+            className="px-7 py-3.5 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-extrabold rounded-xl shadow-lg shadow-orange-500/30 text-sm shrink-0 transition-all cursor-pointer relative z-10"
           >
             Xem danh sách xe & Đặt giữ chỗ
           </button>

@@ -145,7 +145,7 @@ interface AppContextType {
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
-const STORAGE_KEY_PREFIX = 'driverent_v1_';
+const STORAGE_KEY_PREFIX = 'driverent_nhatrang_v1_';
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   // Initialize state from LocalStorage or defaults
@@ -166,7 +166,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [customerSearchCriteria, setCustomerSearchCriteria] = useState<CustomerSearchCriteria>({
     startDate: '2026-10-10T09:00',
     endDate: '2026-10-12T18:00',
-    pickupLocation: 'Văn phòng DriveRent (182 Võ Nguyên Giáp)',
+    pickupLocation: 'Văn phòng DriveRent (25 Lê Lợi, TP. Nha Trang)',
     vehicleType: 'all'
   });
   const [selectedCustomerVehicleId, setSelectedCustomerVehicleId] = useState<string | null>(null);
@@ -473,7 +473,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         identityNumber: 'Khách đặt online (Kiểm tra khi nhận xe)',
         driverLicense: 'Khách đặt online (Kiểm tra khi nhận xe)',
         address: booking.pickupLocation,
-        city: 'Đà Nẵng',
+        city: 'Nha Trang',
         notes: `Khách đặt cọc online ${booking.id}`
       });
     }

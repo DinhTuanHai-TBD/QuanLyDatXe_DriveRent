@@ -13,7 +13,7 @@ export const TrialBanner: React.FC = () => {
         </span>
         <span className="font-medium">Chế độ trải nghiệm trực tiếp (Trial Mode):</span>
         <span className="text-blue-700 hidden sm:inline">
-          Dữ liệu mẫu cửa hàng tại Đà Nẵng, các thao tác tạo hợp đồng, giao nhận xe, quyết toán được lưu ngay trên trình duyệt.
+          Dữ liệu mẫu cửa hàng tại Nha Trang (25 Lê Lợi), các thao tác tạo hợp đồng, giao nhận xe, quyết toán được lưu ngay trên trình duyệt.
         </span>
       </div>
       <div className="flex items-center gap-3">

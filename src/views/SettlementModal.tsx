@@ -151,16 +151,16 @@ export const SettlementModal: React.FC = () => {
         <div className="p-5 border-b border-slate-100 flex items-center justify-between sticky top-0 bg-white z-10">
           <div>
             <h3 className="text-lg font-extrabold text-slate-900 flex items-center gap-2">
-              <Receipt className="w-5 h-5 text-blue-600" />
+              <Receipt className="w-5 h-5 text-sky-600" />
               Quyết toán hợp đồng & Thanh toán chi phí
             </h3>
             <p className="text-xs text-slate-500">
-              Hợp đồng <strong className="text-blue-700">{contract.id}</strong> · Khách: {customer?.fullName}
+              Hợp đồng <strong className="text-sky-700">{contract.id}</strong> · Khách: {customer?.fullName}
             </p>
           </div>
           <button
             onClick={handleClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100"
+            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -171,7 +171,7 @@ export const SettlementModal: React.FC = () => {
           <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
             <h4 className="font-bold text-xs text-slate-800 uppercase tracking-wider flex items-center justify-between">
               <span>1. Chi tiết thời gian thuê thực tế & Đơn giá</span>
-              <span className="text-[11px] font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+              <span className="text-[11px] font-semibold text-sky-700 bg-sky-50 px-2 py-0.5 rounded border border-sky-200">
                 Gói {contract.pricingType === 'hourly' ? 'Theo giờ' : 'Theo ngày (24h)'}
               </span>
             </h4>
@@ -254,24 +254,24 @@ export const SettlementModal: React.FC = () => {
           </div>
 
           {/* Isolated Deposit & Payment Breakdown (Requirement!) */}
-          <div className="p-4 bg-indigo-50/70 rounded-xl border border-indigo-200 space-y-3">
-            <div className="flex items-center justify-between">
-              <h4 className="font-bold text-xs text-indigo-900 uppercase tracking-wider">
+          <div className="p-4 bg-slate-50 rounded-xl border border-slate-200/90 space-y-3">
+            <div className="flex items-center justify-between pb-1 border-b border-slate-200">
+              <h4 className="font-bold text-xs text-slate-800 uppercase tracking-wider">
                 3. Quản lý Tiền cọc & Quyết toán dòng tiền
               </h4>
-              <span className="text-[10px] bg-indigo-200 text-indigo-900 font-bold px-2 py-0.5 rounded">
+              <span className="text-[10px] bg-sky-100 text-sky-800 font-bold px-2 py-0.5 rounded border border-sky-200">
                 Tiền cọc tách biệt
               </span>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 pb-2 border-b border-indigo-100">
-              <div className="p-2.5 bg-white rounded-lg border border-indigo-200">
+            <div className="grid grid-cols-2 gap-3 pb-2 border-b border-slate-200">
+              <div className="p-2.5 bg-white rounded-lg border border-slate-200 shadow-2xs">
                 <span className="text-slate-400 block text-[10px] uppercase font-bold">Tiền cọc đang giữ</span>
-                <span className="font-mono font-extrabold text-indigo-700 text-sm">
+                <span className="font-mono font-extrabold text-slate-900 text-sm">
                   {formatVND(depositHeld)}
                 </span>
               </div>
-              <div className="p-2.5 bg-white rounded-lg border border-indigo-200">
+              <div className="p-2.5 bg-white rounded-lg border border-slate-200 shadow-2xs">
                 <span className="text-slate-400 block text-[10px] uppercase font-bold">Tiền thuê đã trả trước</span>
                 <span className="font-mono font-extrabold text-emerald-700 text-sm">
                   {formatVND(amountPaid)}
@@ -286,7 +286,7 @@ export const SettlementModal: React.FC = () => {
                 id="deductCheck"
                 checked={deductFromDeposit}
                 onChange={(e) => setDeductFromDeposit(e.target.checked)}
-                className="rounded text-blue-600 focus:ring-blue-500"
+                className="rounded text-sky-600 focus:ring-sky-500 cursor-pointer"
               />
               <label htmlFor="deductCheck" className="text-xs text-slate-700 font-medium cursor-pointer">
                 Tự động khấu trừ phần tiền dịch vụ còn thiếu vào tiền cọc (khách không phải đóng thêm tiền mặt)
@@ -294,28 +294,28 @@ export const SettlementModal: React.FC = () => {
             </div>
 
             {/* Final Cashflow Matrix */}
-            <div className="p-3 bg-white rounded-lg border border-indigo-200 space-y-2">
+            <div className="p-3 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-2">
               <div className="flex justify-between text-slate-600">
                 <span>Phần cọc được khấu trừ:</span>
                 <span className="font-mono font-bold text-slate-900">{formatVND(depositDeducted)}</span>
               </div>
 
               {additionalDue > 0 ? (
-                <div className="flex justify-between items-center text-sm font-extrabold text-rose-700 pt-1 border-t border-slate-100">
+                <div className="flex justify-between items-center text-sm font-extrabold text-orange-600 pt-1 border-t border-slate-100">
                   <span>SỐ TIỀN THU THÊM TỪ KHÁCH:</span>
-                  <span className="font-mono text-base">{formatVND(additionalDue)}</span>
+                  <span className="font-mono text-base font-black">{formatVND(additionalDue)}</span>
                 </div>
               ) : (
-                <div className="flex justify-between items-center text-sm font-extrabold text-emerald-700 pt-1 border-t border-slate-100">
+                <div className="flex justify-between items-center text-sm font-extrabold text-emerald-600 pt-1 border-t border-slate-100">
                   <span>SỐ TIỀN HOÀN LẠI CHO KHÁCH (TRẢ CỌC):</span>
-                  <span className="font-mono text-base">{formatVND(refundAmount)}</span>
+                  <span className="font-mono text-base font-black">{formatVND(refundAmount)}</span>
                 </div>
               )}
             </div>
           </div>
 
           {/* Payment Method */}
-          <div className="flex items-center justify-between bg-slate-50 p-3 rounded-lg border border-slate-200">
+          <div className="flex items-center justify-between bg-slate-50 p-3 rounded-xl border border-slate-200">
             <span className="font-bold text-slate-700">Phương thức thanh toán / hoàn trả:</span>
             <div className="flex items-center gap-2">
               {(['Tiền mặt', 'Chuyển khoản', 'Ví điện tử'] as const).map((method) => (
@@ -323,9 +323,9 @@ export const SettlementModal: React.FC = () => {
                   key={method}
                   type="button"
                   onClick={() => setPaymentMethod(method)}
-                  className={`px-3 py-1 rounded-md text-xs font-bold transition-all ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                     paymentMethod === method
-                      ? 'bg-blue-600 text-white shadow-2xs'
+                      ? 'bg-sky-600 text-white shadow-2xs'
                       : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-100'
                   }`}
                 >
@@ -341,7 +341,7 @@ export const SettlementModal: React.FC = () => {
           <button
             type="button"
             onClick={handleClose}
-            className="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg"
+            className="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg cursor-pointer"
           >
             Đóng
           </button>
@@ -349,7 +349,7 @@ export const SettlementModal: React.FC = () => {
             <button
               type="button"
               onClick={handleConfirmSettlement}
-              className="px-5 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm flex items-center gap-2"
+              className="px-5 py-2.5 text-xs font-bold text-white bg-orange-500 hover:bg-orange-600 active:bg-orange-700 rounded-xl shadow-sm shadow-orange-500/20 flex items-center gap-2 transition-all cursor-pointer"
             >
               <Check className="w-4 h-4" />
               <span>Xác nhận quyết toán & Hoàn tất hợp đồng</span>

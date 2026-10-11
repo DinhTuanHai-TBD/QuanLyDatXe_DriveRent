@@ -88,7 +88,7 @@ export const ContractsView: React.FC = () => {
 
         <button
           onClick={() => setIsCreateContractOpen(true)}
-          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold rounded-xl shadow-sm text-sm"
+          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold rounded-xl shadow-sm shadow-orange-500/20 text-sm transition-all cursor-pointer"
         >
           <Plus className="w-4 h-4 stroke-[2.5]" />
           <span>Tạo hợp đồng</span>
@@ -106,7 +106,7 @@ export const ContractsView: React.FC = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Tìm theo mã HĐ, tên khách hàng, số điện thoại, biển số xe..."
-              className="w-full pl-9 pr-4 py-2 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all"
+              className="w-full pl-9 pr-4 py-2 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-sky-500 focus:bg-white transition-all"
             />
           </div>
 
@@ -114,7 +114,7 @@ export const ContractsView: React.FC = () => {
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value as any)}
-            className="px-3 py-2 text-xs font-semibold bg-slate-50 border border-slate-200 rounded-lg text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-blue-500 shrink-0"
+            className="px-3 py-2 text-xs font-semibold bg-slate-50 border border-slate-200 rounded-lg text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-sky-500 shrink-0 cursor-pointer"
           >
             <option value="all">Tất cả trạng thái ({contracts.length})</option>
             <option value="draft">Nháp ({contracts.filter((c) => c.status === 'draft').length})</option>
@@ -194,7 +194,7 @@ export const ContractsView: React.FC = () => {
                       <div>
                         {formatDateTime(c.startDate)} → {formatDateTime(c.endDate)}
                       </div>
-                      <span className="text-[10px] text-blue-700 font-medium">
+                      <span className="text-[10px] text-sky-700 font-medium">
                         {c.units} {c.pricingType === 'hourly' ? 'giờ' : 'ngày'}
                       </span>
                     </td>
@@ -223,7 +223,7 @@ export const ContractsView: React.FC = () => {
                       <div className="flex items-center justify-end gap-1">
                         <button
                           onClick={() => setSelectedContractId(c.id)}
-                          className="px-2.5 py-1 text-xs font-bold text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded"
+                          className="px-2.5 py-1 text-xs font-bold text-sky-600 hover:text-sky-800 hover:bg-sky-50 rounded transition-colors cursor-pointer"
                         >
                           Chi tiết
                         </button>
@@ -244,7 +244,7 @@ export const ContractsView: React.FC = () => {
             {/* Header */}
             <div className="p-5 border-b border-slate-100 flex items-center justify-between sticky top-0 bg-white z-10">
               <div className="flex items-center gap-3">
-                <span className="font-mono font-bold text-xs bg-blue-50 text-blue-700 px-2.5 py-1 rounded-md border border-blue-200">
+                <span className="font-mono font-bold text-xs bg-sky-50 text-sky-700 px-2.5 py-1 rounded-md border border-sky-200">
                   {selectedContract.id}
                 </span>
                 <h3 className="text-lg font-extrabold text-slate-900">Chi tiết hợp đồng cho thuê</h3>
@@ -259,7 +259,7 @@ export const ContractsView: React.FC = () => {
               </div>
               <button
                 onClick={() => setSelectedContractId(null)}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100"
+                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -283,7 +283,7 @@ export const ContractsView: React.FC = () => {
                     />
                     <div>
                       <p className="font-extrabold text-slate-900 text-sm">{selectedVehicle?.name}</p>
-                      <p className="font-mono font-bold text-xs text-blue-700">{selectedVehicle?.plateNumber}</p>
+                      <p className="font-mono font-bold text-xs text-sky-700">{selectedVehicle?.plateNumber}</p>
                       <p className="text-[11px] text-slate-500">{selectedVehicle?.category} · Đời {selectedVehicle?.year}</p>
                     </div>
                   </div>
@@ -456,7 +456,7 @@ export const ContractsView: React.FC = () => {
                       setActiveContractForAction(selectedContract);
                       setIsHandoverModalOpen(true);
                     }}
-                    className="px-4 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm flex items-center gap-1.5"
+                    className="px-5 py-2.5 text-xs font-bold text-white bg-orange-500 hover:bg-orange-600 active:bg-orange-700 rounded-xl shadow-sm shadow-orange-500/20 flex items-center gap-1.5 transition-all cursor-pointer"
                   >
                     <CheckCircle2 className="w-4 h-4" />
                     <span>Tiến hành giao xe</span>
@@ -470,7 +470,7 @@ export const ContractsView: React.FC = () => {
                       setActiveContractForAction(selectedContract);
                       setIsReturnModalOpen(true);
                     }}
-                    className="px-4 py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg shadow-sm flex items-center gap-1.5"
+                    className="px-5 py-2.5 text-xs font-bold text-white bg-sky-600 hover:bg-sky-700 active:bg-sky-800 rounded-xl shadow-sm shadow-sky-500/20 flex items-center gap-1.5 transition-all cursor-pointer"
                   >
                     <RotateCcw className="w-4 h-4" />
                     <span>Nhận trả xe</span>
@@ -484,7 +484,7 @@ export const ContractsView: React.FC = () => {
                       setActiveContractForAction(selectedContract);
                       setIsSettlementModalOpen(true);
                     }}
-                    className="px-4 py-2 text-xs font-bold text-white bg-amber-600 hover:bg-amber-700 rounded-lg shadow-sm flex items-center gap-1.5"
+                    className="px-5 py-2.5 text-xs font-bold text-white bg-orange-500 hover:bg-orange-600 active:bg-orange-700 rounded-xl shadow-sm shadow-orange-500/20 flex items-center gap-1.5 transition-all cursor-pointer"
                   >
                     <Receipt className="w-4 h-4" />
                     <span>Quyết toán & Hoàn cọc</span>
@@ -493,7 +493,7 @@ export const ContractsView: React.FC = () => {
 
                 <button
                   onClick={() => setSelectedContractId(null)}
-                  className="px-3.5 py-2 text-xs font-semibold text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50"
+                  className="px-4 py-2.5 text-xs font-semibold text-slate-700 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors cursor-pointer"
                 >
                   Đóng
                 </button>

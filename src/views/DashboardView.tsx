@@ -113,7 +113,7 @@ export const DashboardView: React.FC = () => {
 
         <button
           onClick={() => setIsCreateContractOpen(true)}
-          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold rounded-xl shadow-sm transition-all focus:outline-hidden focus:ring-2 focus:ring-blue-500/20"
+          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold rounded-xl shadow-sm shadow-orange-500/20 transition-all focus:outline-hidden focus:ring-2 focus:ring-orange-400/40 cursor-pointer"
         >
           <Plus className="w-5 h-5 stroke-[2.5]" />
           <span>Tạo hợp đồng</span>
@@ -125,11 +125,11 @@ export const DashboardView: React.FC = () => {
         {/* Total */}
         <div
           onClick={() => setActiveTab('fleet')}
-          className="bg-white p-4 sm:p-5 rounded-xl border border-slate-200/90 shadow-2xs hover:border-slate-300 transition-all cursor-pointer group"
+          className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition-all cursor-pointer group"
         >
           <div className="flex items-center justify-between text-slate-500 mb-2">
             <span className="text-xs font-bold uppercase tracking-wider text-slate-600">Tổng số xe</span>
-            <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-slate-200 transition-colors">
+            <div className="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-slate-200 transition-colors">
               <Car className="w-4 h-4" />
             </div>
           </div>
@@ -147,11 +147,11 @@ export const DashboardView: React.FC = () => {
         {/* Available */}
         <div
           onClick={() => setActiveTab('fleet')}
-          className="bg-white p-4 sm:p-5 rounded-xl border border-emerald-200/80 shadow-2xs hover:border-emerald-300 transition-all cursor-pointer group"
+          className="bg-white p-4 sm:p-5 rounded-2xl border border-emerald-200/80 shadow-xs hover:shadow-md hover:border-emerald-300 transition-all cursor-pointer group"
         >
           <div className="flex items-center justify-between text-emerald-700 mb-2">
             <span className="text-xs font-bold uppercase tracking-wider text-emerald-800">Sẵn sàng</span>
-            <div className="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-700 group-hover:bg-emerald-200 transition-colors">
+            <div className="w-8 h-8 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-700 group-hover:bg-emerald-100 transition-colors">
               <CheckCircle className="w-4 h-4" />
             </div>
           </div>
@@ -168,26 +168,26 @@ export const DashboardView: React.FC = () => {
           </div>
         </div>
 
-        {/* Rented */}
+        {/* Rented - Ocean Blue Theme */}
         <div
           onClick={() => setActiveTab('fleet')}
-          className="bg-white p-4 sm:p-5 rounded-xl border border-blue-200/80 shadow-2xs hover:border-blue-300 transition-all cursor-pointer group"
+          className="bg-white p-4 sm:p-5 rounded-2xl border border-sky-200/80 shadow-xs hover:shadow-md hover:border-sky-300 transition-all cursor-pointer group"
         >
-          <div className="flex items-center justify-between text-blue-700 mb-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-800">Đang cho thuê</span>
-            <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-700 group-hover:bg-blue-200 transition-colors">
+          <div className="flex items-center justify-between text-sky-700 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-sky-800">Đang cho thuê</span>
+            <div className="w-8 h-8 rounded-xl bg-sky-50 flex items-center justify-center text-sky-700 group-hover:bg-sky-100 transition-colors">
               <Clock className="w-4 h-4" />
             </div>
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-extrabold text-blue-700 font-mono tabular-nums">
+            <span className="text-3xl font-extrabold text-sky-700 font-mono tabular-nums">
               {rentedVehicles}
             </span>
-            <span className="text-xs font-semibold text-blue-800">
+            <span className="text-xs font-semibold text-sky-800">
               ({Math.round((rentedVehicles / totalVehicles) * 100)}%)
             </span>
           </div>
-          <div className="mt-2 text-[11px] text-blue-700 font-medium">
+          <div className="mt-2 text-[11px] text-sky-700 font-medium">
             Khách đang lưu hành trên đường
           </div>
         </div>
@@ -195,7 +195,7 @@ export const DashboardView: React.FC = () => {
         {/* Maintenance */}
         <div
           onClick={() => setActiveTab('maintenance')}
-          className="bg-white p-4 sm:p-5 rounded-xl border border-amber-200/80 shadow-2xs hover:border-amber-300 transition-all cursor-pointer group"
+          className="bg-white p-4 sm:p-5 rounded-2xl border border-amber-200/80 shadow-xs hover:shadow-md hover:border-amber-300 transition-all cursor-pointer group"
         >
           <div className="flex items-center justify-between text-amber-700 mb-2">
             <span className="text-xs font-bold uppercase tracking-wider text-amber-800">Đang bảo dưỡng</span>
@@ -230,7 +230,7 @@ export const DashboardView: React.FC = () => {
           </div>
           <button
             onClick={() => setActiveTab('finance')}
-            className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1"
+            className="text-xs font-semibold text-sky-600 hover:text-sky-700 flex items-center gap-1 transition-colors"
           >
             <span>Chi tiết thu chi</span>
             <ChevronRight className="w-3.5 h-3.5" />
@@ -297,7 +297,7 @@ export const DashboardView: React.FC = () => {
           <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-2xs">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-blue-600" />
+                <div className="w-2.5 h-2.5 rounded-full bg-sky-600" />
                 <h3 className="font-bold text-sm text-slate-900">
                   Lịch giao xe hôm nay ({todayPickups.length})
                 </h3>
@@ -343,7 +343,7 @@ export const DashboardView: React.FC = () => {
                             setActiveContractForAction(c);
                             setIsHandoverModalOpen(true);
                           }}
-                          className="px-3 py-1.5 text-xs font-bold rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow-2xs transition-colors"
+                          className="px-3.5 py-1.5 text-xs font-bold rounded-xl bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white shadow-sm shadow-orange-500/20 transition-all cursor-pointer"
                         >
                           Bàn giao xe
                         </button>
@@ -489,20 +489,20 @@ export const DashboardView: React.FC = () => {
 
               {/* Unsettled contracts */}
               {contracts.filter((c) => c.status === 'pending_settlement').length > 0 && (
-                <div className="p-3 rounded-lg bg-blue-50 border border-blue-200">
+                <div className="p-3 rounded-lg bg-sky-50 border border-sky-200">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-blue-700 flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-blue-600" />
+                    <span className="text-xs font-bold text-sky-800 flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-sky-600" />
                       Chờ quyết toán cọc ({contracts.filter((c) => c.status === 'pending_settlement').length})
                     </span>
                     <button
                       onClick={() => setActiveTab('contracts')}
-                      className="text-[11px] font-bold text-blue-700 underline"
+                      className="text-[11px] font-bold text-sky-700 underline"
                     >
                       Quyết toán
                     </button>
                   </div>
-                  <p className="text-xs text-blue-900 mt-1">
+                  <p className="text-xs text-sky-950 mt-1">
                     Xe đã nhận lại về bãi, cần đối chiếu hư hỏng và hoàn cọc cho khách.
                   </p>
                 </div>
@@ -524,7 +524,7 @@ export const DashboardView: React.FC = () => {
               <h3 className="font-bold text-sm text-slate-900">Sơ đồ nhanh đội xe</h3>
               <button
                 onClick={() => setActiveTab('fleet')}
-                className="text-xs font-semibold text-blue-600 hover:text-blue-700"
+                className="text-xs font-semibold text-sky-600 hover:text-sky-700"
               >
                 Tất cả
               </button>

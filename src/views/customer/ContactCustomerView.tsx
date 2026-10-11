@@ -43,7 +43,7 @@ export const ContactCustomerView: React.FC = () => {
         <div className="max-w-7xl mx-auto space-y-4">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-400/30">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Kết nối với DriveRent Đà Nẵng</span>
+            <span>Kết nối với DriveRent Nha Trang</span>
           </span>
 
           <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
@@ -51,7 +51,7 @@ export const ContactCustomerView: React.FC = () => {
           </h1>
 
           <p className="text-sm sm:text-base text-slate-300 max-w-2xl leading-relaxed">
-            Đội ngũ tư vấn viên và kỹ thuật viên cứu hộ luôn sẵn sàng hỗ trợ quý khách trên mọi hành trình khám phá Đà Nẵng, Hội An và miền Trung.
+            Đội ngũ tư vấn viên và kỹ thuật viên cứu hộ luôn sẵn sàng hỗ trợ quý khách trên mọi hành trình khám phá thành phố biển Nha Trang, Cam Ranh và các vịnh đảo.
           </p>
         </div>
       </section>
@@ -68,7 +68,7 @@ export const ContactCustomerView: React.FC = () => {
                 Chúng tôi luôn sẵn sàng lắng nghe bạn
               </h2>
               <p className="text-xs sm:text-sm text-slate-500">
-                Hãy gọi hotline để được giải đáp tức thì hoặc ghé thăm văn phòng giao nhận xe tại mặt tiền biển Võ Nguyên Giáp.
+                Hãy gọi hotline để được giải đáp tức thì hoặc ghé thăm văn phòng giao nhận xe tại số 25 Lê Lợi, TP. Nha Trang.
               </p>
             </div>
 
@@ -80,7 +80,7 @@ export const ContactCustomerView: React.FC = () => {
                   <span>{settings.address}</span>
                 </p>
                 <p className="text-xs text-slate-500 pl-7">
-                  Điểm giao xe thuận tiện chỉ 2 phút đi bộ từ bãi tắm Mỹ Khê, dễ dàng bắt taxi hoặc xe buýt.
+                  Điểm giao xe trung tâm ngay góc Lê Lợi - gần biển Trần Phú và Chợ Đầm, thuận tiện di chuyển mọi hướng.
                 </p>
               </div>
 
@@ -92,7 +92,7 @@ export const ContactCustomerView: React.FC = () => {
                   <span className="text-xs text-slate-500 font-normal">(Gọi trực tiếp / Zalo 24/7)</span>
                 </p>
                 <p className="text-xs text-slate-500 pl-7">
-                  Hỗ trợ xử lý sự cố thủng lốp, chết máy, quên chìa khóa trong vòng 20 - 30 phút nội thành Đà Nẵng.
+                  Hỗ trợ xử lý sự cố thủng lốp, chết máy, quên chìa khóa trong vòng 15 - 25 phút nội thành TP. Nha Trang.
                 </p>
               </div>
 
@@ -212,7 +212,7 @@ export const ContactCustomerView: React.FC = () => {
                   </label>
                   <textarea
                     rows={4}
-                    placeholder="Ví dụ: Chúng tôi cần thuê 2 xe 7 chỗ tự lái từ ngày 12/10 đến 15/10 nhận tại Sân bay Đà Nẵng..."
+                    placeholder="Ví dụ: Chúng tôi cần thuê 2 xe 7 chỗ tự lái từ ngày 12/10 đến 15/10 nhận tại Sân bay Cam Ranh..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:border-blue-600 focus:outline-hidden"
@@ -238,7 +238,7 @@ export const ContactCustomerView: React.FC = () => {
               <h3 className="text-lg sm:text-xl font-black text-slate-900">
                 Vị trí văn phòng trên bản đồ
               </h3>
-              <p className="text-xs text-slate-500">182 Võ Nguyên Giáp, Sơn Trà, TP. Đà Nẵng</p>
+              <p className="text-xs text-slate-500">25 Lê Lợi, Phường Xương Huân, TP. Nha Trang, Khánh Hòa</p>
             </div>
             <a
               href="https://maps.google.com"
@@ -257,9 +257,9 @@ export const ContactCustomerView: React.FC = () => {
               <div className="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center mx-auto shadow-lg shadow-blue-500/50">
                 <MapPin className="w-6 h-6 animate-pulse" />
               </div>
-              <h4 className="font-black text-lg text-white">Cửa hàng cho thuê xe DriveRent</h4>
+              <h4 className="font-black text-lg text-white">Cửa hàng cho thuê xe DriveRent Nha Trang</h4>
               <p className="text-xs text-slate-300 max-w-md mx-auto">
-                Tọa lạc ngay cung đường ven biển đẹp nhất Đà Nẵng. Thuận tiện nhận xe và bắt đầu hành trình vi vu bán đảo Sơn Trà, Ngũ Hành Sơn và phố cổ Hội An.
+                Tọa lạc tại 25 Lê Lợi, TP. Nha Trang - cách bờ biển Trần Phú và Chợ Đầm chỉ vài phút. Điểm xuất phát lý tưởng khám phá vịnh Nha Trang, cung đường đèo Lương Sơn và Bãi Dài Cam Ranh.
               </p>
             </div>
           </div>

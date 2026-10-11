@@ -18,7 +18,7 @@ export const CustomerFooter: React.FC = () => {
               <span className="font-extrabold text-xl text-white tracking-tight">DriveRent</span>
             </div>
             <p className="text-slate-400 text-xs leading-relaxed">
-              Dịch vụ cho thuê xe máy và ô tô tự lái hàng đầu tại TP. Đà Nẵng. Phương tiện đời mới, kiểm tra bảo dưỡng định kỳ nghiêm ngặt, thủ tục nhanh gọn và minh bạch.
+              Dịch vụ cho thuê xe máy và ô tô tự lái hàng đầu tại TP. Nha Trang (25 Lê Lợi). Phương tiện đời mới, kiểm tra bảo dưỡng định kỳ nghiêm ngặt, thủ tục nhanh gọn và minh bạch.
             </p>
             <div className="pt-1 flex items-center gap-2 text-[11px] text-emerald-400 font-semibold">
               <ShieldCheck className="w-4 h-4" />
@@ -64,10 +64,13 @@ export const CustomerFooter: React.FC = () => {
               </li>
               <li>
                 <button
-                  onClick={() => setCustomerTab('about')}
+                  onClick={() => {
+                    setCustomerTab('contact');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
                   className="hover:text-white transition-colors"
                 >
-                  Về chúng tôi
+                  Liên hệ & Địa chỉ
                 </button>
               </li>
             </ul>
@@ -81,7 +84,7 @@ export const CustomerFooter: React.FC = () => {
               <li>• Cọc giữ chỗ trực tuyến đối trừ vào tiền thuê.</li>
               <li>• Hoàn cọc giữ chỗ 100% khi hủy trước 24 giờ.</li>
               <li>• Tiền cọc bảo đảm hoàn lại 100% khi trả xe.</li>
-              <li>• Hỗ trợ cứu hộ giao thông 24/7 nội thành Đà Nẵng.</li>
+              <li>• Hỗ trợ cứu hộ giao thông 24/7 nội thành Nha Trang.</li>
             </ul>
           </div>
 
@@ -112,7 +115,7 @@ export const CustomerFooter: React.FC = () => {
         {/* Bottom Sub-bar */}
         <div className="pt-6 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4 text-[11px] text-slate-400">
           <div>
-            © 2026 DriveRent Đà Nẵng. Bản quyền thuộc về DriveRent. Dữ liệu thử nghiệm minh họa.
+            © 2026 DriveRent Nha Trang. Bản quyền thuộc về DriveRent. Dữ liệu thử nghiệm minh họa.
           </div>
 
           <div className="flex items-center gap-3">

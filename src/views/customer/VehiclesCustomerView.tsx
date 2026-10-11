@@ -98,7 +98,7 @@ export const VehiclesCustomerView: React.FC = () => {
       {/* Title */}
       <div>
         <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-          Danh sách xe cho thuê tại Đà Nẵng
+          Danh sách xe cho thuê tại Nha Trang
         </h1>
         <p className="text-xs sm:text-sm text-slate-500 mt-1">
           Lựa chọn xe máy và ô tô tự lái phù hợp, kiểm tra lịch trống và thanh toán cọc giữ chỗ 20% online
@@ -109,7 +109,7 @@ export const VehiclesCustomerView: React.FC = () => {
       <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-2xs space-y-3">
         <div className="flex items-center justify-between pb-2 border-b border-slate-100">
           <span className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
-            <Calendar className="w-4 h-4 text-blue-600" />
+            <Calendar className="w-4 h-4 text-sky-600" />
             <span>Khoảng thời gian thuê dự kiến</span>
           </span>
           {hasSelectedDates ? (
@@ -154,16 +154,16 @@ export const VehiclesCustomerView: React.FC = () => {
               }
               className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs"
             >
-              <option value="Văn phòng DriveRent (182 Võ Nguyên Giáp)">Văn phòng 182 Võ Nguyên Giáp</option>
-              <option value="Sân bay Quốc tế Đà Nẵng">Sân bay Quốc tế Đà Nẵng</option>
-              <option value="Ga đường sắt Đà Nẵng">Ga đường sắt Đà Nẵng</option>
-              <option value="Khách sạn nội thành Đà Nẵng">Khách sạn nội thành Đà Nẵng</option>
+              <option value="Văn phòng DriveRent (25 Lê Lợi, TP. Nha Trang)">Văn phòng 25 Lê Lợi, TP. Nha Trang</option>
+              <option value="Sân bay Quốc tế Cam Ranh">Sân bay Quốc tế Cam Ranh</option>
+              <option value="Ga đường sắt Nha Trang">Ga đường sắt Nha Trang</option>
+              <option value="Khách sạn nội thành Nha Trang">Khách sạn nội thành Nha Trang (Đường Trần Phú / Hùng Vương)</option>
             </select>
           </div>
           <div className="flex items-end">
             <button
               onClick={handleApplyDates}
-              className="w-full py-2 px-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-xs shadow-2xs transition-colors"
+              className="w-full py-2 px-3 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-lg text-xs shadow-2xs transition-colors cursor-pointer"
             >
               Cập nhật lịch kiểm tra
             </button>
@@ -177,9 +177,9 @@ export const VehiclesCustomerView: React.FC = () => {
         <div className="flex items-center gap-1 p-1 bg-slate-100 rounded-lg">
           <button
             onClick={() => setSelectedType('all')}
-            className={`px-3 py-1.5 rounded-md font-bold transition-all ${
+            className={`px-3 py-1.5 rounded-md font-bold transition-all cursor-pointer ${
               selectedType === 'all'
-                ? 'bg-white text-blue-700 shadow-2xs'
+                ? 'bg-white text-sky-700 shadow-2xs'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
@@ -187,9 +187,9 @@ export const VehiclesCustomerView: React.FC = () => {
           </button>
           <button
             onClick={() => setSelectedType('car')}
-            className={`px-3 py-1.5 rounded-md font-bold transition-all ${
+            className={`px-3 py-1.5 rounded-md font-bold transition-all cursor-pointer ${
               selectedType === 'car'
-                ? 'bg-white text-blue-700 shadow-2xs'
+                ? 'bg-white text-sky-700 shadow-2xs'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
@@ -197,9 +197,9 @@ export const VehiclesCustomerView: React.FC = () => {
           </button>
           <button
             onClick={() => setSelectedType('motorbike')}
-            className={`px-3 py-1.5 rounded-md font-bold transition-all ${
+            className={`px-3 py-1.5 rounded-md font-bold transition-all cursor-pointer ${
               selectedType === 'motorbike'
-                ? 'bg-white text-blue-700 shadow-2xs'
+                ? 'bg-white text-sky-700 shadow-2xs'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
@@ -258,7 +258,7 @@ export const VehiclesCustomerView: React.FC = () => {
               setTransmissionFilter('all');
               setSeatsFilter('all');
             }}
-            className="px-4 py-2 bg-blue-50 text-blue-700 rounded-lg text-xs font-bold hover:bg-blue-100"
+            className="px-4 py-2 bg-sky-50 text-sky-700 rounded-lg text-xs font-bold hover:bg-sky-100 transition-colors cursor-pointer"
           >
             Đặt lại bộ lọc
           </button>
@@ -284,7 +284,7 @@ export const VehiclesCustomerView: React.FC = () => {
               className={`bg-white rounded-2xl border transition-all flex flex-col justify-between overflow-hidden shadow-2xs hover:shadow-md ${
                 !isAvailable
                   ? 'border-slate-300 opacity-80'
-                  : 'border-slate-200 hover:border-blue-300'
+                  : 'border-slate-200 hover:border-sky-300'
               }`}
             >
               <div>
@@ -347,7 +347,7 @@ export const VehiclesCustomerView: React.FC = () => {
 
                   {/* Pickup Location notice */}
                   <p className="text-[11px] text-slate-500 flex items-center gap-1">
-                    <MapPin className="w-3 h-3 text-blue-600 shrink-0" />
+                    <MapPin className="w-3.5 h-3.5 text-sky-600 shrink-0" />
                     <span className="truncate">{customerSearchCriteria.pickupLocation}</span>
                   </p>
 
@@ -364,7 +364,7 @@ export const VehiclesCustomerView: React.FC = () => {
                 <div className="flex items-baseline justify-between pt-2">
                   <div>
                     <span className="text-[10px] text-slate-400 uppercase font-bold block">Giá thuê ngày</span>
-                    <span className="text-sm font-extrabold text-blue-700 font-mono">
+                    <span className="text-sm font-extrabold text-sky-700 font-mono">
                       {formatVND(v.dailyPrice)}
                     </span>
                     <span className="text-[11px] text-slate-400">/ngày (24h)</span>
@@ -380,7 +380,7 @@ export const VehiclesCustomerView: React.FC = () => {
                 <div className="grid grid-cols-2 gap-2">
                   <button
                     onClick={() => handleOpenDetail(v.id)}
-                    className="py-2 px-2 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg text-center flex items-center justify-center gap-1"
+                    className="py-2 px-2 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl text-center flex items-center justify-center gap-1 transition-colors cursor-pointer"
                   >
                     <Eye className="w-3.5 h-3.5" />
                     <span>Xem chi tiết</span>
@@ -389,14 +389,14 @@ export const VehiclesCustomerView: React.FC = () => {
                   {isAvailable ? (
                     <button
                       onClick={() => handleOpenDetail(v.id)}
-                      className="py-2 px-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg text-center shadow-xs"
+                      className="py-2 px-2 text-xs font-bold text-white bg-orange-500 hover:bg-orange-600 active:bg-orange-700 rounded-xl text-center shadow-sm shadow-orange-500/20 transition-all cursor-pointer"
                     >
                       Đặt xe này
                     </button>
                   ) : (
                     <button
                       onClick={() => handleOpenDetail(v.id)}
-                      className="py-2 px-2 text-xs font-bold text-slate-400 bg-slate-100 rounded-lg text-center cursor-not-allowed"
+                      className="py-2 px-2 text-xs font-bold text-slate-400 bg-slate-100 rounded-xl text-center cursor-not-allowed"
                       title="Xe không khả dụng trong khoảng thời gian này"
                     >
                       Bận giờ này

@@ -63,7 +63,7 @@ export const GuideCustomerView: React.FC = () => {
           </h1>
 
           <p className="text-sm sm:text-base text-slate-300 max-w-2xl leading-relaxed">
-            Mọi thủ tục tại DriveRent đều được tinh gọn, minh bạch và số hóa nhằm tiết kiệm tối đa thời gian quý báu của du khách khi đến Đà Nẵng.
+            Mọi thủ tục tại DriveRent đều được tinh gọn, minh bạch và số hóa nhằm tiết kiệm tối đa thời gian quý báu của du khách khi đến Nha Trang.
           </p>
         </div>
       </section>

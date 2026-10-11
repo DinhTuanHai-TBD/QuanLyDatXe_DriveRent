@@ -55,8 +55,8 @@ export const CustomersView: React.FC = () => {
       phone: phone.trim(),
       identityNumber: idNumber.trim() || 'Chưa cập nhật',
       driverLicense: license.trim() || 'Chưa cập nhật',
-      address: address.trim() || 'Đà Nẵng',
-      city: 'Đà Nẵng',
+      address: address.trim() || 'Nha Trang',
+      city: 'Nha Trang',
       notes
     });
 
@@ -76,7 +76,7 @@ export const CustomersView: React.FC = () => {
         <div>
           <h2 className="text-2xl font-extrabold text-slate-900 tracking-tight">Hồ sơ khách hàng</h2>
           <p className="text-sm text-slate-500">
-            Quản lý thông tin liên hệ, giấy tờ xác thực và lịch sử thuê xe tại Đà Nẵng
+            Quản lý thông tin liên hệ, giấy tờ xác thực và lịch sử thuê xe tại Nha Trang
           </p>
         </div>
 
@@ -344,7 +344,7 @@ export const CustomersView: React.FC = () => {
                   type="text"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
-                  placeholder="VD: Khách sạn Canvas, Võ Nguyên Giáp..."
+                  placeholder="VD: Khách sạn Sheraton, 28 Trần Phú..."
                   className="w-full px-3 py-2 border border-slate-200 rounded-lg text-xs"
                 />
               </div>

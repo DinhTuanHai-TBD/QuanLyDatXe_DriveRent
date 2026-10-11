@@ -48,7 +48,7 @@ export const CreateContractWizard: React.FC = () => {
   const [custPhone, setCustPhone] = useState<string>('');
   const [custIdNumber, setCustIdNumber] = useState<string>('');
   const [custLicense, setCustLicense] = useState<string>('');
-  const [custAddress, setCustAddress] = useState<string>('Khách sạn Sơn Trà, Đà Nẵng');
+  const [custAddress, setCustAddress] = useState<string>('Khách sạn Sheraton, 28 Trần Phú, Nha Trang');
 
   // Step 3: Documents upload preview
   const [idFrontUploaded, setIdFrontUploaded] = useState<boolean>(true);
@@ -64,7 +64,7 @@ export const CreateContractWizard: React.FC = () => {
   const [surchargeReason, setSurchargeReason] = useState('');
   const [surchargeAmount, setSurchargeAmount] = useState<number>(50000);
   const [initialAmountPaid, setInitialAmountPaid] = useState<number>(0);
-  const [contractNote, setContractNote] = useState<string>('Khách du lịch thuê tự lái tham quan TP. Đà Nẵng & Hội An');
+  const [contractNote, setContractNote] = useState<string>('Khách du lịch thuê tự lái tham quan TP. Nha Trang & Bãi Dài Cam Ranh');
 
   if (!isCreateContractOpen) return null;
 
@@ -152,7 +152,7 @@ export const CreateContractWizard: React.FC = () => {
         identityNumber: custIdNumber.trim() || 'Chưa cập nhật',
         driverLicense: custLicense.trim() || 'Chưa cập nhật',
         address: custAddress.trim(),
-        city: 'Đà Nẵng',
+        city: 'Nha Trang',
         notes: documentNotes
       });
       finalCustId = created.id;
@@ -201,7 +201,7 @@ export const CreateContractWizard: React.FC = () => {
         </div>
 
         {/* Step Indicator */}
-        <div className="px-6 py-3 bg-slate-50 border-b border-slate-200">
+        <div className="px-6 py-3.5 bg-slate-50 border-b border-slate-200">
           <div className="flex items-center justify-between max-w-xl mx-auto">
             {[
               { num: 1, label: 'Xe & Thời gian' },
@@ -217,15 +217,23 @@ export const CreateContractWizard: React.FC = () => {
                   <div
                     className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
                       isPast
-                        ? 'bg-emerald-600 text-white'
+                        ? 'bg-sky-600 text-white shadow-2xs'
                         : isCurr
-                        ? 'bg-blue-600 text-white ring-4 ring-blue-100'
-                        : 'bg-slate-200 text-slate-600'
+                        ? 'bg-orange-500 text-white ring-4 ring-orange-100 shadow-sm shadow-orange-500/20'
+                        : 'bg-slate-200 text-slate-500'
                     }`}
                   >
                     {isPast ? <Check className="w-3.5 h-3.5" /> : s.num}
                   </div>
-                  <span className={`text-xs font-semibold hidden sm:inline ${isCurr ? 'text-blue-700' : 'text-slate-500'}`}>
+                  <span
+                    className={`text-xs font-semibold hidden sm:inline ${
+                      isCurr
+                        ? 'text-orange-600 font-bold'
+                        : isPast
+                        ? 'text-sky-700 font-medium'
+                        : 'text-slate-400'
+                    }`}
+                  >
                     {s.label}
                   </span>
                 </div>
@@ -470,12 +478,12 @@ export const CreateContractWizard: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">Địa chỉ / Khách sạn lưu trú tại TP. Đà Nẵng</label>
+                    <label className="block text-xs font-bold text-slate-700 mb-1">Địa chỉ / Khách sạn lưu trú tại TP. Nha Trang</label>
                     <input
                       type="text"
                       value={custAddress}
                       onChange={(e) => setCustAddress(e.target.value)}
-                      placeholder="VD: Khách sạn Mường Thanh, Võ Nguyên Giáp..."
+                      placeholder="VD: Khách sạn Sheraton, 28 Trần Phú..."
                       className="w-full text-sm px-3 py-2 border border-slate-200 rounded-lg"
                     />
                   </div>
@@ -790,7 +798,7 @@ export const CreateContractWizard: React.FC = () => {
               <button
                 type="button"
                 onClick={handleNextStep1}
-                className="px-5 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm flex items-center gap-1.5"
+                className="px-5 py-2.5 text-xs font-bold text-white bg-orange-500 hover:bg-orange-600 active:bg-orange-700 rounded-xl shadow-sm shadow-orange-500/20 flex items-center gap-1.5 transition-all cursor-pointer"
               >
                 <span>Tiếp tục</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -800,7 +808,7 @@ export const CreateContractWizard: React.FC = () => {
               <button
                 type="button"
                 onClick={handleNextStep2}
-                className="px-5 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm flex items-center gap-1.5"
+                className="px-5 py-2.5 text-xs font-bold text-white bg-orange-500 hover:bg-orange-600 active:bg-orange-700 rounded-xl shadow-sm shadow-orange-500/20 flex items-center gap-1.5 transition-all cursor-pointer"
               >
                 <span>Tiếp tục</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -810,7 +818,7 @@ export const CreateContractWizard: React.FC = () => {
               <button
                 type="button"
                 onClick={handleNextStep3}
-                className="px-5 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm flex items-center gap-1.5"
+                className="px-5 py-2.5 text-xs font-bold text-white bg-orange-500 hover:bg-orange-600 active:bg-orange-700 rounded-xl shadow-sm shadow-orange-500/20 flex items-center gap-1.5 transition-all cursor-pointer"
               >
                 <span>Tiếp tục</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -820,7 +828,7 @@ export const CreateContractWizard: React.FC = () => {
               <button
                 type="button"
                 onClick={handleNextStep4}
-                className="px-5 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm flex items-center gap-1.5"
+                className="px-5 py-2.5 text-xs font-bold text-white bg-orange-500 hover:bg-orange-600 active:bg-orange-700 rounded-xl shadow-sm shadow-orange-500/20 flex items-center gap-1.5 transition-all cursor-pointer"
               >
                 <span>Tiếp tục kiểm tra</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -830,7 +838,7 @@ export const CreateContractWizard: React.FC = () => {
               <button
                 type="button"
                 onClick={handleConfirmCreateContract}
-                className="px-5 py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg shadow-sm flex items-center gap-1.5"
+                className="px-6 py-2.5 text-xs font-bold text-white bg-orange-500 hover:bg-orange-600 active:bg-orange-700 rounded-xl shadow-sm shadow-orange-500/25 flex items-center gap-1.5 transition-all cursor-pointer"
               >
                 <Check className="w-4 h-4" />
                 <span>Hoàn tất & Ký hợp đồng</span>

@@ -120,7 +120,7 @@ export const FinanceReportView: React.FC = () => {
             Thu chi & Hiệu quả đội xe
           </h2>
           <p className="text-sm text-slate-500">
-            Báo cáo dòng tiền dịch vụ, chi phí bảo trì và tỷ lệ khai thác xe (Đà Nẵng)
+            Báo cáo dòng tiền dịch vụ, chi phí bảo trì và tỷ lệ khai thác xe (Nha Trang)
           </p>
         </div>
 

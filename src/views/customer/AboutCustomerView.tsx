@@ -59,7 +59,7 @@ export const AboutCustomerView: React.FC = () => {
           </h1>
 
           <p className="text-sm sm:text-base text-slate-300 max-w-2xl leading-relaxed">
-            DriveRent là đơn vị chuyên cung cấp dịch vụ cho thuê xe máy du lịch và ô tô tự lái tại thành phố Đà Nẵng, phục vụ hàng chục ngàn du khách và chuyên gia mỗi năm.
+            DriveRent là đơn vị chuyên cung cấp dịch vụ cho thuê xe máy du lịch và ô tô tự lái tại thành phố Nha Trang (25 Lê Lợi), phục vụ hàng chục ngàn du khách và chuyên gia mỗi năm.
           </p>
         </div>
       </section>
@@ -114,7 +114,7 @@ export const AboutCustomerView: React.FC = () => {
                 </div>
                 <h4 className="font-extrabold text-sm text-slate-900">Đội xe máy du lịch</h4>
                 <p className="text-xs text-slate-500">
-                  Xe ga (Vision, Air Blade, Lead) và xe số (Wave Alpha) máy khỏe, tiết kiệm xăng, leo dốc Bà Nà, Sơn Trà đầm chắc.
+                  Xe ga (Vision, Air Blade, Lead) và xe số (Wave Alpha) máy khỏe, tiết kiệm xăng, leo dốc đèo Rù Rì, Hòn Chồng, Bãi Dài êm ái.
                 </p>
               </div>
             </div>
@@ -122,7 +122,7 @@ export const AboutCustomerView: React.FC = () => {
             <div className="p-4 rounded-2xl bg-white border border-slate-200/60 flex items-center gap-3">
               <ShieldCheck className="w-6 h-6 text-blue-600 shrink-0" />
               <p className="text-xs text-slate-600">
-                Khu vực phục vụ chính: Toàn bộ nội thành TP. Đà Nẵng, giao nhận miễn phí tại văn phòng và giao tận nơi tại Sân bay Đà Nẵng, Hội An (Quảng Nam).
+                Khu vực phục vụ chính: Toàn bộ nội thành TP. Nha Trang (25 Lê Lợi), giao nhận miễn phí tại văn phòng và giao tận nơi tại Sân bay Quốc tế Cam Ranh, Ga Nha Trang, các resort Bãi Dài.
               </p>
             </div>
           </div>
@@ -224,9 +224,9 @@ export const AboutCustomerView: React.FC = () => {
               <div className="relative z-10 flex items-center justify-between">
                 <div className="flex items-center gap-2 bg-slate-800/80 px-3 py-1.5 rounded-xl border border-slate-700">
                   <MapPin className="w-4 h-4 text-blue-400" />
-                  <span className="text-xs font-bold">Bản đồ vị trí cửa hàng DriveRent Đà Nẵng</span>
+                  <span className="text-xs font-bold">Bản đồ vị trí cửa hàng DriveRent Nha Trang</span>
                 </div>
-                <span className="text-[11px] text-slate-400">GPS: 16.0678° N, 108.2435° E</span>
+                <span className="text-[11px] text-slate-400">GPS: 12.2532° N, 109.1947° E</span>
               </div>
 
               <div className="relative z-10 my-auto text-center py-6 space-y-3">
@@ -234,15 +234,16 @@ export const AboutCustomerView: React.FC = () => {
                   <Car className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="font-extrabold text-base text-white">DriveRent - Trụ sở Võ Nguyên Giáp</h4>
-                  <p className="text-xs text-slate-300">182 Võ Nguyên Giáp, Phước Mỹ, Sơn Trà, TP. Đà Nẵng</p>
+                  <h4 className="font-extrabold text-base text-white">DriveRent - Trụ sở 25 Lê Lợi, TP. Nha Trang</h4>
+                  <p className="text-xs text-slate-300">25 Lê Lợi, Phường Xương Huân, TP. Nha Trang, Khánh Hòa</p>
                 </div>
               </div>
 
               <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-300 border-t border-slate-800 pt-3">
-                <span>Cách sân bay: 12 phút di chuyển</span>
-                <span>Cách cầu Rồng: 5 phút di chuyển</span>
-                <span>Cách chùa Linh Ứng: 15 phút di chuyển</span>
+                <span>Cách bãi biển Trần Phú: 2 phút đi bộ</span>
+                <span>Cách chợ Đầm: 3 phút di chuyển</span>
+                <span>Cách Ga Nha Trang: 6 phút di chuyển</span>
+                <span>Cách Sân bay Cam Ranh: 35 phút di chuyển</span>
               </div>
             </div>
           </div>
