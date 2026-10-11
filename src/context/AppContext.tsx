@@ -10,7 +10,10 @@ import {
   ActiveTab,
   HandoverRecord,
   ReturnRecord,
-  FinalSettlement
+  FinalSettlement,
+  OnlineBooking,
+  CustomerTab,
+  AppMode
 } from '../types';
 import {
   initialVehicles,
@@ -19,7 +22,8 @@ import {
   initialMaintenanceTasks,
   initialStoreSettings,
   initialUsers,
-  initialActivityLogs
+  initialActivityLogs,
+  initialOnlineBookings
 } from '../data/initialData';
 
 interface ToastNotification {
@@ -28,21 +32,43 @@ interface ToastNotification {
   message: string;
 }
 
+export interface CustomerSearchCriteria {
+  startDate: string;
+  endDate: string;
+  pickupLocation: string;
+  vehicleType: string;
+}
+
 interface AppContextType {
   currentUser: User;
   isLoggedIn: boolean;
+  appMode: AppMode;
+  setAppMode: (mode: AppMode) => void;
+  customerTab: CustomerTab;
+  setCustomerTab: (tab: CustomerTab) => void;
   activeTab: ActiveTab;
   setActiveTab: (tab: ActiveTab) => void;
   vehicles: Vehicle[];
   customers: Customer[];
   contracts: RentalContract[];
   maintenanceTasks: MaintenanceTask[];
+  onlineBookings: OnlineBooking[];
   settings: StoreSettings;
   activityLogs: ActivityLog[];
   toasts: ToastNotification[];
   users: User[];
 
-  // Modal & Selection States
+  // Customer Portal State
+  customerSearchCriteria: CustomerSearchCriteria;
+  setCustomerSearchCriteria: (criteria: CustomerSearchCriteria) => void;
+  selectedCustomerVehicleId: string | null;
+  setSelectedCustomerVehicleId: (id: string | null) => void;
+  activeCheckoutBooking: OnlineBooking | null;
+  setActiveCheckoutBooking: (booking: OnlineBooking | null) => void;
+  isAdminLoginModalOpen: boolean;
+  setIsAdminLoginModalOpen: (open: boolean) => void;
+
+  // Modal & Selection States (Admin)
   selectedVehicleId: string | null;
   setSelectedVehicleId: (id: string | null) => void;
   selectedContractId: string | null;
@@ -71,6 +97,13 @@ interface AppContextType {
   showToast: (message: string, type?: 'success' | 'error' | 'info' | 'warning') => void;
   removeToast: (id: string) => void;
   resetToSampleData: () => void;
+
+  // Online Booking Operations
+  createOnlineBooking: (bookingData: Omit<OnlineBooking, 'id' | 'status' | 'createdAt' | 'expiresAt'>) => OnlineBooking | null;
+  verifyOnlineBookingPayment: (bookingId: string, paymentMethod: string) => boolean;
+  cancelOnlineBooking: (bookingId: string, reason: string) => boolean;
+  changeOnlineBookingDates: (bookingId: string, newStart: string, newEnd: string) => boolean;
+  lookupBooking: (bookingId: string, phone: string) => OnlineBooking | null;
 
   // Vehicle operations
   addVehicle: (vehicle: Omit<Vehicle, 'id'>) => Vehicle;
@@ -127,6 +160,18 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   });
 
   const [activeTab, setActiveTab] = useState<ActiveTab>('dashboard');
+  const [appMode, setAppMode] = useState<AppMode>('customer');
+  const [customerTab, setCustomerTab] = useState<CustomerTab>('home');
+
+  const [customerSearchCriteria, setCustomerSearchCriteria] = useState<CustomerSearchCriteria>({
+    startDate: '2026-10-10T09:00',
+    endDate: '2026-10-12T18:00',
+    pickupLocation: 'Văn phòng DriveRent (182 Võ Nguyên Giáp)',
+    vehicleType: 'all'
+  });
+  const [selectedCustomerVehicleId, setSelectedCustomerVehicleId] = useState<string | null>(null);
+  const [activeCheckoutBooking, setActiveCheckoutBooking] = useState<OnlineBooking | null>(null);
+  const [isAdminLoginModalOpen, setIsAdminLoginModalOpen] = useState(false);
 
   const [vehicles, setVehicles] = useState<Vehicle[]>(() => {
     const saved = localStorage.getItem(`${STORAGE_KEY_PREFIX}vehicles`);
@@ -146,6 +191,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [maintenanceTasks, setMaintenanceTasks] = useState<MaintenanceTask[]>(() => {
     const saved = localStorage.getItem(`${STORAGE_KEY_PREFIX}maintenance`);
     return saved ? JSON.parse(saved) : initialMaintenanceTasks;
+  });
+
+  const [onlineBookings, setOnlineBookings] = useState<OnlineBooking[]>(() => {
+    const saved = localStorage.getItem(`${STORAGE_KEY_PREFIX}online_bookings`);
+    return saved ? JSON.parse(saved) : initialOnlineBookings;
   });
 
   const [settings, setSettings] = useState<StoreSettings>(() => {
@@ -196,6 +246,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   useEffect(() => {
     localStorage.setItem(`${STORAGE_KEY_PREFIX}maintenance`, JSON.stringify(maintenanceTasks));
   }, [maintenanceTasks]);
+
+  useEffect(() => {
+    localStorage.setItem(`${STORAGE_KEY_PREFIX}online_bookings`, JSON.stringify(onlineBookings));
+  }, [onlineBookings]);
 
   useEffect(() => {
     localStorage.setItem(`${STORAGE_KEY_PREFIX}settings`, JSON.stringify(settings));
@@ -262,12 +316,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setCustomers(initialCustomers);
     setContracts(initialContracts);
     setMaintenanceTasks(initialMaintenanceTasks);
+    setOnlineBookings(initialOnlineBookings);
     setSettings(initialStoreSettings);
     setActivityLogs(initialActivityLogs);
     showToast('Đã khôi phục dữ liệu mẫu ban đầu thành công!', 'success');
   };
 
-  // Vehicle Availability check
+  // Vehicle Availability check (checks maintenance, active contracts, and active online bookings)
   const checkVehicleAvailability = (
     vehicleId: string,
     startDate: string,
@@ -310,6 +365,27 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       };
     }
 
+    // Check conflict against online bookings (confirmed or active within 10-minute payment hold)
+    const nowTime = Date.now();
+    const conflictingBooking = onlineBookings.find((b) => {
+      if (b.vehicleId !== vehicleId) return false;
+      if (b.status === 'cancelled' || b.status === 'refunded' || b.status === 'expired') return false;
+      // If pending payment and expired past 10 minutes, treat as freed
+      if (b.status === 'pending_payment' && new Date(b.expiresAt).getTime() < nowTime) return false;
+
+      const bStart = new Date(b.startDate).getTime();
+      const bEnd = new Date(b.endDate).getTime();
+
+      return (start < bEnd && end > bStart);
+    });
+
+    if (conflictingBooking) {
+      return {
+        available: false,
+        conflictReason: `Xe đã có khách đặt giữ chỗ trực tuyến (Mã đơn: ${conflictingBooking.id} - ${new Date(conflictingBooking.startDate).toLocaleDateString('vi-VN')})`
+      };
+    }
+
     // Check maintenance tasks overlap
     const maintenanceTask = maintenanceTasks.find((m) => {
       if (m.vehicleId !== vehicleId) return false;
@@ -326,6 +402,213 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
 
     return { available: true };
+  };
+
+  // Online Booking operations
+  const createOnlineBooking = (
+    bookingData: Omit<OnlineBooking, 'id' | 'status' | 'createdAt' | 'expiresAt'>
+  ): OnlineBooking | null => {
+    // Check availability
+    const check = checkVehicleAvailability(bookingData.vehicleId, bookingData.startDate, bookingData.endDate);
+    if (!check.available) {
+      showToast(check.conflictReason || 'Xe không khả dụng trong thời gian yêu cầu!', 'error');
+      return null;
+    }
+
+    const randomSuffix = Math.floor(1000 + Math.random() * 9000);
+    const bookingId = `BK-2026-${randomSuffix}`;
+    const now = new Date();
+    const expiresAt = new Date(now.getTime() + 10 * 60 * 1000).toISOString(); // 10 minutes hold
+
+    const newBooking: OnlineBooking = {
+      ...bookingData,
+      id: bookingId,
+      status: 'pending_payment',
+      createdAt: now.toISOString(),
+      expiresAt
+    };
+
+    setOnlineBookings((prev) => [newBooking, ...prev]);
+    setActiveCheckoutBooking(newBooking);
+    addLog(
+      'Khách đặt xe trực tuyến',
+      `Tạo yêu cầu giữ chỗ ${bookingId} cho xe ${vehicles.find((v) => v.id === bookingData.vehicleId)?.name}`,
+      'contract'
+    );
+    showToast(`Đã tạo đơn giữ chỗ ${bookingId}. Thời gian giữ xe tạm thời là 10 phút.`, 'info');
+    return newBooking;
+  };
+
+  const verifyOnlineBookingPayment = (bookingId: string, paymentMethod: string): boolean => {
+    const booking = onlineBookings.find((b) => b.id === bookingId);
+    if (!booking) {
+      showToast('Không tìm thấy thông tin đơn đặt xe!', 'error');
+      return false;
+    }
+
+    // Check if expired and already claimed by another contract
+    const isExpired = new Date(booking.expiresAt).getTime() < Date.now();
+    if (isExpired && booking.status === 'pending_payment') {
+      const check = checkVehicleAvailability(booking.vehicleId, booking.startDate, booking.endDate);
+      if (!check.available) {
+        showToast('Rất tiếc! Đơn đặt xe đã hết hạn giữ chỗ và xe đã được bố trí cho khách khác. Vui lòng liên hệ nhân viên để được hỗ trợ xe tương đương hoặc hoàn tiền.', 'error');
+        setOnlineBookings((prev) =>
+          prev.map((b) => (b.id === bookingId ? { ...b, status: 'expired' } : b))
+        );
+        return false;
+      }
+    }
+
+    const nowIso = new Date().toISOString();
+    const targetVehicle = vehicles.find((v) => v.id === booking.vehicleId);
+
+    // 1. Ensure customer profile exists or create one
+    let targetCust = customers.find(
+      (c) => c.phone.replace(/\s+/g, '') === booking.customerPhone.replace(/\s+/g, '')
+    );
+    if (!targetCust) {
+      targetCust = addCustomer({
+        fullName: booking.customerName,
+        phone: booking.customerPhone,
+        identityNumber: 'Khách đặt online (Kiểm tra khi nhận xe)',
+        driverLicense: 'Khách đặt online (Kiểm tra khi nhận xe)',
+        address: booking.pickupLocation,
+        city: 'Đà Nẵng',
+        notes: `Khách đặt cọc online ${booking.id}`
+      });
+    }
+
+    // 2. Automatically generate corresponding contract in internal contracts list
+    const nextIndex = contracts.length + 1;
+    const contractId = `HD-2026-${String(nextIndex).padStart(3, '0')}`;
+    const newContract: RentalContract = {
+      id: contractId,
+      vehicleId: booking.vehicleId,
+      customerId: targetCust.id,
+      pricingType: booking.pricingType,
+      status: 'confirmed',
+      startDate: booking.startDate,
+      endDate: booking.endDate,
+      rate: booking.rate,
+      units: booking.units,
+      baseRentalFee: booking.rentalFee,
+      deposit: booking.securityDepositOnPickup, // security deposit upon delivery
+      discount: 0,
+      surcharges: booking.deliveryFee > 0 ? [{ id: `sur-${Date.now()}`, reason: `Phí giao xe: ${booking.pickupLocation}`, amount: booking.deliveryFee }] : [],
+      totalServiceFee: booking.totalEstimatedAmount,
+      amountPaid: booking.bookingDepositPaid, // online deposit paid
+      note: `[Đặt xe trực tuyến #${booking.id}] ${booking.notes || ''} · Phương thức: ${paymentMethod}`,
+      createdAt: nowIso,
+      createdBy: 'Hệ thống Đặt xe Trực tuyến (Web)'
+    };
+
+    setContracts((prev) => [newContract, ...prev]);
+
+    // 3. Update online booking status
+    setOnlineBookings((prev) =>
+      prev.map((b) =>
+        b.id === bookingId
+          ? {
+              ...b,
+              status: 'confirmed',
+              paymentMethod,
+              verifiedAt: nowIso,
+              contractId
+            }
+          : b
+      )
+    );
+
+    addLog(
+      'Xác nhận cọc trực tuyến',
+      `Khách ${booking.customerName} đã thanh toán cọc giữ chỗ ${booking.bookingDepositPaid.toLocaleString('vi-VN')} đ cho đơn ${booking.id}. Tự động tạo HĐ ${contractId}`,
+      'payment'
+    );
+
+    showToast(`Xác nhận thanh toán cọc thành công! Lịch xe đã được giữ cho đơn ${bookingId}`, 'success');
+    return true;
+  };
+
+  const cancelOnlineBooking = (bookingId: string, reason: string): boolean => {
+    const booking = onlineBookings.find((b) => b.id === bookingId);
+    if (!booking) return false;
+
+    setOnlineBookings((prev) =>
+      prev.map((b) =>
+        b.id === bookingId
+          ? {
+              ...b,
+              status: b.bookingDepositPaid > 0 ? 'refund_pending' : 'cancelled',
+              notes: `${b.notes || ''} [Lý do hủy: ${reason}]`
+            }
+          : b
+      )
+    );
+
+    // Cancel linked contract if present
+    if (booking.contractId) {
+      cancelContract(booking.contractId, `Khách hủy đơn online ${booking.id}: ${reason}`);
+    }
+
+    addLog(
+      'Hủy đơn đặt online',
+      `Đơn đặt xe ${booking.id} đã bị hủy. ${booking.bookingDepositPaid > 0 ? 'Chuyển sang Chờ hoàn cọc theo chính sách' : ''}`,
+      'contract'
+    );
+
+    showToast(`Đã tiếp nhận yêu cầu hủy đơn ${bookingId}!`, 'info');
+    return true;
+  };
+
+  const changeOnlineBookingDates = (bookingId: string, newStart: string, newEnd: string): boolean => {
+    const booking = onlineBookings.find((b) => b.id === bookingId);
+    if (!booking) return false;
+
+    // Check availability
+    const check = checkVehicleAvailability(booking.vehicleId, newStart, newEnd, booking.contractId);
+    if (!check.available) {
+      showToast(`Không thể đổi sang khoảng thời gian này: ${check.conflictReason}`, 'error');
+      return false;
+    }
+
+    setOnlineBookings((prev) =>
+      prev.map((b) =>
+        b.id === bookingId
+          ? {
+              ...b,
+              startDate: newStart,
+              endDate: newEnd
+            }
+          : b
+      )
+    );
+
+    if (booking.contractId) {
+      setContracts((prev) =>
+        prev.map((c) =>
+          c.id === booking.contractId
+            ? { ...c, startDate: newStart, endDate: newEnd }
+            : c
+        )
+      );
+    }
+
+    showToast(`Đã cập nhật thời gian đặt xe mới cho đơn ${bookingId}`, 'success');
+    return true;
+  };
+
+  const lookupBooking = (bookingId: string, phone: string): OnlineBooking | null => {
+    const cleanId = bookingId.trim().toUpperCase();
+    const cleanPhone = phone.trim().replace(/\s+/g, '');
+
+    const found = onlineBookings.find((b) => {
+      const matchId = b.id.toUpperCase() === cleanId;
+      const bPhoneClean = b.customerPhone.replace(/\s+/g, '');
+      const matchPhone = bPhoneClean.endsWith(cleanPhone) || cleanPhone.endsWith(bPhoneClean);
+      return matchId && matchPhone;
+    });
+
+    return found || null;
   };
 
   // Vehicle operations
@@ -697,16 +980,30 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       value={{
         currentUser,
         isLoggedIn,
+        appMode,
+        setAppMode,
+        customerTab,
+        setCustomerTab,
         activeTab,
         setActiveTab,
         vehicles,
         customers,
         contracts,
         maintenanceTasks,
+        onlineBookings,
         settings,
         activityLogs,
         toasts,
         users: initialUsers,
+
+        customerSearchCriteria,
+        setCustomerSearchCriteria,
+        selectedCustomerVehicleId,
+        setSelectedCustomerVehicleId,
+        activeCheckoutBooking,
+        setActiveCheckoutBooking,
+        isAdminLoginModalOpen,
+        setIsAdminLoginModalOpen,
 
         selectedVehicleId,
         setSelectedVehicleId,
@@ -735,6 +1032,12 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         showToast,
         removeToast,
         resetToSampleData,
+
+        createOnlineBooking,
+        verifyOnlineBookingPayment,
+        cancelOnlineBooking,
+        changeOnlineBookingDates,
+        lookupBooking,
 
         addVehicle,
         updateVehicle,

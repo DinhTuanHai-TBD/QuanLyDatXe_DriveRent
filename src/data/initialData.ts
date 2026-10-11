@@ -1,4 +1,4 @@
-import { Vehicle, Customer, RentalContract, MaintenanceTask, StoreSettings, User, ActivityLog } from '../types';
+import { Vehicle, Customer, RentalContract, MaintenanceTask, StoreSettings, User, ActivityLog, OnlineBooking } from '../types';
 
 export const initialUsers: User[] = [
   {
@@ -807,3 +807,59 @@ export const initialActivityLogs: ActivityLog[] = [
     type: 'maintenance'
   }
 ];
+
+export const initialOnlineBookings: OnlineBooking[] = [
+  {
+    id: 'BK-2026-8812',
+    vehicleId: 'V-08', // Toyota Vios 1.5E
+    customerName: 'Trần Minh Quân',
+    customerPhone: '0905 112 233',
+    customerEmail: 'minhquan.tran@gmail.com',
+    pickupLocation: 'Sân bay Quốc tế Đà Nẵng',
+    startDate: '2026-10-15T09:00',
+    endDate: '2026-10-18T17:00',
+    pricingType: 'daily',
+    units: 4,
+    rate: 700000,
+    rentalFee: 2800000,
+    deliveryFee: 150000,
+    totalEstimatedAmount: 2950000,
+    bookingDepositRequired: 590000, // 20%
+    bookingDepositPaid: 590000,
+    remainingAmountDue: 2360000,
+    securityDepositOnPickup: 5000000,
+    status: 'confirmed',
+    paymentMethod: 'Chuyển khoản ngân hàng',
+    notes: 'Chuyến bay đáp lúc 08:45 sáng, cần mang xe ra cột số 4 ga đến',
+    createdAt: '2026-10-08T15:20',
+    expiresAt: '2026-10-08T15:30',
+    verifiedAt: '2026-10-08T15:25'
+  },
+  {
+    id: 'BK-2026-9041',
+    vehicleId: 'V-10', // Honda Air Blade 160
+    customerName: 'Nguyễn Thị Hải Yến',
+    customerPhone: '0935 889 900',
+    customerEmail: 'haiyen.danang@outlook.com',
+    pickupLocation: 'Văn phòng DriveRent (182 Võ Nguyên Giáp)',
+    startDate: '2026-10-14T08:00',
+    endDate: '2026-10-16T18:00',
+    pricingType: 'daily',
+    units: 3,
+    rate: 220000,
+    rentalFee: 660000,
+    deliveryFee: 0,
+    totalEstimatedAmount: 660000,
+    bookingDepositRequired: 132000, // 20%
+    bookingDepositPaid: 132000,
+    remainingAmountDue: 528000,
+    securityDepositOnPickup: 1000000,
+    status: 'confirmed',
+    paymentMethod: 'Ví MoMo',
+    notes: 'Khách yêu cầu kèm 2 mũ bảo hiểm 3/4 đầu',
+    createdAt: '2026-10-09T01:10',
+    expiresAt: '2026-10-09T01:20',
+    verifiedAt: '2026-10-09T01:15'
+  }
+];
+

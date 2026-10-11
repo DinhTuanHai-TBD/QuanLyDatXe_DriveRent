@@ -14,7 +14,8 @@ import {
   ChevronRight,
   ShieldCheck,
   UserCheck,
-  AlertTriangle
+  AlertTriangle,
+  ExternalLink
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -31,7 +32,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ isMobileOpen, onCloseMobile })
     currentUser,
     switchUser,
     users,
-    logout
+    logout,
+    setAppMode,
+    setCustomerTab
   } = useApp();
 
   const activeRentalsCount = contracts.filter((c) => c.status === 'rented').length;
@@ -169,7 +172,24 @@ export const Sidebar: React.FC<SidebarProps> = ({ isMobileOpen, onCloseMobile })
         </div>
 
         {/* User profile & Role switcher */}
-        <div className="p-3 border-t border-slate-200 bg-slate-50/80">
+        <div className="p-3 border-t border-slate-200 bg-slate-50/80 space-y-2">
+          {/* Switch to Customer Portal button */}
+          <button
+            onClick={() => {
+              setAppMode('customer');
+              setCustomerTab('home');
+              onCloseMobile();
+            }}
+            className="w-full flex items-center justify-between px-3 py-2 bg-blue-50 hover:bg-blue-100/80 text-blue-700 border border-blue-200 rounded-xl text-xs font-bold transition-colors cursor-pointer"
+            title="Chuyển sang giao diện website dành cho khách hàng đặt xe"
+          >
+            <div className="flex items-center gap-2">
+              <ExternalLink className="w-4 h-4" />
+              <span>Xem trang khách hàng</span>
+            </div>
+            <span className="text-[10px] bg-blue-600 text-white px-1.5 py-0.5 rounded font-mono">Web</span>
+          </button>
+
           <div className="p-2.5 bg-white rounded-xl border border-slate-200/80 shadow-2xs space-y-2.5">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">

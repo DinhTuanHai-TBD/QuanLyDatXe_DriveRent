@@ -3,7 +3,7 @@ import { useApp } from '../context/AppContext';
 import { Car, Lock, User, ArrowRight, ShieldCheck, Sparkles, AlertCircle } from 'lucide-react';
 
 export const LoginView: React.FC = () => {
-  const { login, users } = useApp();
+  const { login, users, setAppMode, setCustomerTab } = useApp();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -167,6 +167,19 @@ export const LoginView: React.FC = () => {
             >
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
               <span>Trải nghiệm ngay không cần nhập</span>
+            </button>
+
+            {/* Back to Customer Website */}
+            <button
+              type="button"
+              onClick={() => {
+                setAppMode('customer');
+                setCustomerTab('home');
+              }}
+              className="mt-3 w-full py-2 px-3 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+            >
+              <ArrowRight className="w-3.5 h-3.5 rotate-180 text-blue-600" />
+              <span>Quay lại Trang web khách hàng (DriveRent)</span>
             </button>
           </div>
         </div>

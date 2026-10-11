@@ -146,6 +146,43 @@ export interface RentalContract {
 
 export type MaintenanceStatus = 'upcoming' | 'overdue' | 'in_progress' | 'completed';
 
+export type BookingStatus =
+  | 'pending_payment'       // Chờ thanh toán
+  | 'verifying_payment'     // Đang kiểm tra thanh toán
+  | 'confirmed'             // Đã xác nhận
+  | 'expired'               // Hết hạn (sau 10 phút giữ chỗ)
+  | 'cancelled'             // Đã hủy
+  | 'refund_pending'        // Chờ hoàn cọc
+  | 'refunded';             // Đã hoàn cọc
+
+export interface OnlineBooking {
+  id: string; // e.g. BK-2026-8812
+  vehicleId: string;
+  customerName: string;
+  customerPhone: string;
+  customerEmail?: string;
+  pickupLocation: string;
+  startDate: string; // ISO datetime
+  endDate: string;   // ISO datetime
+  pricingType: PricingType;
+  units: number;
+  rate: number;
+  rentalFee: number;
+  deliveryFee: number;
+  totalEstimatedAmount: number;
+  bookingDepositRequired: number; // e.g. 20%
+  bookingDepositPaid: number;
+  remainingAmountDue: number; // to pay upon receiving car
+  securityDepositOnPickup: number; // 5tr hoặc 1tr (trình bày riêng)
+  status: BookingStatus;
+  paymentMethod?: string;
+  notes?: string;
+  createdAt: string;
+  expiresAt: string; // ISO datetime (10 minutes from creation)
+  verifiedAt?: string;
+  contractId?: string; // synced contract ID
+}
+
 export interface MaintenanceTask {
   id: string;
   vehicleId: string;
@@ -198,3 +235,14 @@ export type ActiveTab =
   | 'maintenance' 
   | 'finance' 
   | 'settings';
+
+export type CustomerTab =
+  | 'home'
+  | 'about'
+  | 'vehicles'
+  | 'vehicle_detail'
+  | 'guide'
+  | 'lookup'
+  | 'contact';
+
+export type AppMode = 'customer' | 'admin';

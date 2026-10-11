@@ -10,7 +10,8 @@ import {
   Clock,
   DollarSign,
   ChevronRight,
-  ShieldAlert
+  ShieldAlert,
+  ExternalLink
 } from 'lucide-react';
 import { formatVND, formatDate } from '../../utils/formatters';
 
@@ -28,7 +29,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileSidebar }) => {
     setActiveTab,
     setSelectedContractId,
     setSelectedVehicleId,
-    settings
+    settings,
+    setAppMode,
+    setCustomerTab
   } = useApp();
 
   const [isAlertOpen, setIsAlertOpen] = useState(false);
@@ -226,6 +229,19 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileSidebar }) => {
             </>
           )}
         </div>
+
+        {/* Switch to customer view button */}
+        <button
+          onClick={() => {
+            setAppMode('customer');
+            setCustomerTab('home');
+          }}
+          className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-900 rounded-lg text-xs font-bold transition-colors cursor-pointer border border-slate-200"
+          title="Xem trang web dành cho khách hàng đặt xe"
+        >
+          <ExternalLink className="w-3.5 h-3.5 text-blue-600" />
+          <span>Trang khách hàng</span>
+        </button>
 
         {/* Highlighted Create Contract Button */}
         <button

@@ -10,7 +10,21 @@ import { Header } from './components/layout/Header';
 import { TrialBanner } from './components/common/TrialBanner';
 import { ToastContainer } from './components/common/ToastContainer';
 
-// Views
+// Customer Portal Components & Views
+import { CustomerHeader } from './components/customer/CustomerHeader';
+import { CustomerFooter } from './components/customer/CustomerFooter';
+import { AdminLoginModal } from './components/customer/AdminLoginModal';
+import { BookingCheckoutModal } from './components/customer/BookingCheckoutModal';
+
+import { HomeCustomerView } from './views/customer/HomeCustomerView';
+import { AboutCustomerView } from './views/customer/AboutCustomerView';
+import { VehiclesCustomerView } from './views/customer/VehiclesCustomerView';
+import { VehicleDetailCustomerView } from './views/customer/VehicleDetailCustomerView';
+import { GuideCustomerView } from './views/customer/GuideCustomerView';
+import { LookupBookingCustomerView } from './views/customer/LookupBookingCustomerView';
+import { ContactCustomerView } from './views/customer/ContactCustomerView';
+
+// Internal Admin Portal Views
 import { LoginView } from './views/LoginView';
 import { DashboardView } from './views/DashboardView';
 import { FleetView } from './views/FleetView';
@@ -21,7 +35,7 @@ import { MaintenanceView } from './views/MaintenanceView';
 import { FinanceReportView } from './views/FinanceReportView';
 import { SettingsView } from './views/SettingsView';
 
-// Modals
+// Internal Admin Modals
 import { CreateContractWizard } from './views/CreateContractWizard';
 import { AddVehicleModal } from './views/AddVehicleModal';
 import { HandoverReturnModal } from './views/HandoverReturnModal';
@@ -29,9 +43,38 @@ import { SettlementModal } from './views/SettlementModal';
 import { PrintContractModal } from './views/PrintContractModal';
 
 const MainLayout: React.FC = () => {
-  const { isLoggedIn, activeTab } = useApp();
+  const { appMode, customerTab, isLoggedIn, activeTab } = useApp();
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
+  // 1. Customer Website Portal
+  if (appMode === 'customer') {
+    return (
+      <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">
+        <CustomerHeader />
+
+        <main className="flex-1">
+          {customerTab === 'home' && <HomeCustomerView />}
+          {customerTab === 'about' && <AboutCustomerView />}
+          {customerTab === 'vehicles' && <VehiclesCustomerView />}
+          {customerTab === 'vehicle_detail' && <VehicleDetailCustomerView />}
+          {customerTab === 'guide' && <GuideCustomerView />}
+          {customerTab === 'lookup' && <LookupBookingCustomerView />}
+          {customerTab === 'contact' && <ContactCustomerView />}
+        </main>
+
+        <CustomerFooter />
+
+        {/* Customer Modals */}
+        <AdminLoginModal />
+        <BookingCheckoutModal />
+
+        {/* Toast Notifications */}
+        <ToastContainer />
+      </div>
+    );
+  }
+
+  // 2. Internal Staff / Admin Portal Login Gate
   if (!isLoggedIn) {
     return (
       <>
@@ -41,9 +84,10 @@ const MainLayout: React.FC = () => {
     );
   }
 
+  // 3. Internal Staff / Admin Portal Main Dashboard
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">
-      {/* Top trial banner */}
+      {/* Top trial notification banner */}
       <TrialBanner />
 
       <div className="flex-1 flex overflow-hidden">
@@ -70,7 +114,7 @@ const MainLayout: React.FC = () => {
         </div>
       </div>
 
-      {/* Global Interactive Modals */}
+      {/* Internal Management Modals */}
       <CreateContractWizard />
       <AddVehicleModal />
       <HandoverReturnModal />
