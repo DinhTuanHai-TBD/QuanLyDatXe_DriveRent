@@ -52,7 +52,7 @@ export const GuideCustomerView: React.FC = () => {
     <div className="space-y-12 pb-16">
       {/* Header */}
       <section className="bg-gradient-to-b from-blue-900 to-slate-900 text-white py-16 px-4 sm:px-8">
-        <div className="max-w-7xl mx-auto space-y-4">
+        <div className="max-w-[1520px] mx-auto space-y-4">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-400/30">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Cẩm nang dành cho khách hàng</span>
@@ -68,7 +68,7 @@ export const GuideCustomerView: React.FC = () => {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-12">
+      <div className="max-w-[1520px] mx-auto px-4 sm:px-8 space-y-12">
         {/* 5-Step Roadmap */}
         <section className="space-y-6">
           <div className="text-center max-w-2xl mx-auto space-y-2">

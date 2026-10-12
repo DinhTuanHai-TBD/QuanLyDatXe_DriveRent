@@ -41,7 +41,7 @@ export const CustomerHeader: React.FC = () => {
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100">
       {/* Thanh thông tin trên cùng */}
       <div className="bg-slate-900 text-slate-300 text-[11px] py-1.5 px-4 sm:px-8 border-b border-slate-800">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+        <div className="max-w-[1520px] mx-auto flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1 text-slate-200 font-semibold">
               <MapPin className="w-3 h-3 text-emerald-400" />
@@ -75,7 +75,7 @@ export const CustomerHeader: React.FC = () => {
       </div>
 
       {/* Thanh Menu chính */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between gap-4">
+      <div className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 h-16 flex items-center justify-between gap-4">
         <div
           onClick={() => handleSelectTab('home')}
           className="flex items-center gap-2.5 cursor-pointer group select-none"

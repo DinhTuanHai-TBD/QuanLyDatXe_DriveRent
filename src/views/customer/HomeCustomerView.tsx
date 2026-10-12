@@ -102,9 +102,9 @@ export const HomeCustomerView: React.FC = () => {
       {/* 1. HERO BANNER SLIDER */}
       <HeroBannerSlider onExploreClick={() => setCustomerTab('vehicles')} />
 
-      {/* 2. KHUNG TÌM KIẾM NỔI */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-8 -mt-10 relative z-30">
-        <div className="bg-white rounded-3xl p-6 sm:p-7 text-slate-900 shadow-xl border border-slate-200/90">
+      {/* 2. KHUNG TÌM KIẾM NỔI LIQUID GLASS */}
+      <section className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 -mt-12 sm:-mt-16 relative z-30">
+        <div className="bg-white/80 hover:bg-white/95 backdrop-blur-2xl rounded-3xl p-6 sm:p-8 text-slate-900 shadow-[0_20px_60px_rgba(0,0,0,0.1),inset_0_1px_2px_rgba(255,255,255,0.9)] border border-white/60 transition-all">
           <form onSubmit={handleSearchSubmit} className="space-y-5">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-4 border-b border-slate-100 gap-3">
               <span className="text-xs font-extrabold uppercase tracking-wider text-slate-700 flex items-center gap-2">
@@ -211,7 +211,7 @@ export const HomeCustomerView: React.FC = () => {
       </section>
 
       {/* 3. BỘ SƯU TẬP XE TIÊU BIỂU */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-8 space-y-6">
+      <section className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 pb-2 border-b border-slate-100">
           <div>
             <span className="text-xs font-bold text-emerald-600 uppercase tracking-wider block">
@@ -300,7 +300,7 @@ export const HomeCustomerView: React.FC = () => {
 
       {/* 4. MỤC GIỚI THIỆU & CAM KẾT CHẤT LƯỢNG (GỘP TỪ ABOUT) */}
       <section className="bg-slate-50 py-16 px-4 sm:px-8 border-y border-slate-200/80">
-        <div className="max-w-7xl mx-auto space-y-12">
+        <div className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 space-y-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div className="space-y-4">
               <span className="text-xs font-bold text-emerald-600 uppercase tracking-wider block">
@@ -390,7 +390,7 @@ export const HomeCustomerView: React.FC = () => {
       </section>
 
       {/* 5. QUY TRÌNH THUÊ XE 4 BƯỚC ĐƠN GIẢN */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-8 space-y-8">
+      <section className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 space-y-8">
         <div className="text-center max-w-xl mx-auto space-y-2">
           <span className="text-xs font-bold text-emerald-600 uppercase tracking-wider">
             Thủ tục đơn giản

@@ -101,7 +101,7 @@ export const VehicleDetailCustomerView: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-8 py-8 space-y-8">
+    <div className="max-w-[1520px] mx-auto px-4 sm:px-8 py-8 space-y-8">
       {/* Back button */}
       <div>
         <button

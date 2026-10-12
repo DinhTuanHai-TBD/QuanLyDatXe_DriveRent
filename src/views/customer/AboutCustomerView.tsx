@@ -48,7 +48,7 @@ export const AboutCustomerView: React.FC = () => {
     <div className="space-y-12 pb-16">
       {/* Hero Header */}
       <section className="bg-gradient-to-b from-blue-900 to-slate-900 text-white py-16 px-4 sm:px-8">
-        <div className="max-w-7xl mx-auto space-y-4">
+        <div className="max-w-[1520px] mx-auto space-y-4">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-400/30">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Về doanh nghiệp cho thuê xe DriveRent</span>
@@ -64,7 +64,7 @@ export const AboutCustomerView: React.FC = () => {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-12">
+      <div className="max-w-[1520px] mx-auto px-4 sm:px-8 space-y-12">
         {/* Intro Grid */}
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div className="space-y-4">

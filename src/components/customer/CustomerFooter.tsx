@@ -7,7 +7,7 @@ export const CustomerFooter: React.FC = () => {
 
   return (
     <footer className="bg-slate-900 text-slate-300 pt-12 pb-8 border-t border-slate-800 text-xs">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-10">
+      <div className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 space-y-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Info */}
           <div className="space-y-3">
