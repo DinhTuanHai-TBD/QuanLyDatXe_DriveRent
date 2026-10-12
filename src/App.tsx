@@ -49,10 +49,18 @@ const MainLayout: React.FC = () => {
   // 1. Customer Website Portal
   if (appMode === 'customer') {
     return (
-      <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">
+      <div className="relative min-h-screen bg-slate-50/80 text-slate-900 flex flex-col font-sans overflow-x-hidden selection:bg-emerald-500 selection:text-white">
+        {/* Subtle Ambient Liquid Glass Background Glows */}
+        <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+          <div className="absolute -top-40 -left-40 w-[550px] h-[550px] rounded-full bg-emerald-200/25 blur-3xl" />
+          <div className="absolute top-1/4 -right-40 w-[600px] h-[600px] rounded-full bg-teal-200/20 blur-3xl" />
+          <div className="absolute top-2/3 -left-20 w-[500px] h-[500px] rounded-full bg-emerald-100/30 blur-3xl" />
+          <div className="absolute -bottom-40 right-1/4 w-[600px] h-[600px] rounded-full bg-sky-200/20 blur-3xl" />
+        </div>
+
         <CustomerHeader />
 
-        <main className="flex-1">
+        <main className="flex-1 relative z-10">
           {customerTab === 'home' && <HomeCustomerView />}
           {customerTab === 'about' && <AboutCustomerView />}
           {customerTab === 'vehicles' && <VehiclesCustomerView />}

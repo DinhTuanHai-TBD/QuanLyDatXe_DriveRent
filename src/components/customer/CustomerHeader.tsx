@@ -38,9 +38,9 @@ export const CustomerHeader: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100">
+    <header className="sticky top-0 z-40 bg-white/75 backdrop-blur-2xl border-b border-white/60 shadow-[0_4px_30px_rgba(0,0,0,0.04)]">
       {/* Thanh thông tin trên cùng */}
-      <div className="bg-slate-900 text-slate-300 text-[11px] py-1.5 px-4 sm:px-8 border-b border-slate-800">
+      <div className="bg-slate-950/90 backdrop-blur-xl text-slate-300 text-[11px] py-1.5 px-4 sm:px-8 border-b border-white/10">
         <div className="max-w-[1520px] mx-auto flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1 text-slate-200 font-semibold">
@@ -64,7 +64,7 @@ export const CustomerHeader: React.FC = () => {
 
             <button
               onClick={() => setIsAdminLoginModalOpen(true)}
-              className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-semibold transition-colors border border-slate-700 cursor-pointer text-[10px]"
+              className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white/10 hover:bg-white/20 text-slate-200 hover:text-white font-semibold transition-all border border-white/20 backdrop-blur-md cursor-pointer text-[10px]"
               title="Dành cho chủ cửa hàng và nhân viên nội bộ"
             >
               <Lock className="w-2.5 h-2.5 text-emerald-400" />
@@ -74,13 +74,13 @@ export const CustomerHeader: React.FC = () => {
         </div>
       </div>
 
-      {/* Thanh Menu chính */}
+      {/* Thanh Menu chính Liquid Glass */}
       <div className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 h-16 flex items-center justify-between gap-4">
         <div
           onClick={() => handleSelectTab('home')}
           className="flex items-center gap-2.5 cursor-pointer group select-none"
         >
-          <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center shadow-2xs group-hover:bg-emerald-600 group-hover:text-white transition-all">
+          <div className="w-9 h-9 rounded-2xl bg-emerald-500/15 text-emerald-700 border border-emerald-500/30 backdrop-blur-md flex items-center justify-center shadow-xs group-hover:bg-emerald-600 group-hover:text-white transition-all">
             <Car className="w-5 h-5" />
           </div>
           <div>
@@ -88,7 +88,7 @@ export const CustomerHeader: React.FC = () => {
               <span className="font-extrabold text-xl tracking-tight text-slate-900 group-hover:text-emerald-700 transition-colors">
                 DriveRent
               </span>
-              <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
+              <span className="text-[10px] font-bold text-emerald-800 bg-white/60 backdrop-blur-md px-2 py-0.5 rounded-full border border-emerald-200/60 shadow-2xs">
                 {settings.city || 'Nha Trang'}
               </span>
             </div>
@@ -119,11 +119,11 @@ export const CustomerHeader: React.FC = () => {
           })}
         </nav>
 
-        {/* Nút hành động */}
+        {/* Nút hành động Liquid Glass */}
         <div className="hidden sm:flex items-center gap-3">
           <button
             onClick={() => handleSelectTab('lookup')}
-            className="px-3 py-1.5 text-xs font-bold text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 rounded-xl transition-all flex items-center gap-1.5 border border-slate-200/80 cursor-pointer"
+            className="px-3.5 py-1.5 text-xs font-bold text-slate-700 hover:text-emerald-700 bg-white/60 hover:bg-white/90 backdrop-blur-xl rounded-xl transition-all flex items-center gap-1.5 border border-white/80 shadow-xs cursor-pointer"
           >
             <Search className="w-3.5 h-3.5" />
             <span>Tra cứu đơn</span>
@@ -131,7 +131,7 @@ export const CustomerHeader: React.FC = () => {
 
           <button
             onClick={() => handleSelectTab('vehicles')}
-            className="px-4 py-2 text-xs font-bold text-white bg-slate-900 hover:bg-emerald-600 rounded-full shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
+            className="px-4 py-2 text-xs font-bold text-white bg-slate-900/90 hover:bg-emerald-600 rounded-full shadow-md backdrop-blur-md transition-all flex items-center gap-1.5 border border-white/20 hover:scale-105 active:scale-95 cursor-pointer"
           >
             <Car className="w-3.5 h-3.5" />
             <span>Xem xe & Đặt cọc</span>

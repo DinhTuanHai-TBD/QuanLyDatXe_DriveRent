@@ -117,9 +117,10 @@ export const LookupBookingCustomerView: React.FC = () => {
     <div className="max-w-[1520px] mx-auto px-4 sm:px-8 py-10 space-y-8">
       {/* Search Header */}
       <div className="text-center max-w-2xl mx-auto space-y-3">
-        <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">
-          Tra cứu thông tin
-        </span>
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50/80 border border-emerald-200/60 backdrop-blur-md">
+          <Search className="w-3.5 h-3.5 text-emerald-600" />
+          <span className="text-[11px] font-bold text-emerald-700 tracking-wide uppercase">Hệ thống tra cứu tự động</span>
+        </div>
         <h1 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
           Tra cứu đơn đặt xe trực tuyến
         </h1>
@@ -127,7 +128,7 @@ export const LookupBookingCustomerView: React.FC = () => {
           Nhập mã đặt chỗ (ví dụ: <strong className="text-slate-800">BK-2026-8812</strong>) hoặc số điện thoại quý khách đã đăng ký khi đặt xe.
         </p>
 
-        {/* Search Bar Form */}
+        {/* Search Bar Form - Liquid Glass */}
         <form onSubmit={handleSearch} className="pt-2 flex gap-2 max-w-lg mx-auto">
           <div className="relative flex-1">
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -136,49 +137,49 @@ export const LookupBookingCustomerView: React.FC = () => {
               placeholder="Nhập mã BK-xxxx hoặc số điện thoại..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-white border border-slate-300 rounded-xl text-xs sm:text-sm font-semibold shadow-xs focus:outline-hidden focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+              className="w-full pl-10 pr-4 py-3 bg-white/75 backdrop-blur-2xl border border-white/80 rounded-2xl text-xs sm:text-sm font-semibold shadow-[0_8px_30px_rgba(0,0,0,0.04),inset_0_1px_2px_rgba(255,255,255,0.9)] focus:outline-hidden focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all"
             />
           </div>
           <button
             type="submit"
-            className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-md transition-all cursor-pointer"
+            className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-lg shadow-emerald-600/25 transition-all cursor-pointer"
           >
             Tra cứu
           </button>
         </form>
       </div>
 
-      {/* Booking Details Container */}
+      {/* Booking Details Container - Liquid Glass */}
       {selectedBooking && vehicle ? (
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-xs overflow-hidden max-w-4xl mx-auto space-y-6 p-6 sm:p-8">
+        <div className="bg-white/80 backdrop-blur-3xl rounded-3xl border border-white/90 shadow-[0_16px_50px_rgba(0,0,0,0.06),inset_0_1px_2px_rgba(255,255,255,1)] overflow-hidden max-w-4xl mx-auto space-y-6 p-6 sm:p-8">
           {/* Top Status Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-200/60">
             <div>
               <span className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Mã đặt xe</span>
-              <h2 className="text-xl sm:text-2xl font-black text-slate-900 font-mono tracking-tight flex items-center gap-2">
+              <h2 className="text-xl sm:text-2xl font-black text-slate-900 font-mono tracking-tight flex items-center gap-2 mt-0.5">
                 <span>{selectedBooking.id}</span>
                 {selectedBooking.status === 'confirmed' && (
-                  <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                  <span className="text-xs font-bold text-emerald-700 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 backdrop-blur-md">
                     Đã thanh toán cọc · Đã xác nhận
                   </span>
                 )}
                 {selectedBooking.status === 'pending_payment' && (
-                  <span className="text-xs font-bold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200">
+                  <span className="text-xs font-bold text-amber-700 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20 backdrop-blur-md">
                     Chờ thanh toán cọc giữ chỗ
                   </span>
                 )}
                 {selectedBooking.status === 'cancelled' && (
-                  <span className="text-xs font-bold text-red-700 bg-red-50 px-2.5 py-0.5 rounded-full border border-red-200">
+                  <span className="text-xs font-bold text-rose-700 bg-rose-500/10 px-3 py-1 rounded-full border border-rose-500/20 backdrop-blur-md">
                     Đã hủy đơn
                   </span>
                 )}
                 {selectedBooking.status === 'expired' && (
-                  <span className="text-xs font-bold text-slate-700 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">
+                  <span className="text-xs font-bold text-slate-700 bg-slate-100 px-3 py-1 rounded-full border border-slate-200">
                     Hết hạn giữ chỗ
                   </span>
                 )}
               </h2>
-              <p className="text-xs text-slate-500 mt-0.5">
+              <p className="text-xs text-slate-500 mt-1">
                 Ngày đặt: {formatDateTime(selectedBooking.createdAt)}
               </p>
             </div>
@@ -187,7 +188,7 @@ export const LookupBookingCustomerView: React.FC = () => {
             <div className="flex items-center gap-2">
               <button
                 onClick={handlePrint}
-                className="px-3 py-2 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 hover:bg-slate-50 flex items-center gap-1.5 transition-colors"
+                className="px-3.5 py-2 border border-slate-200/80 bg-white/80 hover:bg-white rounded-xl text-xs font-bold text-slate-700 flex items-center gap-1.5 transition-all shadow-2xs cursor-pointer"
               >
                 <Printer className="w-3.5 h-3.5" />
                 <span>In phiếu xác nhận</span>
@@ -196,7 +197,7 @@ export const LookupBookingCustomerView: React.FC = () => {
               {selectedBooking.status === 'confirmed' && (
                 <button
                   onClick={() => setIsCancelConfirmOpen(true)}
-                  className="px-3 py-2 border border-red-200 text-red-600 hover:bg-red-50 rounded-xl text-xs font-bold transition-colors"
+                  className="px-3.5 py-2 border border-rose-200 text-rose-600 hover:bg-rose-50 rounded-xl text-xs font-bold transition-colors cursor-pointer"
                 >
                   Hủy đơn & Hoàn cọc
                 </button>
@@ -205,18 +206,18 @@ export const LookupBookingCustomerView: React.FC = () => {
           </div>
 
           {/* Vehicle & Rental Period Card */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center bg-slate-50 p-5 rounded-2xl border border-slate-200/80">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center bg-slate-100/60 backdrop-blur-md p-5 rounded-2xl border border-slate-200/60">
             <div className="flex items-center gap-4 md:col-span-2">
-              <div className="w-24 h-18 rounded-xl overflow-hidden bg-white border border-slate-200 shrink-0">
+              <div className="w-24 h-20 rounded-2xl overflow-hidden bg-white/90 border border-white/80 shadow-2xs shrink-0 flex items-center justify-center p-2">
                 <img
                   src={vehicle.image}
                   alt={vehicle.name}
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain filter drop-shadow-sm"
                 />
               </div>
               <div className="space-y-1">
-                <span className="text-[10px] font-bold text-blue-700 bg-blue-100/70 px-2 py-0.5 rounded">
+                <span className="text-[10px] font-bold text-emerald-700 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-lg">
                   {vehicle.category}
                 </span>
                 <h3 className="font-extrabold text-base text-slate-900">{vehicle.name}</h3>
@@ -238,7 +239,7 @@ export const LookupBookingCustomerView: React.FC = () => {
               <p className="text-xs font-bold text-slate-900">
                 {formatDateTime(selectedBooking.endDate)}
               </p>
-              <span className="inline-block mt-1 px-2 py-0.5 bg-blue-100/60 text-blue-800 text-[11px] font-bold rounded">
+              <span className="inline-block mt-1 px-2.5 py-0.5 bg-emerald-500/10 text-emerald-800 text-[11px] font-bold rounded-full border border-emerald-500/20">
                 Tổng cộng: {selectedBooking.units} ngày
               </span>
             </div>
@@ -247,7 +248,7 @@ export const LookupBookingCustomerView: React.FC = () => {
           {/* Customer & Financial Breakdown */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Customer Details */}
-            <div className="p-5 rounded-2xl bg-white border border-slate-200 space-y-3">
+            <div className="p-5 rounded-2xl bg-white/70 backdrop-blur-xl border border-white/80 shadow-2xs space-y-3">
               <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
                 Thông tin người nhận xe
               </h4>
@@ -276,7 +277,7 @@ export const LookupBookingCustomerView: React.FC = () => {
             </div>
 
             {/* Financial Status */}
-            <div className="p-5 rounded-2xl bg-white border border-slate-200 space-y-3">
+            <div className="p-5 rounded-2xl bg-white/70 backdrop-blur-xl border border-white/80 shadow-2xs space-y-3">
               <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
                 Tình trạng thanh toán & Tiền cọc
               </h4>
@@ -287,11 +288,11 @@ export const LookupBookingCustomerView: React.FC = () => {
                     {formatVND(selectedBooking.totalEstimatedAmount)}
                   </strong>
                 </div>
-                <div className="flex justify-between py-1 border-b border-slate-100 text-emerald-700 font-bold bg-emerald-50/50 px-2 rounded">
+                <div className="flex justify-between py-1 border-b border-slate-100 text-emerald-700 font-bold bg-emerald-50/50 px-2 rounded-lg">
                   <span>Tiền cọc giữ chỗ đã thanh toán:</span>
                   <span className="font-mono">{formatVND(selectedBooking.bookingDepositPaid)}</span>
                 </div>
-                <div className="flex justify-between py-1 border-b border-slate-100 font-bold text-blue-700">
+                <div className="flex justify-between py-1 border-b border-slate-100 font-bold text-emerald-800">
                   <span>Số tiền còn lại khi nhận xe:</span>
                   <span className="font-mono">{formatVND(selectedBooking.remainingAmountDue)}</span>
                 </div>
@@ -305,13 +306,13 @@ export const LookupBookingCustomerView: React.FC = () => {
 
           {/* Change Dates Section */}
           {isChangingDates ? (
-            <form onSubmit={handleSaveDateChange} className="p-5 rounded-2xl bg-blue-50 border border-blue-200 space-y-4">
+            <form onSubmit={handleSaveDateChange} className="p-5 rounded-2xl bg-emerald-50/50 backdrop-blur-xl border border-emerald-200/80 space-y-4">
               <div className="flex items-center justify-between">
-                <h4 className="font-extrabold text-sm text-blue-900">Yêu cầu đổi ngày giờ nhận - trả xe</h4>
+                <h4 className="font-extrabold text-sm text-emerald-900">Yêu cầu đổi ngày giờ nhận - trả xe</h4>
                 <button
                   type="button"
                   onClick={() => setIsChangingDates(false)}
-                  className="text-xs text-slate-500 hover:text-slate-800"
+                  className="text-xs text-slate-500 hover:text-slate-800 cursor-pointer"
                 >
                   Hủy bỏ
                 </button>
@@ -324,7 +325,7 @@ export const LookupBookingCustomerView: React.FC = () => {
                     type="datetime-local"
                     value={newStartDate}
                     onChange={(e) => setNewStartDate(e.target.value)}
-                    className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-xs"
+                    className="w-full px-3 py-2 bg-white border border-slate-300 rounded-xl text-xs font-medium focus:outline-hidden focus:border-emerald-500"
                     required
                   />
                 </div>
@@ -334,7 +335,7 @@ export const LookupBookingCustomerView: React.FC = () => {
                     type="datetime-local"
                     value={newEndDate}
                     onChange={(e) => setNewEndDate(e.target.value)}
-                    className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-xs"
+                    className="w-full px-3 py-2 bg-white border border-slate-300 rounded-xl text-xs font-medium focus:outline-hidden focus:border-emerald-500"
                     required
                   />
                 </div>
@@ -344,13 +345,13 @@ export const LookupBookingCustomerView: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setIsChangingDates(false)}
-                  className="px-4 py-2 border border-slate-200 rounded-lg text-xs font-bold text-slate-700 hover:bg-white"
+                  className="px-4 py-2 border border-slate-200/80 rounded-xl text-xs font-bold text-slate-700 hover:bg-white cursor-pointer"
                 >
                   Đóng
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold shadow-xs cursor-pointer"
+                  className="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold shadow-md shadow-emerald-600/25 cursor-pointer"
                 >
                   Lưu thay đổi lịch xe
                 </button>
@@ -358,14 +359,14 @@ export const LookupBookingCustomerView: React.FC = () => {
             </form>
           ) : (
             selectedBooking.status === 'confirmed' && (
-              <div className="flex flex-wrap items-center justify-between gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-200 text-xs">
+              <div className="flex flex-wrap items-center justify-between gap-3 p-4 bg-slate-100/60 backdrop-blur-md rounded-2xl border border-slate-200/60 text-xs">
                 <span className="text-slate-600">
                   Cần điều chỉnh giờ nhận xe do chuyến bay thay đổi?
                 </span>
                 <button
                   type="button"
                   onClick={handleOpenDateChange}
-                  className="px-4 py-2 bg-white border border-slate-300 hover:border-blue-600 hover:text-blue-600 text-slate-800 font-bold rounded-xl shadow-2xs transition-colors"
+                  className="px-4 py-2 bg-white border border-slate-300 hover:border-emerald-600 hover:text-emerald-700 text-slate-800 font-bold rounded-xl shadow-2xs transition-colors cursor-pointer"
                 >
                   Yêu cầu đổi lịch nhận xe
                 </button>
@@ -375,12 +376,12 @@ export const LookupBookingCustomerView: React.FC = () => {
 
           {/* Cancel Confirmation Dialog */}
           {isCancelConfirmOpen && (
-            <div className="p-5 rounded-2xl bg-red-50 border border-red-200 space-y-3">
-              <div className="flex items-start gap-2.5 text-red-900">
-                <AlertTriangle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+            <div className="p-5 rounded-2xl bg-rose-50/90 border border-rose-200 space-y-3">
+              <div className="flex items-start gap-2.5 text-rose-900">
+                <AlertTriangle className="w-5 h-5 text-rose-600 shrink-0 mt-0.5" />
                 <div>
                   <h4 className="font-extrabold text-sm">Xác nhận hủy đơn đặt xe & Hoàn tiền cọc giữ chỗ</h4>
-                  <p className="text-xs text-red-700 mt-0.5">
+                  <p className="text-xs text-rose-700 mt-0.5">
                     Theo chính sách, hủy trước 24 giờ so với giờ hẹn nhận xe sẽ được hoàn trả 100% tiền cọc giữ chỗ ({formatVND(selectedBooking.bookingDepositPaid)}).
                   </p>
                 </div>
@@ -392,20 +393,20 @@ export const LookupBookingCustomerView: React.FC = () => {
                   type="text"
                   value={cancelReason}
                   onChange={(e) => setCancelReason(e.target.value)}
-                  className="w-full px-3 py-2 bg-white border border-red-200 rounded-lg text-xs"
+                  className="w-full px-3 py-2 bg-white border border-rose-200 rounded-xl text-xs"
                 />
               </div>
 
               <div className="flex justify-end gap-2 pt-1">
                 <button
                   onClick={() => setIsCancelConfirmOpen(false)}
-                  className="px-4 py-2 border border-slate-200 rounded-lg text-xs font-bold text-slate-700 hover:bg-white"
+                  className="px-4 py-2 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 hover:bg-white cursor-pointer"
                 >
                   Không, giữ nguyên đơn
                 </button>
                 <button
                   onClick={handleConfirmCancel}
-                  className="px-5 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs font-bold shadow-xs cursor-pointer"
+                  className="px-5 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-bold shadow-xs cursor-pointer"
                 >
                   Xác nhận hủy đơn ngay
                 </button>
@@ -415,7 +416,7 @@ export const LookupBookingCustomerView: React.FC = () => {
 
           {/* Connected Admin Portal shortcut */}
           {isLoggedIn && (
-            <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-2xl flex items-center justify-between text-xs text-emerald-900">
+            <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 backdrop-blur-md rounded-2xl flex items-center justify-between text-xs text-emerald-950">
               <div>
                 <p className="font-bold">Đã liên thông Hệ thống Quản trị nội bộ DriveRent</p>
                 <p className="text-[11px] text-emerald-700">
@@ -427,7 +428,7 @@ export const LookupBookingCustomerView: React.FC = () => {
                   setAppMode('admin');
                   setCustomerTab('home');
                 }}
-                className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg shrink-0 transition-colors cursor-pointer"
+                className="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shrink-0 transition-colors cursor-pointer shadow-sm shadow-emerald-600/20"
               >
                 Mở trong Quản trị
               </button>
