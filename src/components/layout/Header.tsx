@@ -236,17 +236,17 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileSidebar }) => {
             setAppMode('customer');
             setCustomerTab('home');
           }}
-          className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 bg-sky-50 hover:bg-sky-100/80 text-sky-700 hover:text-sky-900 rounded-xl text-xs font-bold transition-colors cursor-pointer border border-sky-200"
+          className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 bg-slate-50 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 rounded-xl text-xs font-semibold transition-colors cursor-pointer border border-slate-200"
           title="Xem trang web dành cho khách hàng đặt xe"
         >
-          <ExternalLink className="w-3.5 h-3.5 text-sky-600" />
+          <ExternalLink className="w-3.5 h-3.5 text-emerald-600" />
           <span>Trang khách hàng</span>
         </button>
 
-        {/* Highlighted Create Contract Button - Sunset Orange Accent CTA */}
+        {/* Highlighted Create Contract Button - Emerald Green CTA */}
         <button
           onClick={() => setIsCreateContractOpen(true)}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white rounded-xl text-sm font-bold shadow-sm shadow-orange-500/20 transition-all focus:outline-hidden focus:ring-2 focus:ring-orange-400/40 cursor-pointer"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white rounded-xl text-sm font-bold shadow-xs hover:shadow-md transition-all focus:outline-hidden focus:ring-2 focus:ring-emerald-400/40 cursor-pointer"
         >
           <Plus className="w-4 h-4 stroke-[2.5]" />
           <span>Tạo hợp đồng</span>

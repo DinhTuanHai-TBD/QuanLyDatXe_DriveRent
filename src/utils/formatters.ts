@@ -109,34 +109,34 @@ export function getVehicleStatusBadge(status: string) {
     case 'available':
       return {
         text: 'Sẵn sàng',
-        bg: 'bg-emerald-50',
+        bg: 'bg-emerald-50/90',
         textCol: 'text-emerald-700',
-        border: 'border-emerald-200',
+        border: 'border-emerald-200/70',
         dot: 'bg-emerald-500'
       };
     case 'rented':
       return {
         text: 'Đang cho thuê',
-        bg: 'bg-sky-50',
-        textCol: 'text-sky-700',
-        border: 'border-sky-200',
-        dot: 'bg-sky-600'
+        bg: 'bg-slate-100',
+        textCol: 'text-slate-700',
+        border: 'border-slate-200',
+        dot: 'bg-slate-500'
       };
     case 'maintenance':
       return {
         text: 'Đang bảo dưỡng',
-        bg: 'bg-amber-50',
+        bg: 'bg-amber-50/90',
         textCol: 'text-amber-700',
-        border: 'border-amber-200',
+        border: 'border-amber-200/70',
         dot: 'bg-amber-500'
       };
     case 'overdue':
       return {
         text: 'Cảnh báo trễ hạn',
-        bg: 'bg-rose-50 animate-pulse',
+        bg: 'bg-rose-50',
         textCol: 'text-rose-700',
         border: 'border-rose-200',
-        dot: 'bg-rose-500'
+        dot: 'bg-rose-500 animate-pulse'
       };
     default:
       return {
