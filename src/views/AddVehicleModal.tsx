@@ -17,7 +17,7 @@ export const AddVehicleModal: React.FC = () => {
   const [year, setYear] = useState<number>(2024);
   const [color, setColor] = useState('Trắng');
   const [transmission, setTransmission] = useState('Tự động');
-  const [selectedImage, setSelectedImage] = useState('/src/assets/images/car_toyota_vios_1791537588925.jpg');
+  const [selectedImage, setSelectedImage] = useState('/src/assets/images/car_toyota_vios_transparent.png');
   const [featuresInput, setFeaturesInput] = useState('Màn hình Android, Camera hành trình, Cảm biến lùi');
   const [insuranceExpiry, setInsuranceExpiry] = useState('2027-12-31');
   const [registrationExpiry, setRegistrationExpiry] = useState('2028-06-30');
@@ -115,7 +115,7 @@ export const AddVehicleModal: React.FC = () => {
                   setCategory('Sedan 5 chỗ');
                   setDailyPrice(750000);
                   setHourlyPrice(90000);
-                  setSelectedImage('/src/assets/images/car_toyota_vios_1791537588925.jpg');
+                  setSelectedImage('/src/assets/images/car_toyota_vios_transparent.png');
                 }}
                 className={`p-3 rounded-xl border flex items-center justify-center gap-2 text-sm font-bold transition-all ${
                   type === 'car'
@@ -133,7 +133,7 @@ export const AddVehicleModal: React.FC = () => {
                   setCategory('Xe tay ga 110cc');
                   setDailyPrice(150000);
                   setHourlyPrice(25000);
-                  setSelectedImage('/src/assets/images/scooter_honda_vision_1791537620987.jpg');
+                  setSelectedImage('/src/assets/images/scooter_honda_vision_transparent.png');
                 }}
                 className={`p-3 rounded-xl border flex items-center justify-center gap-2 text-sm font-bold transition-all ${
                   type === 'motorbike'
@@ -292,10 +292,10 @@ export const AddVehicleModal: React.FC = () => {
             <label className="block text-xs font-bold text-slate-700 mb-1">Hình ảnh đại diện phương tiện</label>
             <div className="grid grid-cols-4 gap-2">
               {[
-                { url: '/src/assets/images/car_toyota_vios_1791537588925.jpg', label: 'Toyota Vios' },
-                { url: '/src/assets/images/car_mitsubishi_xpander_1791537608474.jpg', label: 'Xpander 7 chỗ' },
-                { url: '/src/assets/images/scooter_honda_vision_1791537620987.jpg', label: 'Honda Vision' },
-                { url: '/src/assets/images/scooter_honda_airblade_1791537634617.jpg', label: 'Air Blade' }
+                { url: '/src/assets/images/car_toyota_vios_transparent.png', label: 'Toyota Vios' },
+                { url: '/src/assets/images/car_mitsubishi_xpander_transparent.png', label: 'Xpander 7 chỗ' },
+                { url: '/src/assets/images/scooter_honda_vision_transparent.png', label: 'Honda Vision' },
+                { url: '/src/assets/images/scooter_honda_airblade_transparent.png', label: 'Air Blade' }
               ].map((img, idx) => (
                 <div
                   key={idx}

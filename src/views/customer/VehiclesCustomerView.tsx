@@ -289,12 +289,12 @@ export const VehiclesCustomerView: React.FC = () => {
             >
               <div>
                 {/* Photo with Availability Badge */}
-                <div className="relative aspect-4/3 bg-slate-100 overflow-hidden">
+                <div className="relative aspect-4/3 bg-gradient-to-b from-slate-50 via-slate-100/60 to-slate-200/40 overflow-hidden flex items-center justify-center p-3">
                   <img
                     src={v.image}
                     alt={v.name}
                     referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain filter drop-shadow-md group-hover:scale-105 transition-transform duration-300"
                   />
 
                   {/* Top Availability status badge (Requirement!) */}

@@ -6,3 +6,13 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# .NET Clean Architecture
+[Bb]in/
+[Oo]bj/
+.vs/
+*.user
+*.suo
+
+# Temporary media
+green_future_effect_demo.mp4

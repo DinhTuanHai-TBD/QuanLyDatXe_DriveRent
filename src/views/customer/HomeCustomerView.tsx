@@ -237,11 +237,11 @@ export const HomeCustomerView: React.FC = () => {
               className="bg-white rounded-2xl border border-slate-200/80 shadow-2xs hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col justify-between group hover:-translate-y-1"
             >
               <div>
-                <div className="relative aspect-4/3 bg-slate-100 overflow-hidden">
+                <div className="relative aspect-4/3 bg-gradient-to-b from-slate-50 via-slate-100/60 to-slate-200/40 overflow-hidden flex items-center justify-center p-3">
                   <img
                     src={v.image}
                     alt={v.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-contain filter drop-shadow-md group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-2.5 left-2.5">
                     <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-white/95 text-slate-800 shadow-2xs border border-slate-200/60">

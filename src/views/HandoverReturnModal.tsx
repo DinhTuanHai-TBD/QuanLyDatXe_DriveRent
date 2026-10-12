@@ -49,7 +49,7 @@ export const HandoverReturnModal: React.FC = () => {
     'Giá đỡ điện thoại'
   ]);
   const [handoverPhotos, setHandoverPhotos] = useState<string[]>([
-    '/src/assets/images/car_toyota_vios_1791537588925.jpg'
+    '/src/assets/images/car_toyota_vios_transparent.png'
   ]);
 
   // Return state
@@ -69,7 +69,7 @@ export const HandoverReturnModal: React.FC = () => {
   const [damageNotes, setDamageNotes] = useState<string>('');
   const [damageFee, setDamageFee] = useState<number>(0);
   const [returnPhotos, setReturnPhotos] = useState<string[]>([
-    '/src/assets/images/car_toyota_vios_1791537588925.jpg'
+    '/src/assets/images/car_toyota_vios_transparent.png'
   ]);
   const [postStatus, setPostStatus] = useState<'available' | 'maintenance'>('available');
 
@@ -184,7 +184,7 @@ export const HandoverReturnModal: React.FC = () => {
   const handleAddSampleReturnPhoto = () => {
     setReturnPhotos((prev) => [
       ...prev,
-      vehicle?.image || '/src/assets/images/car_toyota_vios_1791537588925.jpg'
+      vehicle?.image || '/src/assets/images/car_toyota_vios_transparent.png'
     ]);
     showToast('Đã chụp/tải thêm 1 ảnh đối chiếu', 'info');
   };

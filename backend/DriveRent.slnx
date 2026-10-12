@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/DriveRent.Application/DriveRent.Application.csproj" />
+    <Project Path="src/DriveRent.Domain/DriveRent.Domain.csproj" />
+    <Project Path="src/DriveRent.Infrastructure/DriveRent.Infrastructure.csproj" />
+    <Project Path="src/DriveRent.WebApi/DriveRent.WebApi.csproj" />
+  </Folder>
+</Solution>

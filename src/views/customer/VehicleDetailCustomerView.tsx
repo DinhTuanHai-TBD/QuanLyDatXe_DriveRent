@@ -121,12 +121,12 @@ export const VehicleDetailCustomerView: React.FC = () => {
         <div className="lg:col-span-2 space-y-6">
           {/* Main Photo Gallery */}
           <div className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-2xs space-y-2">
-            <div className="aspect-16/10 bg-slate-100 overflow-hidden relative">
+            <div className="aspect-16/10 bg-gradient-to-b from-slate-50 via-slate-100/60 to-slate-200/40 overflow-hidden relative flex items-center justify-center p-6">
               <img
                 src={vehicle.image}
                 alt={vehicle.name}
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain filter drop-shadow-xl transition-transform duration-300 hover:scale-105"
               />
               <div className="absolute top-4 left-4">
                 <span className="px-3 py-1 rounded-lg text-xs font-extrabold bg-sky-600 text-white shadow-xs">

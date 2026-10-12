@@ -1,0 +1,46 @@
+@DriveRent.WebApi_HostAddress = http://localhost:5075
+
+### 1. Lấy danh sách toàn bộ xe (Vehicles)
+GET {{DriveRent.WebApi_HostAddress}}/api/vehicles
+Accept: application/json
+
+###
+
+### 2. Xem chi tiết 1 xe cụ thể (V-01: Toyota Vios)
+GET {{DriveRent.WebApi_HostAddress}}/api/vehicles/V-01
+Accept: application/json
+
+###
+
+### 3. Xem báo cáo tổng quan Dashboard (Số xe trống, cọc đang giữ, doanh thu)
+GET {{DriveRent.WebApi_HostAddress}}/api/dashboard/summary
+Accept: application/json
+
+###
+
+### 4. Kiểm tra xe V-01 có khả dụng / trống lịch hay không
+POST {{DriveRent.WebApi_HostAddress}}/api/vehicles/V-01/check-availability
+Content-Type: application/json
+
+{
+  "startDate": "2026-10-15T08:00:00",
+  "endDate": "2026-10-17T18:00:00"
+}
+
+###
+
+### 5. Lấy danh sách hợp đồng thuê xe
+GET {{DriveRent.WebApi_HostAddress}}/api/contracts
+Accept: application/json
+
+###
+
+### 6. Lấy danh sách lịch bảo trì & thay nhớt
+GET {{DriveRent.WebApi_HostAddress}}/api/maintenance
+Accept: application/json
+
+###
+
+### 7. Lấy danh sách đặt xe trực tuyến của khách
+GET {{DriveRent.WebApi_HostAddress}}/api/bookings
+Accept: application/json
