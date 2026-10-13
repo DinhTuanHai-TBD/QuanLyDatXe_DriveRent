@@ -45,7 +45,12 @@ export interface Vehicle {
   lastMaintenanceDate: string;
   lastMaintenanceKm: number;
   nextMaintenanceDate: string;
-  nextMaintenanceKm: number;
+  bodyType?: string;
+  seats?: number;
+  range?: string;
+  luggage?: string;
+  badge?: string;
+  fuelType?: 'electric' | 'gasoline';
   notes?: string;
 }
 
