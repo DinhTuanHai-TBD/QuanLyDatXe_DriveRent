@@ -60,7 +60,7 @@ const MainLayout: React.FC = () => {
 
         <CustomerHeader />
 
-        <main className="flex-1 relative z-10">
+        <main className={`flex-1 relative z-10 ${customerTab !== 'home' ? 'pt-24' : ''}`}>
           {customerTab === 'home' && <HomeCustomerView />}
           {customerTab === 'about' && <AboutCustomerView />}
           {customerTab === 'vehicles' && <VehiclesCustomerView />}

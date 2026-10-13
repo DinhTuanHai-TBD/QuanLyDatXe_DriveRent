@@ -6,17 +6,12 @@ import {
   CheckCircle2,
   QrCode,
   ArrowRight,
-  Sparkles,
-  Video,
-  Image as ImageIcon,
-  Layers
+  Sparkles
 } from 'lucide-react';
 import { formatVND } from '../../utils/formatters';
 
-// Assets hình nền và xe trong dự án DriveRent
+// Hình nền Gara Vòm LED chuẩn Studio
 import garageStudioBg from '../../assets/images/garage_studio_bg.jpg';
-import greenFutureBg from '../../assets/images/green_future_bg.jpeg';
-import bannerNgangVideo from '../../assets/images/banner_ngang.mp4';
 
 // Các xe đã được tách nền trong suốt chuẩn Studio
 import carXpanderTransparent from '../../assets/images/car_mitsubishi_xpander_transparent.png';
@@ -132,7 +127,6 @@ export const HeroBannerSlider: React.FC<{ onExploreClick?: () => void }> = ({ on
   const [currentIndex, setCurrentIndex] = useState(0);
   const [animKey, setAnimKey] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [bgMode, setBgMode] = useState<'garage' | 'greenfuture' | 'video'>('garage');
 
   // Tự động chuyển slide sau 6 giây
   useEffect(() => {
@@ -163,37 +157,17 @@ export const HeroBannerSlider: React.FC<{ onExploreClick?: () => void }> = ({ on
 
   return (
     <div
-      className="relative w-full overflow-hidden select-none min-h-[660px] sm:min-h-[720px] md:min-h-[780px] lg:min-h-[820px] flex flex-col justify-between"
+      className="relative w-full overflow-hidden select-none min-h-[740px] sm:min-h-[780px] md:min-h-[840px] lg:min-h-[880px] flex flex-col justify-between"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* 1. HÌNH NỀN GARA FULL MÀN HÌNH (EDGE-TO-EDGE) */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        {bgMode === 'video' ? (
-          <video
-            key="gf-video-bg"
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster={garageStudioBg}
-            className="w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.02]"
-          >
-            <source src={bannerNgangVideo} type="video/mp4" />
-          </video>
-        ) : bgMode === 'greenfuture' ? (
-          <img
-            src={greenFutureBg}
-            alt="Green Future Robotic Studio"
-            className="w-full h-full object-cover object-center filter brightness-[0.97]"
-          />
-        ) : (
-          <img
-            src={garageStudioBg}
-            alt="High-tech Garage Studio"
-            className="w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.02]"
-          />
-        )}
+        <img
+          src={garageStudioBg}
+          alt="High-tech Garage Studio"
+          className="w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.02]"
+        />
 
         {/* Lớp phủ tương phản Gradient Liquid mượt mà */}
         <div className="absolute inset-0 bg-gradient-to-b from-white/35 via-transparent to-slate-950/40" />
@@ -208,52 +182,12 @@ export const HeroBannerSlider: React.FC<{ onExploreClick?: () => void }> = ({ on
       </div>
 
       {/* KHUNG KÍNH TRONG SUỐT LIQUID GLASS VIỀN NGOÀI (CHUẨN GREEN FUTURE) */}
-      <div className="absolute inset-3 sm:inset-5 md:inset-7 rounded-[2.5rem] border border-white/30 pointer-events-none shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_12px_40px_rgba(0,0,0,0.08)] backdrop-blur-[1px] z-10" />
+      <div className="absolute top-28 sm:top-28 md:top-30 bottom-4 left-3 right-3 sm:left-5 sm:right-5 md:left-7 md:right-7 rounded-[2.5rem] border border-white/40 pointer-events-none shadow-[inset_0_1px_2px_rgba(255,255,255,0.65),0_12px_40px_rgba(0,0,0,0.08)] backdrop-blur-[1px] z-10" />
 
-      {/* NÚT CHUYỂN CHẾ ĐỘ NỀN (LIQUID GLASS PILL Ở GÓC TRÊN PHẢI) */}
-      <div className="absolute top-6 right-6 sm:top-8 sm:right-8 z-30 flex items-center gap-1.5 p-1.5 rounded-full bg-white/20 hover:bg-white/35 backdrop-blur-2xl border border-white/40 shadow-lg transition-all">
-        <button
-          onClick={() => setBgMode('garage')}
-          className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold transition-all cursor-pointer ${
-            bgMode === 'garage'
-              ? 'bg-slate-900 text-white shadow-md'
-              : 'text-slate-800 hover:text-slate-950'
-          }`}
-          title="Hình nền Gara Đèn Vòm LED (Đã xóa xe)"
-        >
-          <ImageIcon className="w-3.5 h-3.5" />
-          <span>Gara Vòm LED</span>
-        </button>
-        <button
-          onClick={() => setBgMode('greenfuture')}
-          className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold transition-all cursor-pointer ${
-            bgMode === 'greenfuture'
-              ? 'bg-slate-900 text-white shadow-md'
-              : 'text-slate-800 hover:text-slate-950'
-          }`}
-          title="Hình nền Robot Studio"
-        >
-          <Layers className="w-3.5 h-3.5" />
-          <span>Robot Studio</span>
-        </button>
-        <button
-          onClick={() => setBgMode('video')}
-          className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold transition-all cursor-pointer ${
-            bgMode === 'video'
-              ? 'bg-emerald-600 text-white shadow-md'
-              : 'text-slate-800 hover:text-slate-950'
-          }`}
-          title="Chuyển sang Video 3D loop"
-        >
-          <Video className="w-3.5 h-3.5" />
-          <span>Video 3D</span>
-        </button>
-      </div>
-
-      {/* 2. TIÊU ĐỀ LỚN TRÊN ĐẦU (RỘNG RÃI, KHÔNG BỊ THANH HEADER CHE KHUẤT) */}
+      {/* 2. TIÊU ĐỀ LỚN TRÊN ĐẦU (RỘNG RÃI, DƯỚI THANH HEADER LIQUID GLASS CỐ ĐỊNH) */}
       <div
         key={`headline-${animKey}`}
-        className="relative z-20 text-center space-y-2 pt-14 sm:pt-16 md:pt-20 px-4 animate-topTitle"
+        className="relative z-20 text-center space-y-2 pt-32 sm:pt-36 md:pt-40 px-4 animate-topTitle"
       >
         <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 tracking-tight uppercase drop-shadow-[0_2px_12px_rgba(255,255,255,0.7)]">
           {currentSlide.headlineMain}
