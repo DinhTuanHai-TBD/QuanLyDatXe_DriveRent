@@ -1,14 +1,21 @@
 import { Vehicle, Customer, RentalContract, MaintenanceTask, StoreSettings, User, ActivityLog, OnlineBooking } from '../types';
 
-import imgVF3 from '../assets/images/vinfast_vf3_card.png';
-import imgVF5 from '../assets/images/vinfast_vf5_card.png';
-import imgVF6 from '../assets/images/vinfast_vf6_card.png';
+import imgVF3 from '../assets/images/car_vinfast_vf3.webp';
+import imgVF5 from '../assets/images/car_vinfast_vf5.webp';
+import imgVF6 from '../assets/images/car_vinfast_vf6.webp';
+import imgVF7 from '../assets/images/car_vinfast_vf7.webp';
 import imgVF8 from '../assets/images/car_vinfast_vf8.webp';
 import imgVF9 from '../assets/images/car_vinfast_vf9.webp';
 import imgVios from '../assets/images/car_toyota_vios_transparent.png';
 import imgXpander from '../assets/images/car_mitsubishi_xpander_transparent.png';
+import imgMazda3 from '../assets/images/car_mazda_3.png';
+import imgKiaCarnival from '../assets/images/car_kia_carnival.jpg';
+import imgFordEverest from '../assets/images/car_ford_everest.jpg';
+import imgHyundaiAccent from '../assets/images/car_hyundai_accent.jpg';
 import imgVision from '../assets/images/scooter_honda_vision_transparent.png';
 import imgAirBlade from '../assets/images/scooter_honda_airblade_transparent.png';
+import imgHondaSH from '../assets/images/scooter_honda_sh.jpg';
+import imgHondaWave from '../assets/images/scooter_honda_wave.jpg';
 
 export const initialUsers: User[] = [
   {
@@ -55,6 +62,7 @@ export const initialStoreSettings: StoreSettings = {
 };
 
 export const initialVehicles: Vehicle[] = [
+  // ==================== 1. DÀN XE ĐIỆN (ELECTRIC VEHICLES) ====================
   // 1. VinFast VF 3 (Minicar, Available)
   {
     id: 'V-VF3',
@@ -83,13 +91,12 @@ export const initialVehicles: Vehicle[] = [
     seats: 4,
     range: '210km (NEDC)',
     luggage: 'Dung tích cốp 285L',
-    badge: 'Miễn phí sạc',
     notes: 'Xe siêu nhỏ gọn, dễ đỗ, tiết kiệm chi phí tối đa'
   },
-  // 2. VinFast VF 5 (A-SUV, Available)
+  // 2. VinFast VF 5 Plus (A-SUV, Available)
   {
     id: 'V-VF5',
-    name: 'VinFast VF 5',
+    name: 'VinFast VF 5 Plus',
     plateNumber: '29E-092.17',
     type: 'car',
     fuelType: 'electric',
@@ -114,7 +121,6 @@ export const initialVehicles: Vehicle[] = [
     seats: 5,
     range: '326km (NEDC)',
     luggage: 'Dung tích cốp 260L',
-    badge: 'Miễn phí sạc',
     notes: 'Mẫu A-SUV năng động, chạy phố hay ngoại thành đều tiện lợi'
   },
   // 3. VinFast VF 6 Plus (B-SUV, Available)
@@ -145,10 +151,39 @@ export const initialVehicles: Vehicle[] = [
     seats: 5,
     range: '460km (NEDC)',
     luggage: 'Dung tích cốp 423L',
-    badge: 'Miễn phí sạc',
     notes: 'Thiết kế thời thượng Pinio Farina, công nghệ lái thông minh đỉnh cao'
   },
-  // 4. VinFast VF 8 Eco (D-SUV, Available)
+  // 4. VinFast VF 7 Plus (C-SUV, Available)
+  {
+    id: 'V-VF7',
+    name: 'VinFast VF 7 Plus',
+    plateNumber: '29E-065.12',
+    type: 'car',
+    fuelType: 'electric',
+    category: 'C-SUV 5 chỗ',
+    bodyType: 'C-SUV',
+    status: 'available',
+    hourlyPrice: 150000,
+    dailyPrice: 1300000,
+    currentOdometer: 11200,
+    fuelLevel: 8,
+    image: imgVF7,
+    year: 2024,
+    color: 'Xám xi măng',
+    transmission: 'Tự động 1 cấp',
+    features: ['Dẫn động 2 cầu AWD 348 mã lực', 'Trần kính toàn cảnh', 'Cửa sổ trời', 'Màn hình 12.9 inch'],
+    insuranceExpiry: '2027-09-12',
+    registrationExpiry: '2028-08-15',
+    lastMaintenanceDate: '2026-08-01',
+    lastMaintenanceKm: 8000,
+    nextMaintenanceDate: '2026-11-01',
+    nextMaintenanceKm: 18000,
+    seats: 5,
+    range: '498km (NEDC)',
+    luggage: 'Dung tích cốp 537L',
+    notes: 'Phong cách vũ trụ thể thao, tăng tốc 0-100km/h chỉ 5.8 giây'
+  },
+  // 5. VinFast VF 8 Eco (D-SUV, Available)
   {
     id: 'V-VF8',
     name: 'VinFast VF 8 Eco',
@@ -176,10 +211,9 @@ export const initialVehicles: Vehicle[] = [
     seats: 5,
     range: '471km (NEDC)',
     luggage: 'Dung tích cốp 376L',
-    badge: 'Miễn phí sạc',
     notes: 'D-SUV mạnh mẽ 348 mã lực, cách âm đỉnh cao'
   },
-  // 5. VinFast VF 9 Plus (E-SUV, Available)
+  // 6. VinFast VF 9 Plus (E-SUV, Available)
   {
     id: 'V-VF9',
     name: 'VinFast VF 9 Plus',
@@ -207,10 +241,11 @@ export const initialVehicles: Vehicle[] = [
     seats: 7,
     range: '602km (NEDC)',
     luggage: 'Dung tích cốp 408L',
-    badge: 'Miễn phí sạc',
     notes: 'E-SUV đẳng cấp VIP dành cho doanh nhân và gia đình cao cấp'
   },
-  // 6. Toyota Vios 1.5G (Car, Available)
+
+  // ==================== 2. DÀN Ô TÔ XĂNG (GASOLINE CARS) ====================
+  // 7. Toyota Vios 1.5G (Car, Available)
   {
     id: 'V-01',
     name: 'Toyota Vios 1.5G',
@@ -238,10 +273,9 @@ export const initialVehicles: Vehicle[] = [
     seats: 5,
     range: '5.8L/100km',
     luggage: 'Dung tích cốp 478L',
-    badge: 'Bảo hiểm 2 chiều',
     notes: 'Xe chạy êm ái, bảo dưỡng định kỳ đầy đủ'
   },
-  // 2. Mitsubishi Xpander (Car, Rented)
+  // 8. Mitsubishi Xpander (Car, Available)
   {
     id: 'V-02',
     name: 'Mitsubishi Xpander',
@@ -250,7 +284,7 @@ export const initialVehicles: Vehicle[] = [
     fuelType: 'gasoline',
     category: 'MPV 7 chỗ',
     bodyType: 'MPV',
-    status: 'rented',
+    status: 'available',
     hourlyPrice: 120000,
     dailyPrice: 950000,
     currentOdometer: 48920,
@@ -269,13 +303,134 @@ export const initialVehicles: Vehicle[] = [
     seats: 7,
     range: '6.9L/100km',
     luggage: 'Dung tích cốp 780L',
-    badge: 'Bảo hiểm 2 chiều',
     notes: 'Gia đình du lịch chuộng thuê nhất'
   },
-  // 3. Honda Vision Smartkey (Motorbike, Available)
+  // 9. Mazda 3 Premium (Car, Available)
+  {
+    id: 'V-M03',
+    name: 'Mazda 3 Premium',
+    plateNumber: '79A-518.92',
+    type: 'car',
+    fuelType: 'gasoline',
+    category: 'Sedan 5 chỗ',
+    bodyType: 'Sedan',
+    status: 'available',
+    hourlyPrice: 110000,
+    dailyPrice: 850000,
+    currentOdometer: 18200,
+    fuelLevel: 8,
+    image: imgMazda3,
+    year: 2024,
+    color: 'Trắng tuyết',
+    transmission: 'Tự động 6 cấp',
+    features: ['Thiết kế KODO thể thao', 'Loa Bose cao cấp', 'Cửa sổ trời', 'HUD kính lái', 'Cảnh báo lệch làn'],
+    insuranceExpiry: '2027-10-10',
+    registrationExpiry: '2028-09-15',
+    lastMaintenanceDate: '2026-08-20',
+    lastMaintenanceKm: 15000,
+    nextMaintenanceDate: '2026-11-20',
+    nextMaintenanceKm: 25000,
+    seats: 5,
+    range: '6.2L/100km',
+    luggage: 'Dung tích cốp 450L',
+    notes: 'Kiểu dáng thể thao sang trọng, cách âm cực tốt'
+  },
+  // 10. Kia Carnival Signature (Car, Available)
+  {
+    id: 'V-KIA',
+    name: 'Kia Carnival Signature',
+    plateNumber: '79A-668.88',
+    type: 'car',
+    fuelType: 'gasoline',
+    category: 'MPV 7 chỗ VIP',
+    bodyType: 'MPV',
+    status: 'available',
+    hourlyPrice: 220000,
+    dailyPrice: 1800000,
+    currentOdometer: 29500,
+    fuelLevel: 8,
+    image: imgKiaCarnival,
+    year: 2023,
+    color: 'Trắng ngọc trai',
+    transmission: 'Tự động 8 cấp',
+    features: ['Cửa trượt điện thông minh', 'Ghế thương gia ngả không trọng lực', 'Màn hình đôi 12.3 inch', 'Cần số núm xoay'],
+    insuranceExpiry: '2027-06-25',
+    registrationExpiry: '2028-05-30',
+    lastMaintenanceDate: '2026-08-10',
+    lastMaintenanceKm: 25000,
+    nextMaintenanceDate: '2026-11-10',
+    nextMaintenanceKm: 35000,
+    seats: 7,
+    range: '7.5L/100km',
+    luggage: 'Dung tích cốp 1139L',
+    notes: 'Chuyên cơ mặt đất, rộng rãi nhất phân khúc cho gia đình và khách VIP'
+  },
+  // 11. Ford Everest Titanium (Car, Available)
+  {
+    id: 'V-FORD',
+    name: 'Ford Everest Titanium',
+    plateNumber: '79A-725.39',
+    type: 'car',
+    fuelType: 'gasoline',
+    category: 'SUV 7 chỗ gầm cao',
+    bodyType: 'SUV',
+    status: 'available',
+    hourlyPrice: 190000,
+    dailyPrice: 1600000,
+    currentOdometer: 34100,
+    fuelLevel: 8,
+    image: imgFordEverest,
+    year: 2023,
+    color: 'Xám Titan',
+    transmission: 'Tự động 10 cấp',
+    features: ['Dẫn động 2 cầu 4WD', 'Màn hình dọc 12 inch', 'Cửa sổ trời toàn cảnh Panorama', 'Hỗ trợ đỗ xe tự động'],
+    insuranceExpiry: '2027-04-18',
+    registrationExpiry: '2028-03-20',
+    lastMaintenanceDate: '2026-07-15',
+    lastMaintenanceKm: 30000,
+    nextMaintenanceDate: '2026-10-15',
+    nextMaintenanceKm: 40000,
+    seats: 7,
+    range: '8.0L/100km',
+    luggage: 'Dung tích cốp 890L',
+    notes: 'SUV gầm cao cơ bắp, chinh phục mọi cung đường đèo dốc'
+  },
+  // 12. Hyundai Accent 1.4 AT (Car, Available)
+  {
+    id: 'V-05',
+    name: 'Hyundai Accent 1.4 AT',
+    plateNumber: '79A-491.52',
+    type: 'car',
+    fuelType: 'gasoline',
+    category: 'Sedan 5 chỗ',
+    bodyType: 'Sedan',
+    status: 'available',
+    hourlyPrice: 90000,
+    dailyPrice: 700000,
+    currentOdometer: 28400,
+    fuelLevel: 8,
+    image: imgHyundaiAccent,
+    year: 2023,
+    color: 'Bạc ánh kim',
+    transmission: 'Tự động',
+    features: ['Cửa sổ trời', 'Khởi động nút bấm', 'Cảm biến gạt mưa', 'Định vị GPS'],
+    insuranceExpiry: '2027-05-30',
+    registrationExpiry: '2027-09-18',
+    lastMaintenanceDate: '2026-08-15',
+    lastMaintenanceKm: 26000,
+    nextMaintenanceDate: '2026-11-15',
+    nextMaintenanceKm: 30000,
+    seats: 5,
+    range: '5.6L/100km',
+    luggage: 'Dung tích cốp 460L',
+    notes: 'Xe trang bị đầy đủ cam lùi, bảo hiểm thân vỏ 100%'
+  },
+
+  // ==================== 3. DÀN XE MÁY (MOTORBIKES) ====================
+  // 13. Honda Vision Smartkey (Motorbike, Available)
   {
     id: 'V-03',
-    name: 'Honda Vision',
+    name: 'Honda Vision Smartkey',
     plateNumber: '79N1-689.24',
     type: 'motorbike',
     fuelType: 'gasoline',
@@ -300,28 +455,27 @@ export const initialVehicles: Vehicle[] = [
     seats: 2,
     range: '1.85L/100km',
     luggage: 'Cốp rộng 18L',
-    badge: 'Miễn phí 2 mũ BH',
     notes: 'Xe đời mới 2024 máy cực êm'
   },
-  // 4. Honda Air Blade 125 (Motorbike, Rented)
+  // 14. Honda Air Blade 160 (Motorbike, Available)
   {
     id: 'V-04',
-    name: 'Honda Air Blade',
+    name: 'Honda Air Blade 160',
     plateNumber: '79N2-714.88',
     type: 'motorbike',
     fuelType: 'gasoline',
-    category: 'Xe tay ga 125cc',
+    category: 'Xe tay ga 160cc',
     bodyType: 'Xe tay ga',
-    status: 'rented',
+    status: 'available',
     hourlyPrice: 30000,
     dailyPrice: 180000,
     currentOdometer: 21800,
-    fuelLevel: 6,
+    fuelLevel: 8,
     image: imgAirBlade,
-    year: 2023,
+    year: 2024,
     color: 'Xanh đen nhám',
     transmission: 'Tự động',
-    features: ['Khóa Smartkey', 'Đèn LED', 'Phanh đĩa an toàn', 'Đồng hồ LCD thể thao'],
+    features: ['Khóa Smartkey', 'Đèn LED', 'Phanh đĩa ABS an toàn', 'Đồng hồ LCD thể thao', 'Cổng sạc USB'],
     insuranceExpiry: '2027-03-10',
     registrationExpiry: '2028-11-20',
     lastMaintenanceDate: '2026-08-01',
@@ -331,47 +485,84 @@ export const initialVehicles: Vehicle[] = [
     seats: 2,
     range: '2.26L/100km',
     luggage: 'Cốp rộng 23L',
-    badge: 'Miễn phí 2 mũ BH',
-    notes: 'Khách thanh niên đi đèo Lương Sơn, vịnh Vĩnh Hy rất thích'
+    notes: 'Động cơ 160cc mạnh mẽ leo đèo bốc'
   },
-  // 5. Hyundai Accent (Car, Available)
+  // 15. Honda SH Mode 125 (Motorbike, Available)
   {
-    id: 'V-05',
-    name: 'Hyundai Accent 1.4 AT',
-    plateNumber: '79A-491.52',
-    type: 'car',
-    category: 'Sedan 5 chỗ',
+    id: 'V-SH',
+    name: 'Honda SH Mode 125',
+    plateNumber: '79N1-992.18',
+    type: 'motorbike',
+    fuelType: 'gasoline',
+    category: 'Xe tay ga cao cấp',
+    bodyType: 'Xe tay ga',
     status: 'available',
-    hourlyPrice: 90000,
-    dailyPrice: 700000,
-    currentOdometer: 28400,
+    hourlyPrice: 40000,
+    dailyPrice: 250000,
+    currentOdometer: 9600,
     fuelLevel: 8,
-    image: '/src/assets/images/car_toyota_vios_transparent.png',
-    year: 2023,
-    color: 'Đỏ mận',
+    image: imgHondaSH,
+    year: 2024,
+    color: 'Đỏ mận sang trọng',
     transmission: 'Tự động',
-    features: ['Cửa sổ trời', 'Khởi động nút bấm', 'Cảm biến gạt mưa', 'Định vị GPS'],
-    insuranceExpiry: '2027-05-30',
-    registrationExpiry: '2027-09-18',
-    lastMaintenanceDate: '2026-08-15',
-    lastMaintenanceKm: 26000,
-    nextMaintenanceDate: '2026-11-15',
-    nextMaintenanceKm: 30000,
-    notes: 'Xe trang bị đầy đủ cam lùi, bảo hiểm thân vỏ 100%'
+    features: ['Phanh ABS chống bó cứng', 'Khóa Smartkey', 'Khung dập thế hệ mới eSAF', 'Động cơ eSP+ 4 van'],
+    insuranceExpiry: '2027-11-20',
+    registrationExpiry: '2029-06-15',
+    lastMaintenanceDate: '2026-08-25',
+    lastMaintenanceKm: 8000,
+    nextMaintenanceDate: '2026-11-25',
+    nextMaintenanceKm: 14000,
+    seats: 2,
+    range: '2.16L/100km',
+    luggage: 'Cốp xe 18.5L',
+    notes: 'Dòng xe tay ga cao cấp thanh lịch cho du khách'
   },
-  // 6. Yamaha Sirius Fi (Motorbike, Maintenance)
+  // 16. Honda Wave Alpha 110 (Motorbike, Available)
+  {
+    id: 'V-WAVE',
+    name: 'Honda Wave Alpha 110',
+    plateNumber: '79H1-332.11',
+    type: 'motorbike',
+    fuelType: 'gasoline',
+    category: 'Xe số 110cc',
+    bodyType: 'Xe số',
+    status: 'available',
+    hourlyPrice: 18000,
+    dailyPrice: 100000,
+    currentOdometer: 16400,
+    fuelLevel: 8,
+    image: imgHondaWave,
+    year: 2023,
+    color: 'Xanh đậm',
+    transmission: 'Số tròn 4 cấp',
+    features: ['Siêu bền bỉ', 'Tiết kiệm xăng vượt trội', 'Khỏe máy vượt dốc', 'Dễ điều khiển'],
+    insuranceExpiry: '2027-05-12',
+    registrationExpiry: '2028-10-10',
+    lastMaintenanceDate: '2026-07-10',
+    lastMaintenanceKm: 14000,
+    nextMaintenanceDate: '2026-10-10',
+    nextMaintenanceKm: 20000,
+    seats: 2,
+    range: '1.60L/100km',
+    luggage: 'Cốp xe 5L',
+    notes: 'Dòng xe số kinh tế, tiết kiệm nhiên liệu tối đa'
+  },
+  // ==================== XE BẢO DƯỠNG NỘI BỘ (INTERNAL FLEET - MAINTENANCE) ====================
+  // 17. Yamaha Sirius Fi (Motorbike, Maintenance - Cho module Quản lý bảo dưỡng)
   {
     id: 'V-06',
     name: 'Yamaha Sirius Fi',
     plateNumber: '79H1-523.66',
     type: 'motorbike',
+    fuelType: 'gasoline',
     category: 'Xe số 115cc',
+    bodyType: 'Xe số',
     status: 'maintenance',
     hourlyPrice: 20000,
     dailyPrice: 120000,
     currentOdometer: 29850,
     fuelLevel: 5,
-    image: '/src/assets/images/scooter_honda_airblade_transparent.png',
+    image: imgHondaWave,
     year: 2022,
     color: 'Đen đỏ',
     transmission: 'Xe số tròn 4 cấp',
@@ -380,148 +571,28 @@ export const initialVehicles: Vehicle[] = [
     registrationExpiry: '2027-10-05',
     lastMaintenanceDate: '2026-06-20',
     lastMaintenanceKm: 27000,
-    nextMaintenanceDate: '2026-09-20', // Quá hạn!
-    nextMaintenanceKm: 29500, // Đã quá số km!
+    nextMaintenanceDate: '2026-09-20',
+    nextMaintenanceKm: 29500,
+    seats: 2,
+    range: '1.7L/100km',
+    luggage: 'Cốp xe 9L',
     notes: 'Đang bảo dưỡng thay nhông sên dĩa và nhớt Motul'
   },
-  // 7. Honda Vision (Motorbike, Rented)
-  {
-    id: 'V-07',
-    name: 'Honda Vision',
-    plateNumber: '79N1-825.90',
-    type: 'motorbike',
-    category: 'Xe tay ga 110cc',
-    status: 'rented',
-    hourlyPrice: 25000,
-    dailyPrice: 150000,
-    currentOdometer: 18450,
-    fuelLevel: 7,
-    image: '/src/assets/images/scooter_honda_vision_transparent.png',
-    year: 2023,
-    color: 'Đỏ đô',
-    transmission: 'Tự động',
-    features: ['Khóa Smartkey', 'Cốp xe lớn', 'Phanh Combi Brake'],
-    insuranceExpiry: '2027-07-14',
-    registrationExpiry: '2028-10-01',
-    lastMaintenanceDate: '2026-07-28',
-    lastMaintenanceKm: 16000,
-    nextMaintenanceDate: '2026-10-28',
-    nextMaintenanceKm: 19000,
-    notes: 'Khách người Hàn Quốc đang thuê đi Bãi Dài Cam Ranh'
-  },
-  // 8. Toyota Vios (Car, Available)
-  {
-    id: 'V-08',
-    name: 'Toyota Vios 1.5E',
-    plateNumber: '79A-270.33',
-    type: 'car',
-    category: 'Sedan 5 chỗ',
-    status: 'available',
-    hourlyPrice: 85000,
-    dailyPrice: 700000,
-    currentOdometer: 41200,
-    fuelLevel: 8,
-    image: '/src/assets/images/car_toyota_vios_transparent.png',
-    year: 2022,
-    color: 'Bạc',
-    transmission: 'Tự động',
-    features: ['Bluetooth Audio', 'Camera hành trình', 'Cảm biến lùi'],
-    insuranceExpiry: '2027-03-22',
-    registrationExpiry: '2027-07-19',
-    lastMaintenanceDate: '2026-08-20',
-    lastMaintenanceKm: 39000,
-    nextMaintenanceDate: '2026-11-20',
-    nextMaintenanceKm: 44000,
-    notes: 'Xe vừa được dọn nội thất sạch sẽ'
-  },
-  // 9. Mitsubishi Xpander Cross (Car, Available)
-  {
-    id: 'V-09',
-    name: 'Mitsubishi Xpander Cross',
-    plateNumber: '79A-381.05',
-    type: 'car',
-    category: 'MPV 7 chỗ gầm cao',
-    status: 'available',
-    hourlyPrice: 130000,
-    dailyPrice: 1050000,
-    currentOdometer: 22100,
-    fuelLevel: 8,
-    image: '/src/assets/images/car_mitsubishi_xpander_transparent.png',
-    year: 2024,
-    color: 'Cam - Đen hai tông',
-    transmission: 'Tự động',
-    features: ['Gầm cao 225mm', 'Hệ thống AYC kiểm soát vào cua', 'Màn hình cảm ứng 9 inch', 'Phanh tay điện tử'],
-    insuranceExpiry: '2027-11-10',
-    registrationExpiry: '2028-04-15',
-    lastMaintenanceDate: '2026-08-30',
-    lastMaintenanceKm: 20000,
-    nextMaintenanceDate: '2026-11-30',
-    nextMaintenanceKm: 25000,
-    notes: 'Xe mới 2024, thích hợp đi VinWonders, Dốc Lết, Cam Ranh'
-  },
-  // 10. Honda Air Blade 160 (Motorbike, Available)
-  {
-    id: 'V-10',
-    name: 'Honda Air Blade 160',
-    plateNumber: '79N2-992.11',
-    type: 'motorbike',
-    category: 'Xe tay ga 160cc',
-    status: 'available',
-    hourlyPrice: 35000,
-    dailyPrice: 220000,
-    currentOdometer: 9800,
-    fuelLevel: 8,
-    image: '/src/assets/images/scooter_honda_airblade_transparent.png',
-    year: 2024,
-    color: 'Xám xi măng',
-    transmission: 'Tự động',
-    features: ['Động cơ 160cc mạnh mẽ', 'Phanh ABS chống bó cứng', 'Cổng sạc nhanh USB', 'Smartkey'],
-    insuranceExpiry: '2027-10-01',
-    registrationExpiry: '2029-05-10',
-    lastMaintenanceDate: '2026-09-12',
-    lastMaintenanceKm: 8500,
-    nextMaintenanceDate: '2026-12-12',
-    nextMaintenanceKm: 11500,
-    notes: 'Xe phân khối 160cc chạy đèo dốc cực bốc'
-  },
-  // 11. Yamaha Sirius (Motorbike, Available)
-  {
-    id: 'V-11',
-    name: 'Yamaha Sirius',
-    plateNumber: '79H1-364.72',
-    type: 'motorbike',
-    category: 'Xe số 110cc',
-    status: 'available',
-    hourlyPrice: 20000,
-    dailyPrice: 120000,
-    currentOdometer: 34100,
-    fuelLevel: 8,
-    image: '/src/assets/images/scooter_honda_airblade_transparent.png',
-    year: 2022,
-    color: 'Trắng đen',
-    transmission: 'Xe số',
-    features: ['Động cơ bền bỉ', 'Tiết kiệm nhiên liệu', 'Gọn gàng dễ luồn lách phố'],
-    insuranceExpiry: '2027-02-14',
-    registrationExpiry: '2027-12-08',
-    lastMaintenanceDate: '2026-08-05',
-    lastMaintenanceKm: 32000,
-    nextMaintenanceDate: '2026-11-05',
-    nextMaintenanceKm: 35000,
-    notes: 'Xe bền, giá thuê mềm nhất đội xe'
-  },
-  // 12. Hyundai Accent (Car, Maintenance)
+  // 18. Hyundai Accent 1.4 MT (Car, Maintenance - Cho module Quản lý bảo dưỡng)
   {
     id: 'V-12',
     name: 'Hyundai Accent 1.4 MT',
     plateNumber: '79A-388.94',
     type: 'car',
+    fuelType: 'gasoline',
     category: 'Sedan 5 chỗ',
+    bodyType: 'Sedan',
     status: 'maintenance',
     hourlyPrice: 80000,
     dailyPrice: 650000,
     currentOdometer: 52300,
     fuelLevel: 6,
-    image: '/src/assets/images/car_toyota_vios_transparent.png',
+    image: imgHyundaiAccent,
     year: 2022,
     color: 'Trắng',
     transmission: 'Số sàn 6 cấp',
@@ -530,8 +601,11 @@ export const initialVehicles: Vehicle[] = [
     registrationExpiry: '2027-07-25',
     lastMaintenanceDate: '2026-06-15',
     lastMaintenanceKm: 48000,
-    nextMaintenanceDate: '2026-09-15', // Quá hạn!
-    nextMaintenanceKm: 51000, // Quá km!
+    nextMaintenanceDate: '2026-09-15',
+    nextMaintenanceKm: 51000,
+    seats: 5,
+    range: '5.4L/100km',
+    luggage: 'Dung tích cốp 460L',
     notes: 'Đang thay má phanh và bảo dưỡng hệ thống điều hòa'
   }
 ];
@@ -612,77 +686,59 @@ export const initialCustomers: Customer[] = [
 ];
 
 export const initialContracts: RentalContract[] = [
-  // 1. HD-2026-001 (Đang thuê - Mitsubishi Xpander)
+  // 1. HD-2026-001 (Đã hoàn tất - Mitsubishi Xpander)
   {
     id: 'HD-2026-001',
     vehicleId: 'V-02',
     customerId: 'CUST-01',
     pricingType: 'daily',
-    status: 'rented',
-    startDate: '2026-10-08T09:00',
-    endDate: '2026-10-11T17:00',
+    status: 'completed',
+    startDate: '2026-10-01T09:00',
+    endDate: '2026-10-04T17:00',
     rate: 950000,
     units: 4,
     baseRentalFee: 3800000,
-    deposit: 5000000, // Tiền cọc xe ô tô
+    deposit: 5000000,
     discount: 100000,
     surcharges: [
       { id: 'sur-1', reason: 'Giao xe tại sân bay Cam Ranh', amount: 150000 }
     ],
     totalServiceFee: 3850000,
-    amountPaid: 3850000, // Đã thanh toán trước tiền thuê
-    handoverRecord: {
-      actualTime: '2026-10-08T09:15',
-      odometer: 48920,
-      fuelLevel: 7,
-      accessories: ['Giấy tờ xe (Cavet công chứng + Bảo hiểm)', 'Lốp dự phòng', 'Bộ kích lốp', 'Thẻ sạc cứu hộ'],
-      notes: 'Thân vỏ sạch, có vết xước nhẹ 2cm ở cản trước góc phụ (đã chụp ảnh)',
-      photos: ['/src/assets/images/car_mitsubishi_xpander_transparent.png'],
-      performedBy: 'Trần Thị Thu Thảo'
-    },
+    amountPaid: 3850000,
     note: 'Khách gia đình đi Nha Trang - Dốc Lết - Bãi Dài Cam Ranh',
-    createdAt: '2026-10-07T14:30',
+    createdAt: '2026-09-30T14:30',
     createdBy: 'Trần Thị Thu Thảo'
   },
-  // 2. HD-2026-002 (Đang thuê - Honda Air Blade)
+  // 2. HD-2026-002 (Đã hoàn tất - Honda Air Blade)
   {
     id: 'HD-2026-002',
     vehicleId: 'V-04',
     customerId: 'CUST-02',
     pricingType: 'daily',
-    status: 'rented',
-    startDate: '2026-10-08T10:00',
-    endDate: '2026-10-10T12:00',
+    status: 'completed',
+    startDate: '2026-10-02T10:00',
+    endDate: '2026-10-04T12:00',
     rate: 180000,
     units: 2,
     baseRentalFee: 360000,
-    deposit: 1000000, // Tiền cọc xe máy
+    deposit: 1000000,
     discount: 0,
     surcharges: [],
     totalServiceFee: 360000,
     amountPaid: 360000,
-    handoverRecord: {
-      actualTime: '2026-10-08T10:10',
-      odometer: 21800,
-      fuelLevel: 6,
-      accessories: ['2 mũ bảo hiểm đạt chuẩn', '1 áo mưa DriveRent', '1 giá kẹp điện thoại'],
-      notes: 'Xe sạch sẽ, máy êm, phanh nhạy',
-      photos: ['/src/assets/images/scooter_honda_airblade_transparent.png'],
-      performedBy: 'Trần Thị Thu Thảo'
-    },
     note: 'Khách lưu trú tại Khách sạn Sheraton Trần Phú, Nha Trang',
-    createdAt: '2026-10-08T09:40',
+    createdAt: '2026-10-01T09:40',
     createdBy: 'Trần Thị Thu Thảo'
   },
-  // 3. HD-2026-003 (Đang thuê - Honda Vision)
+  // 3. HD-2026-003 (Đã hoàn tất - Honda Vision)
   {
     id: 'HD-2026-003',
-    vehicleId: 'V-07',
+    vehicleId: 'V-03',
     customerId: 'CUST-04',
     pricingType: 'daily',
-    status: 'rented',
-    startDate: '2026-10-09T08:00',
-    endDate: '2026-10-09T20:00', // Sắp đến giờ trả tối nay!
+    status: 'completed',
+    startDate: '2026-10-03T08:00',
+    endDate: '2026-10-04T20:00',
     rate: 150000,
     units: 1,
     baseRentalFee: 150000,
@@ -691,28 +747,19 @@ export const initialContracts: RentalContract[] = [
     surcharges: [],
     totalServiceFee: 150000,
     amountPaid: 150000,
-    handoverRecord: {
-      actualTime: '2026-10-09T08:15',
-      odometer: 18450,
-      fuelLevel: 7,
-      accessories: ['2 mũ bảo hiểm', '1 áo mưa', '1 giá kẹp điện thoại'],
-      notes: 'Giao tại văn phòng 25 Lê Lợi, TP. Nha Trang',
-      photos: ['/src/assets/images/scooter_honda_vision_transparent.png'],
-      performedBy: 'Trần Thị Thu Thảo'
-    },
-    note: 'Khách hẹn trả tại cửa hàng lúc 20:00 hôm nay',
-    createdAt: '2026-10-09T07:45',
+    note: 'Khách hẹn trả tại cửa hàng lúc 20:00',
+    createdAt: '2026-10-03T07:45',
     createdBy: 'Trần Thị Thu Thảo'
   },
-  // 4. HD-2026-004 (Đã xác nhận - chuẩn bị giao xe hôm nay lúc 14:00)
+  // 4. HD-2026-004 (Đã hoàn tất - Toyota Vios)
   {
     id: 'HD-2026-004',
-    vehicleId: 'V-01', // Toyota Vios
+    vehicleId: 'V-01',
     customerId: 'CUST-03',
     pricingType: 'daily',
-    status: 'confirmed',
-    startDate: '2026-10-09T14:00',
-    endDate: '2026-10-12T14:00',
+    status: 'completed',
+    startDate: '2026-10-04T14:00',
+    endDate: '2026-10-07T14:00',
     rate: 750000,
     units: 3,
     baseRentalFee: 2250000,
@@ -722,9 +769,9 @@ export const initialContracts: RentalContract[] = [
       { id: 'sur-2', reason: 'Giao xe tận nơi Khách sạn InterContinental Nha Trang', amount: 100000 }
     ],
     totalServiceFee: 2350000,
-    amountPaid: 500000, // Đã đặt cọc giữ chỗ 500.000 đ
+    amountPaid: 2350000,
     note: 'Giao xe lúc 14:00 tại Khách sạn InterContinental đường Trần Phú',
-    createdAt: '2026-10-08T16:00',
+    createdAt: '2026-10-03T16:00',
     createdBy: 'Nguyễn Văn Minh'
   },
   // 5. HD-2026-005 (Chờ quyết toán - Khách vừa trả xe có phụ phí rửa xe & phát sinh giờ)
