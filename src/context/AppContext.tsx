@@ -145,7 +145,7 @@ interface AppContextType {
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
-const STORAGE_KEY_PREFIX = 'driverent_nhatrang_v1_';
+const STORAGE_KEY_PREFIX = 'driverent_v3_';
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   // Initialize state from LocalStorage or defaults
@@ -174,8 +174,39 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [isAdminLoginModalOpen, setIsAdminLoginModalOpen] = useState(false);
 
   const [vehicles, setVehicles] = useState<Vehicle[]>(() => {
-    const saved = localStorage.getItem(`${STORAGE_KEY_PREFIX}vehicles`);
-    return saved ? JSON.parse(saved) : initialVehicles;
+    try {
+      const saved = localStorage.getItem(`${STORAGE_KEY_PREFIX}vehicles`);
+      if (saved) {
+        const parsed: Vehicle[] = JSON.parse(saved);
+        const existingIds = new Set(parsed.map((v) => v.id));
+        const merged = [...parsed];
+        for (const iv of initialVehicles) {
+          if (!existingIds.has(iv.id)) {
+            merged.unshift(iv);
+          }
+        }
+        return merged.map((v) => {
+          const iv = initialVehicles.find((item) => item.id === v.id);
+          const isElectric =
+            v.fuelType === 'electric' ||
+            v.name.toLowerCase().includes('vf') ||
+            v.name.toLowerCase().includes('vinfast');
+          return {
+            ...v,
+            fuelType: isElectric ? 'electric' : v.type === 'car' ? 'gasoline' : undefined,
+            bodyType: v.bodyType || iv?.bodyType || (v.type === 'motorbike' ? 'Xe máy' : 'Sedan'),
+            seats: v.seats || iv?.seats || (v.type === 'motorbike' ? 2 : 5),
+            range: v.range || iv?.range || (isElectric ? '300km (NEDC)' : '5.8L/100km'),
+            luggage: v.luggage || iv?.luggage || 'Dung tích cốp rộng',
+            badge: v.badge || iv?.badge,
+            image: iv?.image || v.image
+          };
+        });
+      }
+    } catch (e) {
+      console.error(e);
+    }
+    return initialVehicles;
   });
 
   const [customers, setCustomers] = useState<Customer[]>(() => {
