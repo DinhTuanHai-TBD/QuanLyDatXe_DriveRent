@@ -16,3 +16,7 @@ coverage/
 
 # Temporary media
 green_future_effect_demo.mp4
+
+# Scratch and temporary files
+scratch/
+*backup.docx
