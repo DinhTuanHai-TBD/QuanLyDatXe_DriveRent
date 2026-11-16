@@ -700,7 +700,7 @@ export const VehiclesCustomerView: React.FC = () => {
       </aside>
 
       {/* Main Container */}
-      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-6 sm:space-y-8">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 pt-8 space-y-6 sm:space-y-8">
         
         {/* Top Booking Widget */}
         <div className="space-y-3">
@@ -842,19 +842,16 @@ export const VehiclesCustomerView: React.FC = () => {
         {/* Bộ lọc xe thông minh theo Nhu cầu du lịch, Động cơ & Khoảng giá (Chuẩn UI/UX Pro Max & Impeccable) */}
         <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-sm p-3.5 sm:p-5 space-y-4">
           
-          {/* Hàng 1: Nhu cầu du lịch Nha Trang (Quick Persona Filter - Gợi ý 1-chạm) */}
-          <div className="space-y-2.5">
+          {/* Hàng 1: Nhu cầu du lịch Nha Trang */}
+          <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-black text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-                <Users className="w-4 h-4 text-sky-600" />
-                <span>Nhu cầu du lịch Nha Trang (Gợi ý 1-chạm)</span>
-              </span>
-              <span className="text-xs font-semibold text-slate-500 hidden sm:inline">
-                Chạm để lọc nhanh theo lịch trình chuyến đi của bạn
+              <span className="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+                <Users className="w-3.5 h-3.5 text-sky-600" />
+                <span>Nhu cầu du lịch Nha Trang</span>
               </span>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-2.5">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
               {personaOptions.map((persona) => {
                 const IconComponent = persona.icon;
                 const isActive = selectedPersona === persona.id;
@@ -863,31 +860,16 @@ export const VehiclesCustomerView: React.FC = () => {
                     key={persona.id}
                     type="button"
                     onClick={() => handleSelectPersona(persona.id)}
-                    className={`min-h-[66px] p-2.5 sm:p-3 rounded-2xl text-left transition-all flex flex-col justify-between border cursor-pointer active:scale-[0.98] ${
+                    className={`min-h-[44px] px-3.5 py-2 rounded-xl text-left transition-all flex items-center gap-2.5 border cursor-pointer select-none active:scale-[0.98] ${
                       isActive
-                        ? 'bg-gradient-to-br from-sky-600 to-sky-700 text-white border-sky-600 shadow-md shadow-sky-600/25 ring-2 ring-sky-500/30'
-                        : 'bg-slate-50 hover:bg-sky-50/50 text-slate-800 border-slate-200/90 hover:border-sky-300'
+                        ? 'bg-sky-700 text-white border-sky-700 shadow-sm'
+                        : 'bg-slate-50 hover:bg-slate-100/90 text-slate-800 border-slate-200/90 hover:border-sky-300'
                     }`}
                   >
-                    <div className="mb-1">
-                      <div className={`w-7 h-7 rounded-xl flex items-center justify-center ${
-                        isActive ? 'bg-white/20 text-white' : 'bg-sky-100 text-sky-700'
-                      }`}>
-                        <IconComponent className="w-4 h-4" />
-                      </div>
-                    </div>
-                    <div>
-                      <div className={`text-xs font-black leading-tight line-clamp-1 ${
-                        isActive ? 'text-white' : 'text-slate-900'
-                      }`}>
-                        {persona.label}
-                      </div>
-                      <div className={`text-[10px] mt-0.5 leading-tight line-clamp-1 ${
-                        isActive ? 'text-sky-100' : 'text-slate-500'
-                      }`}>
-                        {persona.desc}
-                      </div>
-                    </div>
+                    <IconComponent className={`w-4 h-4 shrink-0 ${isActive ? 'text-white' : 'text-sky-700'}`} />
+                    <span className="text-xs sm:text-sm font-bold truncate">
+                      {persona.shortLabel || persona.label}
+                    </span>
                   </button>
                 );
               })}
@@ -895,18 +877,15 @@ export const VehiclesCustomerView: React.FC = () => {
           </div>
 
           {/* Hàng 2: Loại động cơ & Dòng xe */}
-          <div className="space-y-2 pt-3 border-t border-slate-100">
+          <div className="space-y-2 pt-2.5 border-t border-slate-100">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
+              <span className="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
                 <SlidersHorizontal className="w-3.5 h-3.5 text-sky-600" />
                 <span>Loại động cơ & Dòng xe</span>
               </span>
-              <span className="text-xs font-semibold text-slate-500 hidden sm:inline">
-                Động cơ & phương tiện di chuyển
-              </span>
             </div>
 
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 -mx-1 px-1 touch-pan-x">
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5 touch-pan-x">
               {[
                 { id: 'all', label: t('category.all'), icon: Layers },
                 { id: 'electric', label: t('category.electric'), icon: Zap, isElectric: true },
@@ -922,7 +901,7 @@ export const VehiclesCustomerView: React.FC = () => {
                     role="button"
                     aria-pressed={isActive}
                     onClick={() => setSelectedCategory(tab.id as any)}
-                    className={`min-h-[44px] px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shrink-0 cursor-pointer select-none active:scale-[0.98] ${
+                    className={`min-h-[42px] px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shrink-0 cursor-pointer select-none active:scale-[0.98] ${
                       isActive
                         ? 'bg-sky-700 text-white shadow-sm shadow-sky-800/25 ring-2 ring-sky-700/20'
                         : 'bg-slate-100/90 text-slate-700 hover:bg-slate-200/90 hover:text-slate-900 border border-slate-200/60'
@@ -936,19 +915,16 @@ export const VehiclesCustomerView: React.FC = () => {
             </div>
           </div>
 
-          {/* Hàng 3: Bộ lọc Khoảng giá nhanh (Price Tier Chips bo tròn kèm tag trực quan) */}
-          <div className="space-y-2 pt-3 border-t border-slate-100">
+          {/* Hàng 3: Bộ lọc Khoảng giá nhanh */}
+          <div className="space-y-2 pt-2.5 border-t border-slate-100">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
+              <span className="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
                 <CircleDollarSign className="w-3.5 h-3.5 text-emerald-600" />
                 <span>Khoảng giá ({durationTab === 'day' ? 'theo ngày' : 'gói tháng'})</span>
               </span>
-              <span className="text-xs text-slate-500 font-medium hidden sm:inline">
-                Giá minh bạch, 0đ phụ phí ẩn
-              </span>
             </div>
 
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 -mx-1 px-1 touch-pan-x">
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5 touch-pan-x">
               {priceTierOptions.map((tier) => {
                 const isActive = priceRange === tier.id;
                 return (
@@ -958,22 +934,13 @@ export const VehiclesCustomerView: React.FC = () => {
                     role="button"
                     aria-pressed={isActive}
                     onClick={() => setPriceRange(tier.id)}
-                    className={`min-h-[46px] px-3.5 sm:px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shrink-0 cursor-pointer select-none active:scale-[0.98] ${
+                    className={`min-h-[42px] px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shrink-0 cursor-pointer select-none active:scale-[0.98] ${
                       isActive
-                        ? 'bg-gradient-to-r from-sky-700 to-sky-600 text-white shadow-md shadow-sky-800/25 ring-2 ring-sky-700/20'
+                        ? 'bg-sky-700 text-white shadow-sm'
                         : 'bg-slate-50 hover:bg-white text-slate-700 hover:text-sky-900 border border-slate-200/90 hover:border-sky-300'
                     }`}
                   >
                     <span>{tier.label}</span>
-                    <span
-                      className={`text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full font-black ${
-                        isActive
-                          ? 'bg-white/20 text-white'
-                          : 'bg-sky-100/70 text-sky-800'
-                      }`}
-                    >
-                      {tier.tag}
-                    </span>
                   </button>
                 );
               })}
@@ -1233,49 +1200,49 @@ export const VehiclesCustomerView: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Tái cấu trúc thông số xe dạng lưới 4 icon nhỏ gọn sắc nét */}
+                  {/* Tối ưu 4 thông số cốt lõi (Số chỗ, Hộp số, Nhiên liệu, Đời xe) dưới dạng icon + text ngắn */}
                   <div className="px-5 py-2">
                     <div className="bg-slate-50/90 rounded-2xl p-2.5 sm:p-3 border border-slate-200/70 grid grid-cols-2 gap-2 text-xs text-slate-700">
                       
                       {/* Metric 1: Số chỗ ngồi */}
-                      <div className="flex items-center gap-2 min-w-0" title={`Số chỗ ngồi: ${v.seats || 5} chỗ`}>
+                      <div className="flex items-center gap-2 min-w-0" title={`Số chỗ: ${v.type === 'motorbike' ? '2 chỗ' : `${v.seats || 5} chỗ`}`}>
                         <div className="w-7 h-7 rounded-lg bg-sky-50 text-sky-700 flex items-center justify-center shrink-0 border border-sky-100">
                           <Users className="w-3.5 h-3.5" />
                         </div>
                         <span className="truncate font-bold text-slate-800 text-[11px] sm:text-xs">
-                          {v.type === 'motorbike' ? '2 chỗ' : `${v.seats || 5} chỗ ngồi`}
+                          {v.type === 'motorbike' ? '2 chỗ' : `${v.seats || 5} chỗ`}
                         </span>
                       </div>
 
                       {/* Metric 2: Hộp số tự động / Số sàn */}
-                      <div className="flex items-center gap-2 min-w-0" title={`Hộp số: ${transV.transmission || 'Tự động'}`}>
+                      <div className="flex items-center gap-2 min-w-0" title={`Hộp số: ${transV.transmission?.includes('Số sàn') || transV.transmission?.includes('Manual') ? 'Số sàn' : 'Tự động'}`}>
                         <div className="w-7 h-7 rounded-lg bg-sky-50 text-sky-700 flex items-center justify-center shrink-0 border border-sky-100">
                           <Gauge className="w-3.5 h-3.5" />
                         </div>
                         <span className="truncate font-bold text-slate-800 text-[11px] sm:text-xs">
-                          {transV.transmission || 'Tự động'}
+                          {transV.transmission?.includes('Số sàn') || transV.transmission?.includes('Manual') ? 'Số sàn' : 'Tự động'}
                         </span>
                       </div>
 
-                      {/* Metric 3: Nhiên liệu / Quãng đường pin */}
-                      <div className="flex items-center gap-2 min-w-0" title={`Nhiên liệu / Pin: ${transV.range}`}>
+                      {/* Metric 3: Nhiên liệu */}
+                      <div className="flex items-center gap-2 min-w-0" title={`Nhiên liệu: ${isElectricVehicle(v) ? 'Xe điện' : (v.fuelType === 'diesel' ? 'Dầu' : 'Xăng')}`}>
                         <div className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 border ${
                           isElectricVehicle(v) ? 'bg-amber-50 text-amber-600 border-amber-200' : 'bg-sky-50 text-sky-700 border-sky-100'
                         }`}>
                           {isElectricVehicle(v) ? <Zap className="w-3.5 h-3.5" /> : <Fuel className="w-3.5 h-3.5" />}
                         </div>
                         <span className="truncate font-bold text-slate-800 text-[11px] sm:text-xs">
-                          {transV.range || (isElectricVehicle(v) ? 'Xe điện xanh' : 'Xăng tiết kiệm')}
+                          {isElectricVehicle(v) ? 'Xe điện' : (v.fuelType === 'diesel' ? 'Dầu' : 'Xăng')}
                         </span>
                       </div>
 
                       {/* Metric 4: Năm sản xuất */}
-                      <div className="flex items-center gap-2 min-w-0" title={`Năm sản xuất: ${v.year || 2024}`}>
+                      <div className="flex items-center gap-2 min-w-0" title={`Đời xe: ${v.year || 2024}`}>
                         <div className="w-7 h-7 rounded-lg bg-sky-50 text-sky-700 flex items-center justify-center shrink-0 border border-sky-100">
                           <Calendar className="w-3.5 h-3.5" />
                         </div>
                         <span className="truncate font-bold text-slate-800 text-[11px] sm:text-xs">
-                          Đời xe {v.year || 2024}
+                          Đời {v.year || 2024}
                         </span>
                       </div>
 
@@ -1290,8 +1257,8 @@ export const VehiclesCustomerView: React.FC = () => {
                   {/* Hiển thị giá to rõ & Cam kết 0đ phụ phí ẩn */}
                   <div className="flex items-end justify-between gap-2">
                     <div>
-                      <span className="text-[11px] text-slate-500 font-semibold block leading-tight">
-                        Giá thuê niêm yết
+                      <span className="text-[11px] text-slate-400 font-semibold block leading-tight">
+                        Giá niêm yết
                       </span>
                       <div className="flex items-baseline gap-1 mt-0.5">
                         <span className="text-2xl sm:text-3xl font-black text-slate-900 font-mono tracking-tight tabular-nums">
@@ -1307,7 +1274,6 @@ export const VehiclesCustomerView: React.FC = () => {
                         <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                         <span>0đ phụ phí ẩn</span>
                       </span>
-                      <span className="text-[10px] text-slate-400 block mt-0.5 font-medium">Cam kết minh bạch</span>
                     </div>
                   </div>
 
