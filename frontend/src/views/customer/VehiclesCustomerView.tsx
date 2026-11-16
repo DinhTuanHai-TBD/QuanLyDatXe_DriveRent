@@ -172,9 +172,6 @@ export const VehiclesCustomerView: React.FC = () => {
   // Vehicle category & Price tier filter types
   type PriceRangeKey = 'all' | 'under500' | '500to1000' | '1000to1800' | 'above1800';
 
-  // Quick Persona filter types (Nhu cầu du lịch Nha Trang)
-  type PersonaKey = 'all' | 'family' | 'couple' | 'electric' | 'vinhhy';
-  const [selectedPersona, setSelectedPersona] = useState<PersonaKey>('all');
 
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'electric' | 'car' | 'motorbike'>('all');
   const [priceRange, setPriceRange] = useState<PriceRangeKey>('all');
@@ -282,93 +279,8 @@ export const VehiclesCustomerView: React.FC = () => {
     }
   };
 
-  // Logic nhận diện nhu cầu du lịch Nha Trang
-  const matchPersona = (v: Vehicle, persona: PersonaKey) => {
-    if (persona === 'all') return true;
-    if (persona === 'family') {
-      return v.type === 'car' && (v.seats >= 5 || ['Xpander', 'Carnival', 'Everest', 'VF 8', 'VF 9', 'Vios', 'Accent'].some(n => v.name.includes(n)));
-    }
-    if (persona === 'couple') {
-      const isCompactCar = v.type === 'car' && (v.name.includes('VF 3') || v.name.includes('VF 5') || v.name.includes('Mazda 3'));
-      const isTrendyScooter = v.type === 'motorbike' && (v.name.includes('Vision') || v.name.includes('SH') || v.name.includes('Air Blade'));
-      return isCompactCar || isTrendyScooter;
-    }
-    if (persona === 'electric') {
-      return isElectricVehicle(v);
-    }
-    if (persona === 'vinhhy') {
-      return v.type === 'motorbike';
-    }
-    return true;
-  };
-
-  const countPersonaAll = availableVehicles.length;
-  const countPersonaFamily = availableVehicles.filter(v => matchPersona(v, 'family')).length;
-  const countPersonaCouple = availableVehicles.filter(v => matchPersona(v, 'couple')).length;
-  const countPersonaElectric = availableVehicles.filter(v => matchPersona(v, 'electric')).length;
-  const countPersonaVinhhy = availableVehicles.filter(v => matchPersona(v, 'vinhhy')).length;
-
-  const personaOptions = [
-    {
-      id: 'all' as PersonaKey,
-      label: 'Tất cả nhu cầu',
-      shortLabel: 'Tất cả',
-      desc: 'Toàn bộ đội xe DriveRent',
-      icon: Layers,
-      count: countPersonaAll
-    },
-    {
-      id: 'family' as PersonaKey,
-      label: 'Gia đình du lịch (4-7 chỗ)',
-      shortLabel: 'Gia đình 4-7 chỗ',
-      desc: 'Cốp rộng, êm ái, an toàn cao',
-      icon: Users,
-      count: countPersonaFamily
-    },
-    {
-      id: 'couple' as PersonaKey,
-      label: 'Cặp đôi dạo biển',
-      shortLabel: 'Cặp đôi dạo biển',
-      desc: 'Nhỏ gọn, check-in thời thượng',
-      icon: Sparkles,
-      count: countPersonaCouple
-    },
-    {
-      id: 'electric' as PersonaKey,
-      label: 'Xe điện xanh VinFast',
-      shortLabel: 'Xe điện VinFast',
-      desc: '0đ xăng, công nghệ hiện đại',
-      icon: Zap,
-      count: countPersonaElectric
-    },
-    {
-      id: 'vinhhy' as PersonaKey,
-      label: 'Xe máy phượt Vĩnh Hy',
-      shortLabel: 'Phượt Vĩnh Hy',
-      desc: 'Leo dốc khỏe, bền bỉ, tiết kiệm',
-      icon: Bike,
-      count: countPersonaVinhhy
-    }
-  ];
-
-  const handleSelectPersona = (personaId: PersonaKey) => {
-    if (selectedPersona === personaId && personaId !== 'all') {
-      setSelectedPersona('all');
-      return;
-    }
-    setSelectedPersona(personaId);
-    if (personaId === 'family' && selectedCategory === 'motorbike') {
-      setSelectedCategory('all');
-    } else if (personaId === 'vinhhy' && (selectedCategory === 'car' || selectedCategory === 'electric')) {
-      setSelectedCategory('all');
-    } else if (personaId === 'electric' && selectedCategory === 'motorbike') {
-      setSelectedCategory('all');
-    }
-  };
-
-  // Danh sách xe cơ sở theo danh mục và nhu cầu đã chọn (để tính counter động cho từng khoảng giá)
+  // Danh sách xe cơ sở theo danh mục đã chọn (để tính counter động cho từng khoảng giá)
   const baseCategoryVehicles = availableVehicles.filter((v) => {
-    if (selectedPersona !== 'all' && !matchPersona(v, selectedPersona)) return false;
     if (selectedCategory === 'electric' && !isElectricVehicle(v)) return false;
     if (selectedCategory === 'car' && !isGasolineCar(v)) return false;
     if (selectedCategory === 'motorbike' && !isMotorbike(v)) return false;
@@ -400,7 +312,6 @@ export const VehiclesCustomerView: React.FC = () => {
 
   // Filter based on selected persona, category, price tier & search term
   let displayVehicles = availableVehicles.filter((v) => {
-    if (selectedPersona !== 'all' && !matchPersona(v, selectedPersona)) return false;
     if (selectedCategory === 'electric' && !isElectricVehicle(v)) return false;
     if (selectedCategory === 'car' && !isGasolineCar(v)) return false;
     if (selectedCategory === 'motorbike' && !isMotorbike(v)) return false;
@@ -422,7 +333,6 @@ export const VehiclesCustomerView: React.FC = () => {
 
   // Số lượng bộ lọc đang kích hoạt
   const activeFilterCount =
-    (selectedPersona !== 'all' ? 1 : 0) +
     (selectedCategory !== 'all' ? 1 : 0) +
     (priceRange !== 'all' ? 1 : 0) +
     (searchTerm.trim() !== '' ? 1 : 0) +
@@ -431,7 +341,6 @@ export const VehiclesCustomerView: React.FC = () => {
   const hasActiveFilters = activeFilterCount > 0;
 
   const handleResetFilters = () => {
-    setSelectedPersona('all');
     setSelectedCategory('all');
     setPriceRange('all');
     setSearchTerm('');
@@ -548,23 +457,28 @@ export const VehiclesCustomerView: React.FC = () => {
               </span>
             </div>
 
-            {/* Quick persona scroll chips in sticky bar (tablet / desktop) */}
+            {/* Quick category scroll chips in sticky bar */}
             <div className="hidden md:flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
-              {personaOptions.slice(1).map((p) => {
-                const isActive = selectedPersona === p.id;
+              {[
+                { id: 'all', label: t('category.all'), icon: Layers },
+                { id: 'electric', label: t('category.electric'), icon: Zap },
+                { id: 'car', label: t('category.car'), icon: Fuel },
+                { id: 'motorbike', label: t('category.motorbike'), icon: Bike }
+              ].map((c) => {
+                const isActive = selectedCategory === c.id;
                 return (
                   <button
-                    key={p.id}
+                    key={c.id}
                     type="button"
-                    onClick={() => handleSelectPersona(p.id)}
+                    onClick={() => setSelectedCategory(c.id as any)}
                     className={`text-xs px-2.5 py-1.5 rounded-xl font-bold transition-all flex items-center gap-1 shrink-0 cursor-pointer ${
                       isActive
                         ? 'bg-sky-700 text-white shadow-2xs'
                         : 'bg-slate-100 hover:bg-slate-200/80 text-slate-700'
                     }`}
                   >
-                    <p.icon className="w-3.5 h-3.5" />
-                    <span>{p.shortLabel}</span>
+                    <c.icon className="w-3.5 h-3.5" />
+                    <span>{c.label}</span>
                   </button>
                 );
               })}
@@ -627,24 +541,30 @@ export const VehiclesCustomerView: React.FC = () => {
                 </button>
               </div>
 
-              {/* Persona selection in drawer */}
+              {/* Category selection in drawer */}
               <div className="space-y-1.5">
-                <span className="text-xs font-bold text-slate-700">Nhu cầu du lịch:</span>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
-                  {personaOptions.map((p) => {
-                    const isActive = selectedPersona === p.id;
+                <span className="text-xs font-bold text-slate-700">Loại động cơ &amp; Dòng xe:</span>
+                <div className="grid grid-cols-2 gap-1.5">
+                  {[
+                    { id: 'all', label: t('category.all'), icon: Layers },
+                    { id: 'electric', label: t('category.electric'), icon: Zap },
+                    { id: 'car', label: t('category.car'), icon: Fuel },
+                    { id: 'motorbike', label: t('category.motorbike'), icon: Bike }
+                  ].map((c) => {
+                    const isActive = selectedCategory === c.id;
                     return (
                       <button
-                        key={p.id}
+                        key={c.id}
                         type="button"
-                        onClick={() => handleSelectPersona(p.id)}
-                        className={`p-2 rounded-xl text-xs font-bold text-left flex items-center justify-between border cursor-pointer ${
+                        onClick={() => setSelectedCategory(c.id as any)}
+                        className={`p-2 rounded-xl text-xs font-bold text-left flex items-center gap-1.5 border cursor-pointer ${
                           isActive
                             ? 'bg-sky-700 text-white border-sky-700'
                             : 'bg-slate-50 hover:bg-slate-100 text-slate-800 border-slate-200'
                         }`}
                       >
-                        <span className="truncate">{p.shortLabel}</span>
+                        <c.icon className="w-3.5 h-3.5 shrink-0" />
+                        <span className="truncate">{c.label}</span>
                       </button>
                     );
                   })}
@@ -839,45 +759,11 @@ export const VehiclesCustomerView: React.FC = () => {
           </div>
         </div>
 
-        {/* Bộ lọc xe thông minh theo Nhu cầu du lịch, Động cơ & Khoảng giá (Chuẩn UI/UX Pro Max & Impeccable) */}
-        <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-sm p-3.5 sm:p-5 space-y-4">
+        {/* Bộ lọc xe thông minh theo Động cơ & Khoảng giá */}
+        <section className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-sm p-3.5 sm:p-5 space-y-4">
           
-          {/* Hàng 1: Nhu cầu du lịch Nha Trang */}
+          {/* Hàng 1: Loại động cơ & Dòng xe */}
           <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
-                <Users className="w-3.5 h-3.5 text-sky-600" />
-                <span>Nhu cầu du lịch Nha Trang</span>
-              </span>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
-              {personaOptions.map((persona) => {
-                const IconComponent = persona.icon;
-                const isActive = selectedPersona === persona.id;
-                return (
-                  <button
-                    key={persona.id}
-                    type="button"
-                    onClick={() => handleSelectPersona(persona.id)}
-                    className={`min-h-[44px] px-3.5 py-2 rounded-xl text-left transition-all flex items-center gap-2.5 border cursor-pointer select-none active:scale-[0.98] ${
-                      isActive
-                        ? 'bg-sky-700 text-white border-sky-700 shadow-sm'
-                        : 'bg-slate-50 hover:bg-slate-100/90 text-slate-800 border-slate-200/90 hover:border-sky-300'
-                    }`}
-                  >
-                    <IconComponent className={`w-4 h-4 shrink-0 ${isActive ? 'text-white' : 'text-sky-700'}`} />
-                    <span className="text-xs sm:text-sm font-bold truncate">
-                      {persona.shortLabel || persona.label}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Hàng 2: Loại động cơ & Dòng xe */}
-          <div className="space-y-2 pt-2.5 border-t border-slate-100">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
                 <SlidersHorizontal className="w-3.5 h-3.5 text-sky-600" />
@@ -991,25 +877,6 @@ export const VehiclesCustomerView: React.FC = () => {
             <div className="flex flex-wrap items-center gap-1.5 text-slate-600 font-medium">
               <span className="font-bold text-slate-700">{t('filter.active_filters', 'Đang lọc:')}</span>
               
-              {/* Badge nhu cầu du lịch (Persona) */}
-              {selectedPersona !== 'all' && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-sky-50 text-sky-700 border border-sky-200 font-bold">
-                  {selectedPersona === 'family' && <Users className="w-3 h-3 text-sky-600" />}
-                  {selectedPersona === 'couple' && <Sparkles className="w-3 h-3 text-sky-600" />}
-                  {selectedPersona === 'electric' && <Zap className="w-3 h-3 text-sky-600" />}
-                  {selectedPersona === 'vinhhy' && <Bike className="w-3 h-3 text-sky-600" />}
-                  <span>{personaOptions.find(p => p.id === selectedPersona)?.shortLabel}</span>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedPersona('all')}
-                    className="hover:text-sky-900 ml-0.5 cursor-pointer"
-                    aria-label="Xóa bộ lọc nhu cầu"
-                  >
-                    <X className="w-3 h-3" />
-                  </button>
-                </span>
-              )}
-
               {/* Badge danh mục */}
               {selectedCategory !== 'all' && (
                 <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-sky-50 text-sky-700 border border-sky-200 font-semibold">
@@ -1096,7 +963,7 @@ export const VehiclesCustomerView: React.FC = () => {
             </div>
           </div>
 
-        </div>
+        </section>
 
         {/* Empty state nếu không có xe khả dụng */}
         {displayVehicles.length === 0 && (
