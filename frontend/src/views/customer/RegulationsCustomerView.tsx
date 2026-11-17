@@ -26,7 +26,10 @@ import {
   Check,
   FileText,
   Info,
-  ShieldAlert
+  ShieldAlert,
+  ArrowRight,
+  Shield,
+  Award
 } from 'lucide-react';
 
 import nhaTrangCoastalBay from '../../assets/images/nha_trang_coastal_bay.jpg';
@@ -292,19 +295,20 @@ export const COUNTRY_DATABASE: CountryRule[] = [
     carDocDesc: 'Bằng quốc tế CAA của Canada theo Công ước Geneva 1949. Để tự lái ô tô tại VN cần đổi sang bằng PET VN hoặc có IDP Vienna 1968.',
     bikeDocDesc: 'Thuê Xe máy điện VinFast Feliz/Evo (100% Miễn bằng lái) hoặc chọn dịch vụ thuê xe có tài xế.',
     legalBasis: 'Thông tư 29/2015/TT-BGTVT & Công ước Vienna 1968',
-    specialAdvice: 'Khuyến nghị: Chọn gói thuê ô tô kèm tài xế riêng hoặc thuê xe máy điện VinFast.',
+    specialAdvice: 'Khuyến nghị: Chọn gói thuê ô tô có tài xế riêng hoặc thuê xe máy điện VinFast.',
     keywords: ['canada', 'can', 'ca']
   }
 ];
 
 export const POPULAR_QUICK_PILLS = [
-  { id: 'vn', label: '🇻🇳 Việt Nam' },
   { id: 'korea', label: '🇰🇷 Hàn Quốc' },
   { id: 'russia', label: '🇷🇺 Nga' },
   { id: 'china', label: '🇨🇳 Trung Quốc' },
   { id: 'usa', label: '🇺🇸 Hoa Kỳ' },
   { id: 'australia', label: '🇦🇺 Úc' },
-  { id: 'thailand', label: '🇹🇭 Thái Lan' }
+  { id: 'thailand', label: '🇹🇭 Thái Lan' },
+  { id: 'germany', label: '🇩🇪 Đức' },
+  { id: 'japan', label: '🇯🇵 Nhật Bản' }
 ];
 
 export const RegulationsCustomerView: React.FC = () => {
@@ -312,11 +316,14 @@ export const RegulationsCustomerView: React.FC = () => {
 
   const hotline = settings?.hotline || '0905 888 999';
 
-  // State: Phương tiện chọn trong bộ tra cứu tương tác
-  const [selectedVehicleType, setSelectedVehicleType] = useState<'car' | 'scooter' | 'ev_bike'>('car');
+  // State: Tab đối tượng (Trong nước vs Quốc tế)
+  const [audienceTab, setAudienceTab] = useState<'domestic' | 'international'>('domestic');
 
-  // State: Quốc gia đang chọn
-  const [selectedCountry, setSelectedCountry] = useState<CountryRule>(COUNTRY_DATABASE[0]);
+  // State: Loại phương tiện kiểm tra (cho khách quốc tế)
+  const [intlVehicleType, setIntlVehicleType] = useState<'car' | 'scooter' | 'ev_bike'>('car');
+
+  // State: Quốc gia đang chọn (mặc định Hàn Quốc vì chiếm lượng khách quốc tế lớn nhất Nha Trang)
+  const [selectedCountry, setSelectedCountry] = useState<CountryRule>(COUNTRY_DATABASE[1]);
 
   // State: Modal xem tất cả quốc gia
   const [showCountryModal, setShowCountryModal] = useState(false);
@@ -349,60 +356,48 @@ export const RegulationsCustomerView: React.FC = () => {
 
   const modalFilteredCountries = useMemo(() => {
     const q = modalSearch.toLowerCase().trim();
-    if (!q) return COUNTRY_DATABASE;
+    if (!q) return COUNTRY_DATABASE.filter(c => c.id !== 'vn');
     return COUNTRY_DATABASE.filter(c =>
-      c.nameVi.toLowerCase().includes(q) ||
-      c.nameEn.toLowerCase().includes(q) ||
-      c.keywords.some(k => k.includes(q))
+      c.id !== 'vn' && (
+        c.nameVi.toLowerCase().includes(q) ||
+        c.nameEn.toLowerCase().includes(q) ||
+        c.keywords.some(k => k.includes(q))
+      )
     );
   }, [modalSearch]);
 
-  // Đánh giá điều kiện pháp lý tức thì theo phương tiện và quốc tịch đã chọn
-  const legalVerdict = useMemo(() => {
-    if (selectedVehicleType === 'ev_bike') {
+  // Đánh giá điều kiện pháp lý tức thì cho khách quốc tế
+  const intlVerdict = useMemo(() => {
+    if (intlVehicleType === 'ev_bike') {
       return {
         status: 'valid' as const,
-        badge: '100% MIỄN BẰNG LÁI',
+        badge: '100% MIỄN BẰNG LÁI THEO LUẬT VN',
         badgeColor: 'bg-emerald-600 text-white',
-        title: 'Hợp lệ 100% không cần giấy phép lái xe',
-        summary: 'Theo Luật Giao thông Đường bộ Việt Nam, xe máy điện có vận tốc dưới 50km/h (VinFast Feliz S / Evo 200) được miễn hoàn toàn bằng lái cho mọi du khách trong và ngoài nước.',
-        requirements: [
-          'CCCD gắn chip (khách Việt) HOẶC Hộ chiếu / Passport còn hạn (khách quốc tế).',
+        title: 'Hợp lệ 100% — Không cần bất kỳ bằng lái nào',
+        headline: 'Đặc quyền du lịch biển đảo Nha Trang',
+        desc: 'Theo Luật Giao thông Đường bộ Việt Nam, xe máy điện vận tốc dưới 50km/h (VinFast Feliz S / Evo 200) được miễn hoàn toàn giấy phép lái xe cho du khách quốc tế.',
+        docs: [
+          'Hộ chiếu (Passport) còn hạn kèm thị thực / dấu nhập cảnh.',
           'Độ tuổi từ đủ 16 tuổi trở lên.',
-          'Đối chiếu scan chụp tại chỗ trong 2 phút — 100% không giữ bản gốc.'
+          'Đối chiếu tại chỗ 2 phút — Trả lại hộ chiếu gốc ngay lập tức.'
         ],
         solution: null
       };
     }
 
-    if (selectedVehicleType === 'car') {
-      if (selectedCountry.id === 'vn') {
-        return {
-          status: 'valid' as const,
-          badge: 'HỢP LỆ THEO LUẬT VN',
-          badgeColor: 'bg-emerald-600 text-white',
-          title: 'Đủ điều kiện tự lái ô tô 4 – 7 chỗ',
-          summary: 'Du khách Việt Nam hoặc Việt kiều có bằng lái PET Việt Nam hợp lệ.',
-          requirements: [
-            'CCCD gắn chip hoặc VNeID Mức 2 (đối chiếu 2 phút, trả lại ngay).',
-            'Giấy phép lái xe ô tô hạng B1, B2 hoặc B còn thời hạn.',
-            'Tiền cọc thế chấp 5tr – 10tr (hoặc để lại 01 xe máy chính chủ có Cavet).'
-          ],
-          solution: null
-        };
-      }
-
+    if (intlVehicleType === 'car') {
       if (selectedCountry.canDriveCar) {
         return {
           status: 'valid' as const,
           badge: `HỢP LỆ (${selectedCountry.groupBadge})`,
           badgeColor: 'bg-sky-700 text-white',
           title: `Đủ điều kiện tự lái ô tô theo ${selectedCountry.groupName}`,
-          summary: selectedCountry.carHeadline,
-          requirements: [
-            'Hộ chiếu (Passport) còn hạn trên 6 tháng kèm thị thực/dấu nhập cảnh.',
+          headline: selectedCountry.carHeadline,
+          desc: 'Quốc gia của quý khách đã gia nhập Công ước Vienna 1968 hoặc thuộc khối ASEAN. Bằng lái có giá trị pháp lý đầy đủ tại Việt Nam.',
+          docs: [
+            'Hộ chiếu (Passport) còn hạn trên 6 tháng.',
             selectedCountry.carDocDesc,
-            'Tiền cọc thế chấp nhận xe (chấp nhận thẻ tín dụng quốc tế Visa/Mastercard hoặc tiền mặt).'
+            'Tiền cọc thế chấp (chấp nhận thẻ tín dụng Visa/Mastercard hoặc tiền mặt).'
           ],
           solution: null
         };
@@ -410,11 +405,12 @@ export const RegulationsCustomerView: React.FC = () => {
 
       return {
         status: 'caution' as const,
-        badge: 'CẦN LƯU Ý PHÁP LÝ',
+        badge: 'CHƯA ĐƯỢC TỰ LÁI Ô TÔ TẠI VN',
         badgeColor: 'bg-rose-600 text-white',
-        title: `Chưa được tự lái ô tô theo luật GTĐB Việt Nam`,
-        summary: selectedCountry.carHeadline,
-        requirements: [
+        title: `Lưu ý pháp lý đối với du khách ${selectedCountry.nameVi}`,
+        headline: selectedCountry.carHeadline,
+        desc: `${selectedCountry.nameVi} thuộc Công ước Geneva 1949 hoặc chưa tham gia Vienna 1968. Theo Thông tư 29/2015/TT-BGTVT, bằng quốc tế IAA hoặc AAA chưa có giá trị tự lái ô tô tại VN.`,
+        docs: [
           selectedCountry.carDocDesc,
           'Căn cứ pháp lý: ' + selectedCountry.legalBasis
         ],
@@ -423,35 +419,21 @@ export const RegulationsCustomerView: React.FC = () => {
     }
 
     // motorbike xăng
-    if (selectedCountry.id === 'vn') {
-      return {
-        status: 'valid' as const,
-        badge: 'HỢP LỆ GPLX A1 / A2',
-        badgeColor: 'bg-emerald-600 text-white',
-        title: 'Đủ điều kiện tự lái xe máy xăng phổ thông',
-        summary: 'Sử dụng giấy phép lái xe máy phổ thông theo quy định giao thông Việt Nam.',
-        requirements: [
-          'CCCD gắn chip hoặc VNeID Mức 2 (chụp đối chiếu 2 phút).',
-          'GPLX hạng A1 hoặc A2 còn hiệu lực.',
-          'Cọc thế chấp nhẹ 1.000.000₫ – 2.000.000₫ (hoặc để lại xe máy cá nhân).'
-        ],
-        solution: null
-      };
-    }
-
     return {
       status: 'valid' as const,
-      badge: 'CẦN BẰNG QUỐC TẾ HOẶC ĐỔI XE ĐIỆN',
+      badge: 'YÊU CẦU BẰNG XE MÁY QUỐC TẾ',
       badgeColor: 'bg-indigo-700 text-white',
-      title: 'Yêu cầu bằng lái xe máy quốc tế hợp lệ',
-      summary: selectedCountry.bikeDocDesc,
-      requirements: [
-        'Hộ chiếu còn hạn + Bằng lái xe máy quốc tế IDP 1968 Hạng A (hoặc bằng ASEAN song ngữ).',
-        'Nếu chưa có bằng quốc tế: Đổi ngay sang Xe máy điện VinFast (100% MIỄN BẰNG LÁI).'
+      title: 'Điều kiện thuê xe máy xăng (Vision, Air Blade...)',
+      headline: selectedCountry.bikeDocDesc,
+      desc: 'Cần có bằng lái xe máy quốc tế IDP Vienna 1968 Hạng A kèm bằng lái quốc gia còn hiệu lực.',
+      docs: [
+        'Hộ chiếu còn hạn trên 6 tháng.',
+        'Bằng lái xe máy quốc tế IDP 1968 Hạng A (hoặc bằng ASEAN song ngữ).',
+        'Nếu chưa có bằng quốc tế: Khuyên dùng Xe máy điện VinFast (Miễn bằng 100%).'
       ],
-      solution: 'Thuê Xe máy điện thông minh VinFast là lựa chọn số 1 của du khách nước ngoài tại Nha Trang: 0đ bằng lái, êm ái, pin chạy 150km/lần sạc.'
+      solution: 'Xe máy điện thông minh VinFast Feliz/Evo là giải pháp hoàn hảo cho du khách: Không cần bằng lái, êm ái, pin đi 150km/lần sạc.'
     };
-  }, [selectedVehicleType, selectedCountry]);
+  }, [intlVehicleType, selectedCountry]);
 
   // 4 Phân khúc quy định tiền cọc minh bạch
   const depositCategories = [
@@ -634,271 +616,378 @@ export const RegulationsCustomerView: React.FC = () => {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 space-y-10 sm:space-y-12">
         
         {/* ========================================================================= */}
-        {/* SECTION 2: BỘ TRA CỨU HỒ SƠ PHÁP LÝ TƯƠNG TÁC 2-CHẠM                     */}
+        {/* SECTION 2: HỒ SƠ PHÁP LÝ & TRA CỨU ĐIỀU KIỆN LÁI XE (BENTO REDESIGN)      */}
         {/* ========================================================================= */}
         <section className="bg-white rounded-3xl border border-slate-200/90 p-5 sm:p-8 shadow-xs space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-100 pb-4">
+          
+          {/* Header Section */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-slate-100 pb-4">
             <div>
               <span className="text-xs font-black text-sky-700 uppercase tracking-wider block">
-                Hồ sơ pháp lý tương tác
+                Hồ sơ pháp lý cần chuẩn bị
               </span>
               <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight mt-0.5">
-                Bộ Tra Cứu Tự Động Điều Kiện Bằng Lái Xe
+                Thủ Tục Giấy Tờ &amp; Tiêu Chuẩn Bằng Lái Hợp Lệ
               </h2>
             </div>
-            <span className="text-xs font-bold text-sky-800 bg-sky-50 px-3 py-1 rounded-full border border-sky-200 self-start sm:self-auto">
-              Chỉ đối chiếu scan tại chỗ trong 2 phút &bull; 100% Không giữ bản gốc
-            </span>
+
+            {/* Segmented Tab Switcher: Khách Trong Nước vs Khách Quốc Tế */}
+            <div className="flex items-center p-1 rounded-2xl bg-slate-100 border border-slate-200 self-start sm:self-auto shrink-0">
+              <button
+                type="button"
+                onClick={() => setAudienceTab('domestic')}
+                className={`min-h-[40px] px-4 py-2 rounded-xl text-xs font-black transition-all cursor-pointer flex items-center gap-2 ${
+                  audienceTab === 'domestic'
+                    ? 'bg-white text-slate-900 shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                <span>🇻🇳</span>
+                <span>Khách Trong Nước</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setAudienceTab('international')}
+                className={`min-h-[40px] px-4 py-2 rounded-xl text-xs font-black transition-all cursor-pointer flex items-center gap-2 ${
+                  audienceTab === 'international'
+                    ? 'bg-white text-sky-700 shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                <span>🌐</span>
+                <span>Khách Quốc Tế &amp; Việt Kiều</span>
+              </button>
+            </div>
           </div>
 
-          {/* Công cụ chọn 2-Chạm: Chọn loại xe & Chọn quốc tịch */}
-          <div className="p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-slate-50 via-sky-50/40 to-slate-50 border border-sky-200/90 space-y-5">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
+          {/* VIEW 1: DU KHÁCH TRONG NƯỚC (BENTO 3 CỘT TRỰC QUAN CÂN ĐỐI) */}
+          {audienceTab === 'domestic' ? (
+            <div className="space-y-4 animate-in fade-in duration-200">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                
+                {/* Bento Card 1: Ô Tô Tự Lái */}
+                <div className="rounded-2xl border-2 border-slate-200 hover:border-sky-300 bg-white p-5 sm:p-6 flex flex-col justify-between space-y-4 transition-all duration-200 shadow-2xs">
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-10 h-10 rounded-xl bg-sky-50 text-sky-700 flex items-center justify-center shrink-0">
+                          <Car className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <h3 className="font-black text-slate-900 text-sm sm:text-base">Ô Tô Tự Lái</h3>
+                          <span className="text-[11px] text-slate-500 font-medium">Xe 4 – 7 chỗ đời mới</span>
+                        </div>
+                      </div>
+                      <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        B1 &bull; B2 &bull; B
+                      </span>
+                    </div>
+
+                    <div className="space-y-2.5 text-xs text-slate-700">
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                        <div>
+                          <strong className="text-slate-900 block font-bold">CCCD chip hoặc VNeID Mức 2</strong>
+                          <span className="text-slate-500">Quét chip đối chiếu 2 phút, trả lại bản gốc ngay.</span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                        <div>
+                          <strong className="text-slate-900 block font-bold">Giấy phép lái xe ô tô (thẻ PET)</strong>
+                          <span className="text-slate-500">Hạng B1, B2 hoặc B còn hiệu lực pháp lý.</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-900">
+                    <span>Thế chấp: 5tr – 10tr</span>
+                    <span className="text-slate-500 font-medium">(hoặc giữ 01 xe máy)</span>
+                  </div>
+                </div>
+
+                {/* Bento Card 2: Xe Máy Xăng Phổ Thông */}
+                <div className="rounded-2xl border-2 border-slate-200 hover:border-sky-300 bg-white p-5 sm:p-6 flex flex-col justify-between space-y-4 transition-all duration-200 shadow-2xs">
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0">
+                          <Bike className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <h3 className="font-black text-slate-900 text-sm sm:text-base">Xe Máy Xăng</h3>
+                          <span className="text-[11px] text-slate-500 font-medium">Vision, Air Blade, Wave</span>
+                        </div>
+                      </div>
+                      <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-md bg-sky-50 text-sky-700 border border-sky-200">
+                        A1 &bull; A2
+                      </span>
+                    </div>
+
+                    <div className="space-y-2.5 text-xs text-slate-700">
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                        <div>
+                          <strong className="text-slate-900 block font-bold">CCCD gắn chip hoặc VNeID</strong>
+                          <span className="text-slate-500">Nhân viên chụp ảnh lưu hồ sơ, trả lại ngay.</span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                        <div>
+                          <strong className="text-slate-900 block font-bold">GPLX xe máy hạng A1/A2</strong>
+                          <span className="text-slate-500">Bằng lái xe máy thông thường tại Việt Nam.</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-800">
+                    <span>Thế chấp: 1tr – 2tr</span>
+                    <span className="text-slate-500 font-medium">Hoàn cọc 5 phút VietQR</span>
+                  </div>
+                </div>
+
+                {/* Bento Card 3: Xe Máy Điện VinFast Thông Minh (Highlight đặc quyền 0đ bằng) */}
+                <div className="rounded-2xl border-2 border-emerald-300 bg-gradient-to-br from-emerald-50/40 via-white to-emerald-50/20 p-5 sm:p-6 flex flex-col justify-between space-y-4 transition-all duration-200 shadow-2xs">
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between pb-3 border-b border-emerald-200/80">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-2xs">
+                          <Zap className="w-5 h-5 text-amber-300" />
+                        </div>
+                        <div>
+                          <h3 className="font-black text-slate-900 text-sm sm:text-base">Xe Máy Điện VinFast</h3>
+                          <span className="text-[11px] text-emerald-800 font-bold">Feliz S &bull; Evo 200</span>
+                        </div>
+                      </div>
+                      <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-md bg-emerald-600 text-white shadow-2xs">
+                        0đ Bằng Lái
+                      </span>
+                    </div>
+
+                    <div className="space-y-2.5 text-xs text-slate-700">
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                        <div>
+                          <strong className="text-slate-900 block font-bold">100% Miễn bằng lái theo Luật GTĐB</strong>
+                          <span className="text-slate-600">Dành cho mọi công dân từ đủ 16 tuổi trở lên.</span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                        <div>
+                          <strong className="text-slate-900 block font-bold">Chỉ cần CCCD gắn chip</strong>
+                          <span className="text-slate-500">Thủ tục đơn giản nhất, nhận xe lăn bánh sau 3 phút.</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-3 border-t border-emerald-200/80 flex items-center justify-between text-xs font-bold text-emerald-900">
+                    <span>Thế chấp: 1.000.000₫</span>
+                    <span className="text-emerald-700 font-medium">Miễn cọc nếu có vé bay</span>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Cam kết bàn giao khách trong nước */}
+              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+                <div className="flex items-center gap-2 text-slate-700">
+                  <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>
+                    <strong>Quy trình đối chiếu 2 phút:</strong> Nhân viên quét chip tại sảnh khách sạn hoặc sân bay, gửi trả bản gốc ngay tại chỗ để quý khách nhận phòng.
+                  </span>
+                </div>
+                <span className="text-[11px] font-bold text-slate-500 whitespace-nowrap">
+                  100% Không giữ CCCD gốc
+                </span>
+              </div>
+            </div>
+          ) : (
+            /* VIEW 2: DU KHÁCH QUỐC TẾ & VIỆT KIỀU (SMART INTERNATIONAL CHECKER) */
+            <div className="space-y-5 animate-in fade-in duration-200">
               
-              {/* Bước 1: Chọn loại phương tiện (5 cols) */}
-              <div className="lg:col-span-5 space-y-2">
-                <label className="text-xs font-black uppercase text-slate-700 tracking-wider flex items-center gap-1.5">
-                  <span className="w-5 h-5 rounded-full bg-sky-700 text-white text-[11px] flex items-center justify-center font-mono">1</span>
-                  <span>Chọn loại phương tiện bạn muốn thuê:</span>
-                </label>
-                <div className="grid grid-cols-3 gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setSelectedVehicleType('car')}
-                    className={`min-h-[44px] p-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex flex-col sm:flex-row items-center justify-center gap-1.5 text-center ${
-                      selectedVehicleType === 'car'
-                        ? 'bg-sky-700 text-white shadow-xs font-black ring-2 ring-sky-500/20'
-                        : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200'
-                    }`}
-                  >
-                    <Car className="w-4 h-4 shrink-0" />
-                    <span>Ô tô tự lái</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => setSelectedVehicleType('scooter')}
-                    className={`min-h-[44px] p-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex flex-col sm:flex-row items-center justify-center gap-1.5 text-center ${
-                      selectedVehicleType === 'scooter'
-                        ? 'bg-sky-700 text-white shadow-xs font-black ring-2 ring-sky-500/20'
-                        : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200'
-                    }`}
-                  >
-                    <Bike className="w-4 h-4 shrink-0" />
-                    <span>Xe máy xăng</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => setSelectedVehicleType('ev_bike')}
-                    className={`min-h-[44px] p-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex flex-col sm:flex-row items-center justify-center gap-1.5 text-center ${
-                      selectedVehicleType === 'ev_bike'
-                        ? 'bg-emerald-600 text-white shadow-xs font-black ring-2 ring-emerald-500/20'
-                        : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200'
-                    }`}
-                  >
-                    <Zap className="w-4 h-4 shrink-0 text-amber-300" />
-                    <span className="truncate">VinFast (0đ bằng)</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Bước 2: Chọn quốc tịch du khách (7 cols) */}
-              <div className="lg:col-span-7 space-y-2">
-                <div className="flex items-center justify-between">
-                  <label className="text-xs font-black uppercase text-slate-700 tracking-wider flex items-center gap-1.5">
-                    <span className="w-5 h-5 rounded-full bg-sky-700 text-white text-[11px] flex items-center justify-center font-mono">2</span>
-                    <span>Chọn quốc tịch du khách:</span>
-                  </label>
-                  <button
-                    type="button"
-                    onClick={() => setShowCountryModal(true)}
-                    className="text-xs text-sky-700 hover:text-sky-900 font-bold underline cursor-pointer"
-                  >
-                    Xem tất cả ({COUNTRY_DATABASE.length} nước) &rarr;
-                  </button>
-                </div>
-
-                {/* Quick Pills Bar */}
-                <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1">
-                  {POPULAR_QUICK_PILLS.map((pill) => {
-                    const targetC = COUNTRY_DATABASE.find(c => c.id === pill.id);
-                    const isSelected = selectedCountry.id === pill.id;
-                    return (
-                      <button
-                        key={pill.id}
-                        type="button"
-                        onClick={() => targetC && setSelectedCountry(targetC)}
-                        className={`min-h-[38px] px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer ${
-                          isSelected
-                            ? 'bg-slate-900 text-white shadow-xs'
-                            : 'bg-white hover:bg-sky-50 text-slate-700 border border-slate-200'
-                        }`}
-                      >
-                        {pill.label}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-            </div>
-
-            {/* HỘP KẾT QUẢ ĐÁNH GIÁ PHÁP LÝ TỨC THÌ (VERDICT BOX) */}
-            <div className={`p-4 sm:p-5 rounded-2xl border-2 transition-all ${
-              legalVerdict.status === 'valid'
-                ? 'bg-white border-emerald-300/80 shadow-xs'
-                : 'bg-white border-rose-300 shadow-xs'
-            }`}>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
-                <div className="flex items-center gap-3">
-                  <span className="text-3xl shrink-0">{selectedCountry.flag}</span>
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <h3 className="font-black text-slate-900 text-base">
-                        {selectedCountry.nameVi} &bull; {legalVerdict.title}
-                      </h3>
-                    </div>
-                    <p className="text-xs text-slate-600 mt-0.5 font-medium">
-                      {legalVerdict.summary}
-                    </p>
-                  </div>
-                </div>
-
-                <span className={`text-xs font-black uppercase tracking-wider px-3 py-1.5 rounded-full shrink-0 self-start sm:self-auto ${legalVerdict.badgeColor}`}>
-                  {legalVerdict.badge}
-                </span>
-              </div>
-
-              {/* Danh sách yêu cầu giấy tờ chi tiết */}
-              <div className="pt-3.5 space-y-2 text-xs">
-                <span className="font-black text-slate-800 uppercase tracking-wide block">
-                  Giấy tờ cần xuất trình khi nhận xe:
-                </span>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
-                  {legalVerdict.requirements.map((req, rIdx) => (
-                    <div key={rIdx} className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <span className="leading-relaxed text-slate-700">{req}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {legalVerdict.solution && (
-                  <div className="mt-3 p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-start gap-2">
-                    <Info className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
-                    <span>
-                      <strong>Lời khuyên chuyên môn:</strong> {legalVerdict.solution}
+              {/* Dải chọn nhanh quốc gia + Phân khúc xe */}
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-3.5">
+                
+                {/* Hàng 1: Quốc tịch */}
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-black uppercase text-slate-700 tracking-wider flex items-center gap-1.5">
+                      <Globe className="w-4 h-4 text-sky-700" />
+                      <span>Chọn quốc tịch du khách:</span>
                     </span>
+                    <button
+                      type="button"
+                      onClick={() => setShowCountryModal(true)}
+                      className="text-xs text-sky-700 hover:text-sky-900 font-bold underline cursor-pointer"
+                    >
+                      Tất cả ({COUNTRY_DATABASE.length - 1} nước) &rarr;
+                    </button>
                   </div>
-                )}
+
+                  <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5">
+                    {POPULAR_QUICK_PILLS.map((pill) => {
+                      const targetC = COUNTRY_DATABASE.find(c => c.id === pill.id);
+                      const isSelected = selectedCountry.id === pill.id;
+                      return (
+                        <button
+                          key={pill.id}
+                          type="button"
+                          onClick={() => targetC && setSelectedCountry(targetC)}
+                          className={`min-h-[36px] px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer ${
+                            isSelected
+                              ? 'bg-slate-900 text-white shadow-xs'
+                              : 'bg-white hover:bg-sky-50 text-slate-700 border border-slate-200'
+                          }`}
+                        >
+                          {pill.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Hàng 2: Phân khúc xe muốn thuê */}
+                <div className="pt-2 border-t border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <span className="text-xs font-bold text-slate-700">
+                    Loại phương tiện kiểm tra:
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setIntlVehicleType('car')}
+                      className={`min-h-[36px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                        intlVehicleType === 'car'
+                          ? 'bg-sky-700 text-white shadow-xs font-black'
+                          : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
+                      }`}
+                    >
+                      <Car className="w-3.5 h-3.5" />
+                      <span>Ô tô tự lái</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setIntlVehicleType('scooter')}
+                      className={`min-h-[36px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                        intlVehicleType === 'scooter'
+                          ? 'bg-sky-700 text-white shadow-xs font-black'
+                          : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
+                      }`}
+                    >
+                      <Bike className="w-3.5 h-3.5" />
+                      <span>Xe máy xăng</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setIntlVehicleType('ev_bike')}
+                      className={`min-h-[36px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                        intlVehicleType === 'ev_bike'
+                          ? 'bg-emerald-600 text-white shadow-xs font-black'
+                          : 'bg-white text-emerald-800 border border-emerald-200 hover:bg-emerald-50'
+                      }`}
+                    >
+                      <Zap className="w-3.5 h-3.5 text-amber-300" />
+                      <span>Xe điện VinFast (0đ bằng)</span>
+                    </button>
+                  </div>
+                </div>
+
               </div>
-            </div>
 
-          </div>
-
-          {/* 2 Card So Sánh Nhanh: Khách Trong Nước vs Khách Quốc Tế */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-            
-            {/* Card 1: Khách Trong Nước */}
-            <div className="rounded-2xl border-2 border-emerald-200/90 bg-emerald-50/20 p-5 sm:p-6 flex flex-col justify-between space-y-4">
-              <div className="space-y-3.5">
-                <div className="flex items-center justify-between pb-3 border-b border-emerald-200/80">
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-3xl">🇻🇳</span>
+              {/* Thẻ Kết Quả Pháp Lý Quốc Tế (International Driving Certificate Preview) */}
+              <div className="rounded-2xl border-2 border-slate-200/90 overflow-hidden bg-white shadow-sm">
+                
+                {/* Header Thẻ: Cờ + Tên quốc gia + Badge tình trạng */}
+                <div className="p-4 sm:p-5 bg-gradient-to-r from-slate-900 via-sky-950 to-slate-900 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <span className="text-3xl shrink-0">{selectedCountry.flag}</span>
                     <div>
-                      <h3 className="font-black text-slate-900 text-base">Khách Trong Nước</h3>
-                      <span className="text-xs text-emerald-800 font-bold">Việt Nam &bull; Việt kiều</span>
+                      <div className="flex items-center gap-2">
+                        <h3 className="font-black text-base sm:text-lg text-white">
+                          {selectedCountry.nameVi} ({selectedCountry.nameEn})
+                        </h3>
+                      </div>
+                      <p className="text-xs text-sky-200 font-medium mt-0.5">
+                        {intlVerdict.title}
+                      </p>
                     </div>
                   </div>
-                  <span className="text-xs font-black px-2.5 py-1 rounded-full bg-emerald-600 text-white">
-                    Đối chiếu 2 phút
+
+                  <span className={`text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full shrink-0 self-start sm:self-auto shadow-2xs ${intlVerdict.badgeColor}`}>
+                    {intlVerdict.badge}
                   </span>
                 </div>
 
-                <div className="space-y-3 text-xs text-slate-700">
-                  <div className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                    <div>
-                      <strong className="text-slate-900 block font-bold">CCCD gắn chip hoặc VNeID Mức 2</strong>
-                      <span className="text-slate-600">Nhân viên quét chip đối chiếu 2 phút, gửi trả lại bản gốc ngay tại chỗ.</span>
+                {/* Body Thẻ: 2 Cột Cân Đối (Giấy tờ cần mang vs Căn cứ & Lời khuyên) */}
+                <div className="p-5 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                  
+                  {/* Cột trái (6/12): Checklist giấy tờ */}
+                  <div className="lg:col-span-6 space-y-3">
+                    <span className="text-xs font-black uppercase text-slate-800 tracking-wide block">
+                      Giấy tờ bắt buộc xuất trình khi nhận xe:
+                    </span>
+                    <div className="space-y-2">
+                      {intlVerdict.docs.map((doc, dIdx) => (
+                        <div key={dIdx} className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 flex items-start gap-2.5 text-xs text-slate-700">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                          <span className="leading-relaxed">{doc}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                    <div>
-                      <strong className="text-slate-900 block font-bold">Giấy phép lái xe (GPLX thẻ PET)</strong>
-                      <span className="text-slate-600">Hạng B1, B2 hoặc B (cho ô tô) hoặc A1, A2 (cho xe máy xăng phổ thông).</span>
+                  {/* Cột phải (6/12): Đánh giá chi tiết & Đề xuất giải pháp thay thế */}
+                  <div className="lg:col-span-6 space-y-3">
+                    <span className="text-xs font-black uppercase text-slate-800 tracking-wide block">
+                      Căn cứ pháp lý &amp; Khuyến nghị:
+                    </span>
+
+                    <div className="p-3.5 rounded-xl bg-sky-50/50 border border-sky-100 text-xs text-slate-700 space-y-1.5">
+                      <div className="font-bold text-sky-950 flex items-center gap-1.5">
+                        <Scale className="w-4 h-4 text-sky-700 shrink-0" />
+                        <span>{intlVerdict.headline}</span>
+                      </div>
+                      <p className="text-slate-600 leading-relaxed font-normal">
+                        {intlVerdict.desc}
+                      </p>
                     </div>
+
+                    {intlVerdict.solution && (
+                      <div className="p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900 space-y-1.5">
+                        <div className="font-bold flex items-center gap-1.5 text-amber-950">
+                          <Sparkles className="w-4 h-4 text-amber-600 shrink-0" />
+                          <span>Đề xuất giải pháp an tâm 100%:</span>
+                        </div>
+                        <p className="leading-relaxed text-amber-800">
+                          {intlVerdict.solution}
+                        </p>
+                      </div>
+                    )}
                   </div>
 
-                  <div className="flex items-start gap-2.5">
-                    <Zap className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-                    <div>
-                      <strong className="text-slate-900 block font-bold">Xe máy điện VinFast: Miễn bằng lái</strong>
-                      <span className="text-slate-600">100% miễn giấy phép lái xe theo Luật Giao thông Đường bộ Việt Nam.</span>
-                    </div>
-                  </div>
                 </div>
+
+                {/* Footer Thẻ */}
+                <div className="px-5 py-3 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] text-slate-600">
+                  <span>Hợp đồng song ngữ Anh &ndash; Việt chuẩn mực quốc tế</span>
+                  <span className="font-medium text-sky-800">Chấp nhận thanh toán thẻ quốc tế Visa / Mastercard</span>
+                </div>
+
               </div>
 
-              <div className="pt-3 border-t border-emerald-200/80 flex items-center justify-between text-xs font-bold text-emerald-800">
-                <span>Thế chấp: 1 - 2tr (hoặc giữ xe máy)</span>
-                <span className="text-slate-500 font-medium">Bàn giao tại sảnh</span>
-              </div>
             </div>
+          )}
 
-            {/* Card 2: Khách Quốc Tế */}
-            <div className="rounded-2xl border-2 border-sky-200/90 bg-sky-50/20 p-5 sm:p-6 flex flex-col justify-between space-y-4">
-              <div className="space-y-3.5">
-                <div className="flex items-center justify-between pb-3 border-b border-sky-200/80">
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-3xl">🌐</span>
-                    <div>
-                      <h3 className="font-black text-slate-900 text-base">Khách Du Lịch Quốc Tế</h3>
-                      <span className="text-xs text-sky-800 font-bold">International &bull; ASEAN</span>
-                    </div>
-                  </div>
-                  <span className="text-xs font-black px-2.5 py-1 rounded-full bg-sky-700 text-white">
-                    IDP 1968 / ASEAN
-                  </span>
-                </div>
-
-                <div className="space-y-3 text-xs text-slate-700">
-                  <div className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-sky-600 shrink-0 mt-0.5" />
-                    <div>
-                      <strong className="text-slate-900 block font-bold">Hộ chiếu (Passport) còn hạn</strong>
-                      <span className="text-slate-600">Thời hạn còn trên 6 tháng kèm thị thực (Visa) hoặc dấu nhập cảnh hợp lệ.</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-sky-600 shrink-0 mt-0.5" />
-                    <div>
-                      <strong className="text-slate-900 block font-bold">Bằng quốc tế IDP Vienna 1968</strong>
-                      <span className="text-slate-600">Xuất trình kèm bằng lái quốc gia (Khối ASEAN dùng trực tiếp bằng song ngữ).</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-2.5">
-                    <Zap className="w-4 h-4 text-cyan-600 shrink-0 mt-0.5" />
-                    <div>
-                      <strong className="text-slate-900 block font-bold">Chưa có IDP: Đổi sang xe điện / Có tài xế</strong>
-                      <span className="text-slate-600">Thuê xe máy điện VinFast thông minh hoặc đăng ký gói ô tô kèm tài xế riêng.</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-3 border-t border-sky-200/80 flex items-center justify-between text-xs font-bold text-sky-800">
-                <span>Hợp đồng song ngữ Anh &ndash; Việt</span>
-                <span className="text-slate-500 font-medium">Chấp nhận thẻ quốc tế</span>
-              </div>
-            </div>
-
-          </div>
         </section>
 
         {/* ========================================================================= */}
@@ -1299,7 +1388,7 @@ export const RegulationsCustomerView: React.FC = () => {
               <div className="flex items-center gap-2.5">
                 <Globe className="w-5 h-5 text-sky-700" />
                 <h3 className="font-black text-base sm:text-lg text-slate-900">
-                  Chọn Quốc Tịch Du Khách ({COUNTRY_DATABASE.length} Nước)
+                  Chọn Quốc Tịch Du Khách ({COUNTRY_DATABASE.length - 1} Nước)
                 </h3>
               </div>
               <button
