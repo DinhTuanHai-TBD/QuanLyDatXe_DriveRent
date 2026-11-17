@@ -581,52 +581,56 @@ export const RegulationsCustomerView: React.FC = () => {
     <div className="bg-slate-50 min-h-screen text-slate-900 pb-20 space-y-10 sm:space-y-12">
       
       {/* ========================================================================= */}
-      {/* SECTION 1: HERO COVER GỌN GÀNG - NỀN BIỂN MỜ DỊU MẮT (OPTION C)           */}
+      {/* SECTION 1: HERO COVER KIỂU 3 - FLOATING FROSTED GLASS PANE                */}
       {/* ========================================================================= */}
       <section
-        className="relative overflow-hidden w-full min-h-[260px] sm:min-h-[290px] flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-10 border-b border-sky-200/80 shadow-2xs"
+        className="relative overflow-hidden w-full min-h-[460px] sm:min-h-[500px] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 sm:py-16 border-b border-sky-200/80 shadow-md"
         style={{
           backgroundImage: `url(${nhaTrangCoastalBay})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center 42%'
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-slate-900/75 to-slate-950/85 pointer-events-none" />
+        {/* Lớp phủ điện ảnh sâu để làm nổi bật tấm kính trung tâm */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-sky-950/60 to-slate-950/80 pointer-events-none" />
 
-        <div className="max-w-[1440px] w-full mx-auto relative z-10 text-center space-y-3.5 my-auto">
-          {/* Eyebrow Tag mỏng */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-cyan-300 border border-white/15 backdrop-blur-md text-xs font-bold shadow-2xs">
-            <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
-            <span className="tracking-wider uppercase font-semibold text-[11px]">
-              CHÍNH SÁCH &bull; HỢP ĐỒNG MINH BẠCH
+        {/* TẤM KÍNH MỜ LỚN NỔI BẬT Ở GIỮA (FLOATING GLASS PANE) */}
+        <div className="relative z-10 max-w-4xl w-full mx-auto p-7 sm:p-10 lg:p-12 rounded-[28px] sm:rounded-[36px] bg-slate-950/70 backdrop-blur-2xl border border-white/20 shadow-[0_25px_60px_rgba(0,0,0,0.45)] text-center space-y-5 animate-in fade-in zoom-in-95 duration-300">
+          
+          {/* Tag Eyebrow */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-cyan-300 border border-white/20 backdrop-blur-md text-xs font-bold shadow-xs">
+            <ShieldCheck className="w-4 h-4 text-cyan-400" />
+            <span className="tracking-wider uppercase font-black text-[11px] sm:text-xs">
+              QUY ĐỊNH THUÊ XE &bull; CAM KẾT HỢP ĐỒNG MINH BẠCH
             </span>
           </div>
 
-          {/* Tiêu đề & Mô tả ngắn gọn */}
-          <div className="space-y-2">
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white leading-tight">
-              Hợp Đồng Thuê Xe &amp; Cam Kết Minh Bạch
+          {/* Tiêu đề chính lớn bề thế */}
+          <div className="space-y-3">
+            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight uppercase drop-shadow-md">
+              Hợp Đồng Rõ Ràng &bull; Cam Kết &ldquo;3 KHÔNG&rdquo; An Tâm 100%
             </h1>
-            <p className="text-xs sm:text-sm text-slate-200 max-w-2xl mx-auto font-normal leading-relaxed">
-              Cam kết &ldquo;3 KHÔNG&rdquo;: Không giữ giấy tờ gốc &bull; Không phụ phí ẩn &bull; Không phạt mất cọc khi đổi lịch.
+            <p className="text-xs sm:text-sm md:text-base font-normal text-slate-200 max-w-2xl mx-auto leading-relaxed">
+              Minh bạch tuyệt đối quyền lợi: Không giữ CCCD/Passport gốc &bull; Không chi phí ẩn phát sinh &bull; Không phạt mất cọc khi đổi ngày.
             </p>
           </div>
 
-          {/* 3 Cam kết cốt lõi tinh giản trên 1 hàng */}
-          <div className="pt-1 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs font-semibold text-slate-200">
-            <div className="px-3 py-1 rounded-full bg-white/10 border border-white/15 backdrop-blur-md flex items-center gap-1.5 text-emerald-300">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-              <span>Quét CCCD 2 phút, trả lại ngay</span>
+          {/* 3 Cam kết nòng cốt dạng Pill viền sáng nổi bật */}
+          <div className="pt-2 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 text-xs font-bold">
+            <div className="px-4 py-2 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/35 backdrop-blur-md flex items-center gap-2 shadow-xs">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+              <span>1. Không giữ CCCD gốc (Quét chip 2 phút)</span>
             </div>
-            <div className="px-3 py-1 rounded-full bg-white/10 border border-white/15 backdrop-blur-md flex items-center gap-1.5 text-cyan-300">
-              <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-              <span>0đ Phụ phí phát sinh</span>
+            <div className="px-4 py-2 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-400/35 backdrop-blur-md flex items-center gap-2 shadow-xs">
+              <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
+              <span>2. 0đ Phụ phí ẩn (Rửa xe &amp; Delay 0đ)</span>
             </div>
-            <div className="px-3 py-1 rounded-full bg-white/10 border border-white/15 backdrop-blur-md flex items-center gap-1.5 text-amber-300">
-              <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-              <span>Hoàn cọc 100% trong 5 phút</span>
+            <div className="px-4 py-2 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/35 backdrop-blur-md flex items-center gap-2 shadow-xs">
+              <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+              <span>3. Hoàn cọc 100% qua VietQR 5 phút</span>
             </div>
           </div>
+
         </div>
       </section>
 
