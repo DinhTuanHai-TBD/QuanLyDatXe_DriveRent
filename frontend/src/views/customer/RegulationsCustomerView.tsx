@@ -581,50 +581,50 @@ export const RegulationsCustomerView: React.FC = () => {
     <div className="bg-slate-50 min-h-screen text-slate-900 pb-20 space-y-10 sm:space-y-12">
       
       {/* ========================================================================= */}
-      {/* SECTION 1: HERO COVER WIDE PANORAMA 1440PX                                */}
+      {/* SECTION 1: HERO COVER GỌN GÀNG - NỀN BIỂN MỜ DỊU MẮT (OPTION C)           */}
       {/* ========================================================================= */}
       <section
-        className="relative overflow-hidden w-full min-h-[380px] sm:min-h-[420px] flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-10 sm:py-14 border-b border-sky-200/80 shadow-xs"
+        className="relative overflow-hidden w-full min-h-[260px] sm:min-h-[290px] flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-10 border-b border-sky-200/80 shadow-2xs"
         style={{
           backgroundImage: `url(${nhaTrangCoastalBay})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center 42%'
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-sky-950/85 to-slate-950/90 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-slate-900/75 to-slate-950/85 pointer-events-none" />
 
-        <div className="max-w-[1440px] w-full mx-auto relative z-10 text-center space-y-4 my-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 text-cyan-300 border border-white/20 backdrop-blur-md text-xs font-bold shadow-xs">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400" />
-            </span>
-            <span className="tracking-wide uppercase font-black">
-              QUY ĐỊNH THUÊ XE &bull; CAM KẾT HỢP ĐỒNG MINH BẠCH
+        <div className="max-w-[1440px] w-full mx-auto relative z-10 text-center space-y-3.5 my-auto">
+          {/* Eyebrow Tag mỏng */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-cyan-300 border border-white/15 backdrop-blur-md text-xs font-bold shadow-2xs">
+            <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
+            <span className="tracking-wider uppercase font-semibold text-[11px]">
+              CHÍNH SÁCH &bull; HỢP ĐỒNG MINH BẠCH
             </span>
           </div>
 
-          <div className="space-y-2.5">
-            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight uppercase drop-shadow-md">
-              Hợp Đồng Rõ Ràng &bull; Cam Kết &ldquo;3 KHÔNG&rdquo; An Tâm 100%
+          {/* Tiêu đề & Mô tả ngắn gọn */}
+          <div className="space-y-2">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white leading-tight">
+              Hợp Đồng Thuê Xe &amp; Cam Kết Minh Bạch
             </h1>
-            <p className="text-xs sm:text-sm md:text-base font-medium text-slate-200 max-w-3xl mx-auto drop-shadow-sm leading-relaxed">
-              Minh bạch tuyệt đối quyền lợi: Không giữ CCCD/Passport gốc &bull; Không chi phí ẩn phát sinh &bull; Không phạt mất cọc khi đổi ngày.
+            <p className="text-xs sm:text-sm text-slate-200 max-w-2xl mx-auto font-normal leading-relaxed">
+              Cam kết &ldquo;3 KHÔNG&rdquo;: Không giữ giấy tờ gốc &bull; Không phụ phí ẩn &bull; Không phạt mất cọc khi đổi lịch.
             </p>
           </div>
 
-          <div className="pt-2 flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 text-xs font-black">
-            <div className="px-3.5 py-1.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 backdrop-blur-md flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-              <span>1. Không giữ CCCD gốc</span>
+          {/* 3 Cam kết cốt lõi tinh giản trên 1 hàng */}
+          <div className="pt-1 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs font-semibold text-slate-200">
+            <div className="px-3 py-1 rounded-full bg-white/10 border border-white/15 backdrop-blur-md flex items-center gap-1.5 text-emerald-300">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+              <span>Quét CCCD 2 phút, trả lại ngay</span>
             </div>
-            <div className="px-3.5 py-1.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 backdrop-blur-md flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
-              <span>2. 0đ Phụ phí ẩn</span>
+            <div className="px-3 py-1 rounded-full bg-white/10 border border-white/15 backdrop-blur-md flex items-center gap-1.5 text-cyan-300">
+              <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+              <span>0đ Phụ phí phát sinh</span>
             </div>
-            <div className="px-3.5 py-1.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/40 backdrop-blur-md flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
-              <span>3. Đổi ngày bảo lưu cọc 100%</span>
+            <div className="px-3 py-1 rounded-full bg-white/10 border border-white/15 backdrop-blur-md flex items-center gap-1.5 text-amber-300">
+              <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+              <span>Hoàn cọc 100% trong 5 phút</span>
             </div>
           </div>
         </div>
