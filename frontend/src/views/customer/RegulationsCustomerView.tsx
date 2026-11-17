@@ -21,7 +21,12 @@ import {
   AlertTriangle,
   Layers,
   Fuel,
-  Clock
+  Clock,
+  ExternalLink,
+  Check,
+  FileText,
+  Info,
+  ShieldAlert
 } from 'lucide-react';
 
 import nhaTrangCoastalBay from '../../assets/images/nha_trang_coastal_bay.jpg';
@@ -150,13 +155,13 @@ export const COUNTRY_DATABASE: CountryRule[] = [
     flag: '🇹🇭',
     group: 'asean',
     groupBadge: 'ASEAN 1985',
-    groupName: 'Khối Hiệp định ASEAN 1985',
+    groupName: 'Hiệp ước ASEAN 1985',
     canDriveCar: true,
     canDriveBike: true,
-    carHeadline: 'Hợp lệ theo Hiệp định Công nhận Giấy phép lái xe khối ASEAN 1985',
-    carDocDesc: 'Hộ chiếu + Bằng lái quốc gia Thái Lan dạng thẻ nhựa Smart Card có tiếng Anh song ngữ (Miễn bằng IDP quốc tế).',
-    bikeDocDesc: 'Bằng lái xe máy Thái Lan (thẻ nhựa song ngữ tiếng Anh) hoặc Xe máy điện VinFast.',
-    legalBasis: 'Hiệp định Kuala Lumpur 1985 & Thông tư 12/2017/TT-BGTVT',
+    carHeadline: 'Hợp lệ theo Hiệp định Công nhận Bằng lái ASEAN 1985',
+    carDocDesc: 'Hộ chiếu (Passport) + Bằng lái xe Thái Lan dạng thẻ nhựa thông minh có tiếng Anh (Smart Card Driving License).',
+    bikeDocDesc: 'Bằng xe máy Thái Lan (thẻ tiếng Anh) hoặc Thuê Xe máy điện VinFast.',
+    legalBasis: 'Hiệp định Công nhận GPLX các nước ASEAN (Ký kết 1985 tại Kuala Lumpur)',
     keywords: ['thai lan', 'thailand', 'thai', 'th']
   },
   {
@@ -166,39 +171,158 @@ export const COUNTRY_DATABASE: CountryRule[] = [
     flag: '🇲🇾',
     group: 'asean',
     groupBadge: 'ASEAN 1985',
-    groupName: 'Khối Hiệp định ASEAN 1985',
+    groupName: 'Hiệp ước ASEAN 1985',
     canDriveCar: true,
     canDriveBike: true,
-    carHeadline: 'Hợp lệ theo Hiệp định ASEAN 1985',
-    carDocDesc: 'Hộ chiếu + Bằng lái xe Malaysia MyKad / thẻ nhựa có in song ngữ tiếng Anh còn hiệu lực.',
-    bikeDocDesc: 'Bằng lái xe máy song ngữ tiếng Anh, hoặc Xe máy điện VinFast.',
-    legalBasis: 'Hiệp định Kuala Lumpur 1985',
+    carHeadline: 'Hợp lệ theo Hiệp định Công nhận Bằng lái ASEAN 1985',
+    carDocDesc: 'Hộ chiếu (Passport) + Bằng lái xe quốc gia Malaysia (có tiếng Anh) còn thời hạn.',
+    bikeDocDesc: 'Bằng lái xe máy Malaysia có tiếng Anh hoặc Thuê Xe máy điện VinFast.',
+    legalBasis: 'Hiệp định Công nhận GPLX các nước ASEAN',
     keywords: ['malaysia', 'ma lay', 'my']
+  },
+  {
+    id: 'singapore',
+    nameVi: 'Singapore',
+    nameEn: 'Singapore',
+    flag: '🇸🇬',
+    group: 'asean',
+    groupBadge: 'ASEAN 1985',
+    groupName: 'Hiệp ước ASEAN 1985',
+    canDriveCar: true,
+    canDriveBike: true,
+    carHeadline: 'Hợp lệ theo Hiệp định Công nhận Bằng lái ASEAN 1985',
+    carDocDesc: 'Hộ chiếu + Bằng lái xe Singapore (Singapore Driving Licence) còn hiệu lực.',
+    bikeDocDesc: 'Bằng lái Class 2B/2A/2 Singapore hoặc Xe máy điện VinFast.',
+    legalBasis: 'Hiệp định Công nhận GPLX các nước ASEAN',
+    keywords: ['singapore', 'sing', 'sg']
+  },
+  {
+    id: 'germany',
+    nameVi: 'Đức (Germany)',
+    nameEn: 'Germany',
+    flag: '🇩🇪',
+    group: 'intl',
+    groupBadge: 'IDP 1968',
+    groupName: 'Công ước Vienna 1968',
+    canDriveCar: true,
+    canDriveBike: true,
+    carHeadline: 'Hợp lệ theo Công ước Vienna 1968 (Đức là thành viên)',
+    carDocDesc: 'Hộ chiếu + Bằng quốc tế IDP Vienna 1968 (Führerschein) + Bằng lái quốc gia Đức.',
+    bikeDocDesc: 'IDP Vienna 1968 Hạng A + Bằng gốc, hoặc Xe máy điện VinFast.',
+    legalBasis: 'Công ước Vienna 1968 & Thông tư 29/2015/TT-BGTVT',
+    keywords: ['duc', 'germany', 'deutschland', 'de']
+  },
+  {
+    id: 'france',
+    nameVi: 'Pháp (France)',
+    nameEn: 'France',
+    flag: '🇫🇷',
+    group: 'intl',
+    groupBadge: 'IDP 1968',
+    groupName: 'Công ước Vienna 1968',
+    canDriveCar: true,
+    canDriveBike: true,
+    carHeadline: 'Hợp lệ theo Công ước Vienna 1968 (Pháp là thành viên sáng lập)',
+    carDocDesc: 'Hộ chiếu + Bằng quốc tế IDP Vienna 1968 (Permis International) + Bằng lái quốc gia Pháp.',
+    bikeDocDesc: 'IDP Vienna 1968 Hạng A + Bằng gốc, hoặc Xe máy điện VinFast.',
+    legalBasis: 'Công ước Vienna 1968 & Thông tư 29/2015/TT-BGTVT',
+    keywords: ['phap', 'france', 'french', 'fr']
+  },
+  {
+    id: 'uk',
+    nameVi: 'Vương Quốc Anh (United Kingdom)',
+    nameEn: 'United Kingdom (UK)',
+    flag: '🇬🇧',
+    group: 'intl',
+    groupBadge: 'IDP 1968',
+    groupName: 'Công ước Vienna 1968',
+    canDriveCar: true,
+    canDriveBike: true,
+    carHeadline: 'Hợp lệ theo Công ước Vienna 1968 (UK cấp IDP 1968 qua Post Office)',
+    carDocDesc: 'Hộ chiếu + Bằng IDP Vienna 1968 (loại 3 năm của Post Office) + Bằng lái UK (DVLA photocard).',
+    bikeDocDesc: 'IDP 1968 Hạng A + Bằng UK, hoặc Xe máy điện VinFast.',
+    legalBasis: 'Công ước Vienna 1968 & Thông tư 29/2015/TT-BGTVT',
+    keywords: ['anh', 'vuong quoc anh', 'uk', 'united kingdom', 'britain', 'england', 'gb']
+  },
+  {
+    id: 'japan',
+    nameVi: 'Nhật Bản (Japan)',
+    nameEn: 'Japan',
+    flag: '🇯🇵',
+    group: 'special',
+    groupBadge: 'IDP 1949',
+    groupName: 'Quốc gia cần lưu ý đặc biệt',
+    canDriveCar: false,
+    canDriveBike: true,
+    carHeadline: 'LƯU Ý: NHẬT BẢN THUỘC CÔNG ƯỚC GENEVA 1949 (CHƯA ĐƯỢC CHẤP THUẬN TỰ LÁI Ô TÔ TẠI VN)',
+    carDocDesc: 'Bằng quốc tế Nhật Bản cấp theo Công ước Geneva 1949. Để tự lái ô tô tại VN cần đổi sang bằng PET VN hoặc có IDP Vienna 1968.',
+    bikeDocDesc: 'Đặc quyền du lịch biển: Thuê Xe máy điện VinFast (100% Miễn bằng lái theo luật VN) hoặc thuê ô tô kèm tài xế.',
+    legalBasis: 'Thông tư 29/2015/TT-BGTVT',
+    specialAdvice: 'Khuyến nghị: Chọn gói thuê ô tô có tài xế riêng hoặc thuê xe máy điện VinFast.',
+    keywords: ['nhat ban', 'japan', 'jp', 'nhat', '日本']
+  },
+  {
+    id: 'taiwan',
+    nameVi: 'Đài Loan (Taiwan)',
+    nameEn: 'Taiwan',
+    flag: '🇹🇼',
+    group: 'special',
+    groupBadge: 'CẦN TÀI XẾ',
+    groupName: 'Quốc gia cần lưu ý đặc biệt',
+    canDriveCar: false,
+    canDriveBike: true,
+    carHeadline: 'CHƯA HỖ TRỢ TỰ LÁI Ô TÔ THEO LUẬT GTĐB VIỆT NAM',
+    carDocDesc: 'Bằng lái Đài Loan và bằng quốc tế do Đài Loan cấp chưa có giá trị tự lái ô tô tại Việt Nam.',
+    bikeDocDesc: 'Thuê Xe máy điện thông minh VinFast Feliz/Evo — 100% MIỄN BẰNG LÁI theo luật Việt Nam.',
+    legalBasis: 'Thông tư 29/2015/TT-BGTVT',
+    specialAdvice: 'Khách Đài Loan nên chọn gói thuê ô tô kèm tài xế hoặc xe máy điện VinFast để an tâm 100%.',
+    keywords: ['dai loan', 'taiwan', 'tw', '台湾', '臺灣']
+  },
+  {
+    id: 'canada',
+    nameVi: 'Canada',
+    nameEn: 'Canada',
+    flag: '🇨🇦',
+    group: 'special',
+    groupBadge: 'IDP 1949 / CAA',
+    groupName: 'Quốc gia cần lưu ý đặc biệt',
+    canDriveCar: false,
+    canDriveBike: true,
+    carHeadline: 'LƯU Ý: CANADA THUỘC CÔNG ƯỚC GENEVA 1949 (CHƯA ĐƯỢC CHẤP THUẬN TỰ LÁI Ô TÔ TẠI VN)',
+    carDocDesc: 'Bằng quốc tế CAA của Canada theo Công ước Geneva 1949. Để tự lái ô tô tại VN cần đổi sang bằng PET VN hoặc có IDP Vienna 1968.',
+    bikeDocDesc: 'Thuê Xe máy điện VinFast Feliz/Evo (100% Miễn bằng lái) hoặc chọn dịch vụ thuê xe có tài xế.',
+    legalBasis: 'Thông tư 29/2015/TT-BGTVT & Công ước Vienna 1968',
+    specialAdvice: 'Khuyến nghị: Chọn gói thuê ô tô kèm tài xế riêng hoặc thuê xe máy điện VinFast.',
+    keywords: ['canada', 'can', 'ca']
   }
 ];
 
 export const POPULAR_QUICK_PILLS = [
-  { id: 'vn', label: 'Việt Nam 🇻🇳' },
-  { id: 'korea', label: 'Hàn Quốc 🇰🇷' },
-  { id: 'russia', label: 'Nga 🇷🇺' },
-  { id: 'china', label: 'Trung Quốc 🇨🇳' },
-  { id: 'usa', label: 'Hoa Kỳ 🇺🇸' },
-  { id: 'thailand', label: 'Thái Lan 🇹🇭' }
+  { id: 'vn', label: '🇻🇳 Việt Nam' },
+  { id: 'korea', label: '🇰🇷 Hàn Quốc' },
+  { id: 'russia', label: '🇷🇺 Nga' },
+  { id: 'china', label: '🇨🇳 Trung Quốc' },
+  { id: 'usa', label: '🇺🇸 Hoa Kỳ' },
+  { id: 'australia', label: '🇦🇺 Úc' },
+  { id: 'thailand', label: '🇹🇭 Thái Lan' }
 ];
 
 export const RegulationsCustomerView: React.FC = () => {
-  const { settings } = useApp();
-  const brandName = settings?.brandTitle || settings?.storeName || 'DriveRent Nha Trang';
+  const { settings, t } = useApp();
+
   const hotline = settings?.hotline || '0905 888 999';
+
+  // State: Phương tiện chọn trong bộ tra cứu tương tác
+  const [selectedVehicleType, setSelectedVehicleType] = useState<'car' | 'scooter' | 'ev_bike'>('car');
 
   // State: Quốc gia đang chọn
   const [selectedCountry, setSelectedCountry] = useState<CountryRule>(COUNTRY_DATABASE[0]);
 
-  // State: Modal chọn quốc gia
-  const [showCountryModal, setShowCountryModal] = useState<boolean>(false);
-  const [modalSearch, setModalSearch] = useState<string>('');
+  // State: Modal xem tất cả quốc gia
+  const [showCountryModal, setShowCountryModal] = useState(false);
+  const [modalSearch, setModalSearch] = useState('');
 
-  // State: Progressive Disclosure Accordions cho 4 điều khoản (mặc định mở điều khoản 1)
+  // State: Progressive Disclosure Accordions cho 4 điều khoản (mặc định mở điều khoản 0)
   const [openPolicyAccordion, setOpenPolicyAccordion] = useState<number | null>(0);
 
   // State: FAQ Accordion
@@ -233,6 +357,102 @@ export const RegulationsCustomerView: React.FC = () => {
     );
   }, [modalSearch]);
 
+  // Đánh giá điều kiện pháp lý tức thì theo phương tiện và quốc tịch đã chọn
+  const legalVerdict = useMemo(() => {
+    if (selectedVehicleType === 'ev_bike') {
+      return {
+        status: 'valid' as const,
+        badge: '100% MIỄN BẰNG LÁI',
+        badgeColor: 'bg-emerald-600 text-white',
+        title: 'Hợp lệ 100% không cần giấy phép lái xe',
+        summary: 'Theo Luật Giao thông Đường bộ Việt Nam, xe máy điện có vận tốc dưới 50km/h (VinFast Feliz S / Evo 200) được miễn hoàn toàn bằng lái cho mọi du khách trong và ngoài nước.',
+        requirements: [
+          'CCCD gắn chip (khách Việt) HOẶC Hộ chiếu / Passport còn hạn (khách quốc tế).',
+          'Độ tuổi từ đủ 16 tuổi trở lên.',
+          'Đối chiếu scan chụp tại chỗ trong 2 phút — 100% không giữ bản gốc.'
+        ],
+        solution: null
+      };
+    }
+
+    if (selectedVehicleType === 'car') {
+      if (selectedCountry.id === 'vn') {
+        return {
+          status: 'valid' as const,
+          badge: 'HỢP LỆ THEO LUẬT VN',
+          badgeColor: 'bg-emerald-600 text-white',
+          title: 'Đủ điều kiện tự lái ô tô 4 – 7 chỗ',
+          summary: 'Du khách Việt Nam hoặc Việt kiều có bằng lái PET Việt Nam hợp lệ.',
+          requirements: [
+            'CCCD gắn chip hoặc VNeID Mức 2 (đối chiếu 2 phút, trả lại ngay).',
+            'Giấy phép lái xe ô tô hạng B1, B2 hoặc B còn thời hạn.',
+            'Tiền cọc thế chấp 5tr – 10tr (hoặc để lại 01 xe máy chính chủ có Cavet).'
+          ],
+          solution: null
+        };
+      }
+
+      if (selectedCountry.canDriveCar) {
+        return {
+          status: 'valid' as const,
+          badge: `HỢP LỆ (${selectedCountry.groupBadge})`,
+          badgeColor: 'bg-sky-700 text-white',
+          title: `Đủ điều kiện tự lái ô tô theo ${selectedCountry.groupName}`,
+          summary: selectedCountry.carHeadline,
+          requirements: [
+            'Hộ chiếu (Passport) còn hạn trên 6 tháng kèm thị thực/dấu nhập cảnh.',
+            selectedCountry.carDocDesc,
+            'Tiền cọc thế chấp nhận xe (chấp nhận thẻ tín dụng quốc tế Visa/Mastercard hoặc tiền mặt).'
+          ],
+          solution: null
+        };
+      }
+
+      return {
+        status: 'caution' as const,
+        badge: 'CẦN LƯU Ý PHÁP LÝ',
+        badgeColor: 'bg-rose-600 text-white',
+        title: `Chưa được tự lái ô tô theo luật GTĐB Việt Nam`,
+        summary: selectedCountry.carHeadline,
+        requirements: [
+          selectedCountry.carDocDesc,
+          'Căn cứ pháp lý: ' + selectedCountry.legalBasis
+        ],
+        solution: selectedCountry.specialAdvice || 'Khuyến nghị chọn gói Thuê xe kèm tài xế riêng hoặc đổi sang Xe máy điện VinFast để an tâm 100%.'
+      };
+    }
+
+    // motorbike xăng
+    if (selectedCountry.id === 'vn') {
+      return {
+        status: 'valid' as const,
+        badge: 'HỢP LỆ GPLX A1 / A2',
+        badgeColor: 'bg-emerald-600 text-white',
+        title: 'Đủ điều kiện tự lái xe máy xăng phổ thông',
+        summary: 'Sử dụng giấy phép lái xe máy phổ thông theo quy định giao thông Việt Nam.',
+        requirements: [
+          'CCCD gắn chip hoặc VNeID Mức 2 (chụp đối chiếu 2 phút).',
+          'GPLX hạng A1 hoặc A2 còn hiệu lực.',
+          'Cọc thế chấp nhẹ 1.000.000₫ – 2.000.000₫ (hoặc để lại xe máy cá nhân).'
+        ],
+        solution: null
+      };
+    }
+
+    return {
+      status: 'valid' as const,
+      badge: 'CẦN BẰNG QUỐC TẾ HOẶC ĐỔI XE ĐIỆN',
+      badgeColor: 'bg-indigo-700 text-white',
+      title: 'Yêu cầu bằng lái xe máy quốc tế hợp lệ',
+      summary: selectedCountry.bikeDocDesc,
+      requirements: [
+        'Hộ chiếu còn hạn + Bằng lái xe máy quốc tế IDP 1968 Hạng A (hoặc bằng ASEAN song ngữ).',
+        'Nếu chưa có bằng quốc tế: Đổi ngay sang Xe máy điện VinFast (100% MIỄN BẰNG LÁI).'
+      ],
+      solution: 'Thuê Xe máy điện thông minh VinFast là lựa chọn số 1 của du khách nước ngoài tại Nha Trang: 0đ bằng lái, êm ái, pin chạy 150km/lần sạc.'
+    };
+  }, [selectedVehicleType, selectedCountry]);
+
   // 4 Phân khúc quy định tiền cọc minh bạch
   const depositCategories = [
     {
@@ -251,7 +471,7 @@ export const RegulationsCustomerView: React.FC = () => {
       sub: 'Feliz S, Evo 200 (Miễn bằng lái)',
       depositHold: '200.000₫ – 500.000₫',
       depositHandover: '1.000.000₫',
-      depositTraffic: '0₫ (Miễn giữ)',
+      depositTraffic: '0₫ (Miễn cọc phạt nguội)',
       refundTime: 'Hoàn tiền 5 phút ngay khi nhận xe',
       alternative: 'Miễn 100% tiền mặt nếu có vé máy bay khứ hồi'
     },
@@ -288,37 +508,37 @@ export const RegulationsCustomerView: React.FC = () => {
       badgeColor: 'bg-emerald-50 text-emerald-800 border-emerald-200',
       details: [
         'Đặt cọc giữ xe online: Chỉ từ 500.000₫ (xe máy) đến 1.000.000₫ (ô tô) để khóa xe trên hệ thống.',
-        'Thế chấp khi nhận xe: Xe máy 1 - 2tr hoặc ô tô 5 - 10tr (hoặc để lại 01 xe máy chính chủ).',
-        'Hoàn trả siêu tốc: Kiểm tra xe xong, nhân viên hoàn trả 100% tiền cọc qua VietQR 24/7 trong 5 phút.',
+        'Thế chấp khi nhận xe: Xe máy 1 - 2tr hoặc ô tô 5 - 10tr (hoặc để lại 01 xe máy chính chủ có Cavet).',
+        'Hoàn trả siêu tốc: Sau khi nhân viên nghiệm thu bàn giao xe, hoàn trả 100% tiền cọc qua VietQR 24/7 chỉ trong 5 phút.',
         'Chính sách đổi lịch: Miễn phí đổi ngày giữ xe bảo lưu 100% tiền cọc (chỉ cần báo trước 12 tiếng).'
       ]
     },
     {
       id: 1,
       title: '2. Bảo hiểm thân vỏ & Miễn trừ trách nhiệm',
-      summary: '100% xe có bảo hiểm vật chất 2 chiều • Miễn trừ trách nhiệm trước các vết xước nhỏ.',
+      summary: '100% xe có bảo hiểm vật chất 2 chiều • Miễn trừ trách nhiệm trước các vết xước dăm nhỏ.',
       icon: ShieldCheck,
       badge: 'Bảo hiểm 100%',
       badgeColor: 'bg-sky-50 text-sky-800 border-sky-200',
       details: [
-        'Bảo hiểm vật chất 2 chiều: Toàn bộ đội xe DriveRent đều được mua bảo hiểm thân vỏ chính hãng.',
-        'Trầy xước nhỏ thông thường: Khách hàng được miễn trừ bồi thường đối với các vết xước dăm nhẹ dưới 5cm.',
-        'Sự cố va chạm lớn: Chi trả theo mức khấu trừ bảo hiểm cố định (500k - 1tr/vụ) theo hợp đồng bảo hiểm nhà nước.',
-        'Cứu hộ tai nạn: Đội ngũ kỹ thuật hỗ trợ lập biên bản hiện trường và bố trí xe thay thế tương đương.'
+        'Bảo hiểm vật chất 2 chiều: Toàn bộ đội xe DriveRent đều được mua bảo hiểm thân vỏ chính hãng toàn diện.',
+        'Trầy xước nhỏ thông thường: Khách hàng được miễn trừ bồi thường đối với các vết xước dăm nhẹ dưới 5cm do cát đá dọc đường biển.',
+        'Sự cố va chạm lớn: Chi trả theo mức khấu trừ bảo hiểm cố định (500k - 1tr/vụ) theo quy chuẩn hợp đồng bảo hiểm nhà nước.',
+        'Cứu hộ tai nạn: Đội ngũ kỹ thuật hỗ trợ lập biên bản hiện trường 24/7 và bố trí xe thay thế tương đương nhanh chóng.'
       ]
     },
     {
       id: 2,
       title: '3. Quy định phạt nguội & Tra cứu công khai',
-      summary: 'Chỉ giữ cọc trách nhiệm 1 – 2tr • Hoàn trả tự động sau 15 ngày đối soát Cục CSGT.',
+      summary: 'Chỉ giữ cọc trách nhiệm 1 – 2tr • Hoàn trả tự động sau 15 ngày đối soát Cổng CSGT.vn.',
       icon: Scale,
       badge: 'Đối soát CSGT',
       badgeColor: 'bg-indigo-50 text-indigo-800 border-indigo-200',
       details: [
-        'Đối soát minh bạch: Tra cứu trực tiếp trên Cổng thông tin Cục CSGT (csgt.vn) theo đúng biển số và khung giờ thuê.',
+        'Đối soát minh bạch: Tra cứu trực tiếp trên Cổng thông tin Cục CSGT (csgt.vn) theo đúng biển số xe và khung giờ thuê trong hợp đồng.',
         'Mức cọc phạt nguội: Xe máy miễn giữ cọc (0đ); Ô tô tự lái giữ 1.000.000₫ – 2.000.000₫ trong 15 ngày.',
-        'Hoàn cọc tự động: Sau 15 ngày không có biên bản vi phạm, tiền được hoàn 100% về số tài khoản của khách.',
-        'Nếu có vi phạm: DriveRent gửi trích xuất hình ảnh, biên bản phạt nguội và khách hàng chỉ nộp đúng số tiền kho bạc quy định.'
+        'Hoàn cọc tự động: Sau 15 ngày kể từ ngày trả xe, nếu không có biên bản vi phạm, tiền được hoàn 100% về số tài khoản của khách.',
+        'Nếu có vi phạm: DriveRent gửi trích xuất hình ảnh, biên bản phạt nguội chính thức từ CSGT và khách hàng chỉ nộp đúng số tiền kho bạc quy định.'
       ]
     },
     {
@@ -329,7 +549,7 @@ export const RegulationsCustomerView: React.FC = () => {
       badge: 'Minh bạch 360°',
       badgeColor: 'bg-amber-50 text-amber-800 border-amber-200',
       details: [
-        'Mức nhiên liệu: Nhận xe bình đầy 100% xăng/pin thì khi trả xe hoàn trả tương đương (hoặc thanh toán theo giá niêm yết cây xăng).',
+        'Mức nhiên liệu: Nhận xe bình đầy 100% xăng/pin thì khi trả xe hoàn trả tương đương (hoặc thanh toán chênh lệch theo giá niêm yết cây xăng).',
         'Quay video 360°: Nhân viên và khách cùng quay video ngoại quan xe trước khi lăn bánh để đảm bảo không tranh cãi khi trả.',
         'Thời gian trả xe: Miễn phí hỗ trợ trễ giờ đến 59 phút; quá từ 1 đến 3 tiếng tính phụ thu theo giờ siêu rẻ (50k - 100k/giờ).',
         'Vệ sinh xe: Rửa xe thông thường miễn phí 100%; chỉ tính phí nếu xe bị bám bùn đất đặc biệt hoặc dính mùi hải sản tươi sống.'
@@ -375,7 +595,10 @@ export const RegulationsCustomerView: React.FC = () => {
 
         <div className="max-w-[1440px] w-full mx-auto relative z-10 text-center space-y-4 my-auto">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 text-cyan-300 border border-white/20 backdrop-blur-md text-xs font-bold shadow-xs">
-            <ShieldCheck className="w-4 h-4 text-cyan-400" />
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400" />
+            </span>
             <span className="tracking-wide uppercase font-black">
               QUY ĐỊNH THUÊ XE &bull; CAM KẾT HỢP ĐỒNG MINH BẠCH
             </span>
@@ -411,16 +634,16 @@ export const RegulationsCustomerView: React.FC = () => {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 space-y-10 sm:space-y-12">
         
         {/* ========================================================================= */}
-        {/* SECTION 2: THỦ TỤC GIẤY TỜ CẦN CHUẨN BỊ (HỒ SƠ PHÁP LÝ)                  */}
+        {/* SECTION 2: BỘ TRA CỨU HỒ SƠ PHÁP LÝ TƯƠNG TÁC 2-CHẠM                     */}
         {/* ========================================================================= */}
         <section className="bg-white rounded-3xl border border-slate-200/90 p-5 sm:p-8 shadow-xs space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-100 pb-4">
             <div>
               <span className="text-xs font-black text-sky-700 uppercase tracking-wider block">
-                Hồ sơ pháp lý
+                Hồ sơ pháp lý tương tác
               </span>
               <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight mt-0.5">
-                Thủ Tục Giấy Tờ Thuê Xe Máy & Ô Tô Tự Lái
+                Bộ Tra Cứu Tự Động Điều Kiện Bằng Lái Xe
               </h2>
             </div>
             <span className="text-xs font-bold text-sky-800 bg-sky-50 px-3 py-1 rounded-full border border-sky-200 self-start sm:self-auto">
@@ -428,8 +651,154 @@ export const RegulationsCustomerView: React.FC = () => {
             </span>
           </div>
 
-          {/* 2 Card So Sánh Hồ Sơ: Khách Trong Nước vs Khách Quốc Tế */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Công cụ chọn 2-Chạm: Chọn loại xe & Chọn quốc tịch */}
+          <div className="p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-slate-50 via-sky-50/40 to-slate-50 border border-sky-200/90 space-y-5">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
+              
+              {/* Bước 1: Chọn loại phương tiện (5 cols) */}
+              <div className="lg:col-span-5 space-y-2">
+                <label className="text-xs font-black uppercase text-slate-700 tracking-wider flex items-center gap-1.5">
+                  <span className="w-5 h-5 rounded-full bg-sky-700 text-white text-[11px] flex items-center justify-center font-mono">1</span>
+                  <span>Chọn loại phương tiện bạn muốn thuê:</span>
+                </label>
+                <div className="grid grid-cols-3 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedVehicleType('car')}
+                    className={`min-h-[44px] p-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex flex-col sm:flex-row items-center justify-center gap-1.5 text-center ${
+                      selectedVehicleType === 'car'
+                        ? 'bg-sky-700 text-white shadow-xs font-black ring-2 ring-sky-500/20'
+                        : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200'
+                    }`}
+                  >
+                    <Car className="w-4 h-4 shrink-0" />
+                    <span>Ô tô tự lái</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setSelectedVehicleType('scooter')}
+                    className={`min-h-[44px] p-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex flex-col sm:flex-row items-center justify-center gap-1.5 text-center ${
+                      selectedVehicleType === 'scooter'
+                        ? 'bg-sky-700 text-white shadow-xs font-black ring-2 ring-sky-500/20'
+                        : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200'
+                    }`}
+                  >
+                    <Bike className="w-4 h-4 shrink-0" />
+                    <span>Xe máy xăng</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setSelectedVehicleType('ev_bike')}
+                    className={`min-h-[44px] p-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex flex-col sm:flex-row items-center justify-center gap-1.5 text-center ${
+                      selectedVehicleType === 'ev_bike'
+                        ? 'bg-emerald-600 text-white shadow-xs font-black ring-2 ring-emerald-500/20'
+                        : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200'
+                    }`}
+                  >
+                    <Zap className="w-4 h-4 shrink-0 text-amber-300" />
+                    <span className="truncate">VinFast (0đ bằng)</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Bước 2: Chọn quốc tịch du khách (7 cols) */}
+              <div className="lg:col-span-7 space-y-2">
+                <div className="flex items-center justify-between">
+                  <label className="text-xs font-black uppercase text-slate-700 tracking-wider flex items-center gap-1.5">
+                    <span className="w-5 h-5 rounded-full bg-sky-700 text-white text-[11px] flex items-center justify-center font-mono">2</span>
+                    <span>Chọn quốc tịch du khách:</span>
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() => setShowCountryModal(true)}
+                    className="text-xs text-sky-700 hover:text-sky-900 font-bold underline cursor-pointer"
+                  >
+                    Xem tất cả ({COUNTRY_DATABASE.length} nước) &rarr;
+                  </button>
+                </div>
+
+                {/* Quick Pills Bar */}
+                <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1">
+                  {POPULAR_QUICK_PILLS.map((pill) => {
+                    const targetC = COUNTRY_DATABASE.find(c => c.id === pill.id);
+                    const isSelected = selectedCountry.id === pill.id;
+                    return (
+                      <button
+                        key={pill.id}
+                        type="button"
+                        onClick={() => targetC && setSelectedCountry(targetC)}
+                        className={`min-h-[38px] px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer ${
+                          isSelected
+                            ? 'bg-slate-900 text-white shadow-xs'
+                            : 'bg-white hover:bg-sky-50 text-slate-700 border border-slate-200'
+                        }`}
+                      >
+                        {pill.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+            </div>
+
+            {/* HỘP KẾT QUẢ ĐÁNH GIÁ PHÁP LÝ TỨC THÌ (VERDICT BOX) */}
+            <div className={`p-4 sm:p-5 rounded-2xl border-2 transition-all ${
+              legalVerdict.status === 'valid'
+                ? 'bg-white border-emerald-300/80 shadow-xs'
+                : 'bg-white border-rose-300 shadow-xs'
+            }`}>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
+                <div className="flex items-center gap-3">
+                  <span className="text-3xl shrink-0">{selectedCountry.flag}</span>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-black text-slate-900 text-base">
+                        {selectedCountry.nameVi} &bull; {legalVerdict.title}
+                      </h3>
+                    </div>
+                    <p className="text-xs text-slate-600 mt-0.5 font-medium">
+                      {legalVerdict.summary}
+                    </p>
+                  </div>
+                </div>
+
+                <span className={`text-xs font-black uppercase tracking-wider px-3 py-1.5 rounded-full shrink-0 self-start sm:self-auto ${legalVerdict.badgeColor}`}>
+                  {legalVerdict.badge}
+                </span>
+              </div>
+
+              {/* Danh sách yêu cầu giấy tờ chi tiết */}
+              <div className="pt-3.5 space-y-2 text-xs">
+                <span className="font-black text-slate-800 uppercase tracking-wide block">
+                  Giấy tờ cần xuất trình khi nhận xe:
+                </span>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
+                  {legalVerdict.requirements.map((req, rIdx) => (
+                    <div key={rIdx} className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                      <span className="leading-relaxed text-slate-700">{req}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {legalVerdict.solution && (
+                  <div className="mt-3 p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-start gap-2">
+                    <Info className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
+                    <span>
+                      <strong>Lời khuyên chuyên môn:</strong> {legalVerdict.solution}
+                    </span>
+                  </div>
+                )}
+              </div>
+            </div>
+
+          </div>
+
+          {/* 2 Card So Sánh Nhanh: Khách Trong Nước vs Khách Quốc Tế */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
             
             {/* Card 1: Khách Trong Nước */}
             <div className="rounded-2xl border-2 border-emerald-200/90 bg-emerald-50/20 p-5 sm:p-6 flex flex-col justify-between space-y-4">
@@ -529,59 +898,6 @@ export const RegulationsCustomerView: React.FC = () => {
               </div>
             </div>
 
-          </div>
-
-          {/* Quick Country Selector Bar */}
-          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-3">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <div className="flex items-center gap-2 text-xs font-black text-slate-800">
-                <Globe className="w-4 h-4 text-sky-700" />
-                <span>Tra cứu nhanh tính hợp lệ theo quốc tịch du khách:</span>
-              </div>
-              <button
-                type="button"
-                onClick={() => setShowCountryModal(true)}
-                className="text-xs text-sky-700 hover:text-sky-900 font-bold underline cursor-pointer"
-              >
-                Xem tất cả ({COUNTRY_DATABASE.length} quốc gia) &rarr;
-              </button>
-            </div>
-
-            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-              {POPULAR_QUICK_PILLS.map((pill) => {
-                const targetC = COUNTRY_DATABASE.find(c => c.id === pill.id);
-                const isSelected = selectedCountry.id === pill.id;
-                return (
-                  <button
-                    key={pill.id}
-                    type="button"
-                    onClick={() => targetC && setSelectedCountry(targetC)}
-                    className={`min-h-[34px] px-3.5 py-1 rounded-full text-xs font-bold transition-all shrink-0 cursor-pointer ${
-                      isSelected
-                        ? 'bg-sky-700 text-white shadow-2xs'
-                        : 'bg-white hover:bg-sky-50 text-slate-700 border border-slate-200'
-                    }`}
-                  >
-                    {pill.label}
-                  </button>
-                );
-              })}
-            </div>
-
-            <div className="p-3 rounded-xl bg-white border border-sky-200/80 flex items-center justify-between gap-3 text-xs">
-              <div className="flex items-center gap-2.5 min-w-0">
-                <span className="text-2xl shrink-0">{selectedCountry.flag}</span>
-                <div className="truncate">
-                  <strong className="text-slate-900">{selectedCountry.nameVi}:</strong>{' '}
-                  <span className="text-slate-600">
-                    {selectedCountry.carHeadline} &bull; {selectedCountry.carDocDesc}
-                  </span>
-                </div>
-              </div>
-              <span className="text-[10px] font-black uppercase px-2.5 py-0.5 rounded-md bg-sky-50 text-sky-800 border border-sky-200 shrink-0">
-                {selectedCountry.groupBadge}
-              </span>
-            </div>
           </div>
         </section>
 
@@ -772,6 +1088,20 @@ export const RegulationsCustomerView: React.FC = () => {
               </div>
             ))}
           </div>
+
+          {/* Cam kết hoàn cọc siêu tốc */}
+          <div className="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+            <div className="flex items-center gap-2.5 text-emerald-900">
+              <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+              <div>
+                <strong>Bảo chứng hoàn cọc 100% qua VietQR:</strong>{' '}
+                <span>Không giữ cọc vô cớ, không om vốn. Kiểm tra xe hoàn cọc tức thì sau 5 phút.</span>
+              </div>
+            </div>
+            <span className="font-mono font-black text-emerald-800 px-3 py-1 bg-white rounded-lg border border-emerald-200 shrink-0">
+              ⚡ TỐC ĐỘ 5 PHÚT
+            </span>
+          </div>
         </section>
 
         {/* ========================================================================= */}
@@ -852,6 +1182,20 @@ export const RegulationsCustomerView: React.FC = () => {
                           <span className="leading-relaxed">{detail}</span>
                         </div>
                       ))}
+
+                      {item.id === 2 && (
+                        <div className="pt-2">
+                          <a
+                            href="https://csgt.vn/tra-cuu-phuong-tien-vi-pham-giao-thong.html"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-1.5 text-xs font-bold text-sky-700 hover:text-sky-900 hover:underline"
+                          >
+                            <span>Kiểm tra phạt nguội trực tuyến trên cổng CSGT.vn</span>
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </a>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
